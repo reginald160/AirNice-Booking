@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Environment\\PP\\AirFlightBooking\\AirNice.Web\\AirNice.Web.csproj": {}
+    "C:\\Users\\IFEANYI\\Source\\Repos\\AirNice-Booking\\AirNice.Web\\AirNice.Web.csproj": {}
   },
   "projects": {
-    "C:\\Environment\\PP\\AirFlightBooking\\AirNice.Web\\AirNice.Web.csproj": {
+    "C:\\Users\\IFEANYI\\Source\\Repos\\AirNice-Booking\\AirNice.Web\\AirNice.Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Environment\\PP\\AirFlightBooking\\AirNice.Web\\AirNice.Web.csproj",
+        "projectUniqueName": "C:\\Users\\IFEANYI\\Source\\Repos\\AirNice-Booking\\AirNice.Web\\AirNice.Web.csproj",
         "projectName": "AirNice.Web",
-        "projectPath": "C:\\Environment\\PP\\AirFlightBooking\\AirNice.Web\\AirNice.Web.csproj",
+        "projectPath": "C:\\Users\\IFEANYI\\Source\\Repos\\AirNice-Booking\\AirNice.Web\\AirNice.Web.csproj",
         "packagesPath": "C:\\Users\\IFEANYI\\.nuget\\packages\\",
-        "outputPath": "C:\\Environment\\PP\\AirFlightBooking\\AirNice.Web\\obj\\",
+        "outputPath": "C:\\Users\\IFEANYI\\Source\\Repos\\AirNice-Booking\\AirNice.Web\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
