@@ -1,0 +1,16 @@
+C:\Environment\PP\AirFlightBooking\AirNice.Services\bin\Debug\netcoreapp3.1\AirNice.Services.deps.json
+C:\Environment\PP\AirFlightBooking\AirNice.Services\bin\Debug\netcoreapp3.1\AirNice.Services.dll
+C:\Environment\PP\AirFlightBooking\AirNice.Services\bin\Debug\netcoreapp3.1\AirNice.Services.pdb
+C:\Environment\PP\AirFlightBooking\AirNice.Services\bin\Debug\netcoreapp3.1\AirNice.Data.dll
+C:\Environment\PP\AirFlightBooking\AirNice.Services\bin\Debug\netcoreapp3.1\AirNice.Models.dll
+C:\Environment\PP\AirFlightBooking\AirNice.Services\bin\Debug\netcoreapp3.1\AirNice.Utility.dll
+C:\Environment\PP\AirFlightBooking\AirNice.Services\bin\Debug\netcoreapp3.1\AirNice.Data.pdb
+C:\Environment\PP\AirFlightBooking\AirNice.Services\bin\Debug\netcoreapp3.1\AirNice.Models.pdb
+C:\Environment\PP\AirFlightBooking\AirNice.Services\bin\Debug\netcoreapp3.1\AirNice.Utility.pdb
+C:\Environment\PP\AirFlightBooking\AirNice.Services\obj\Debug\netcoreapp3.1\AirNice.Services.csprojAssemblyReference.cache
+C:\Environment\PP\AirFlightBooking\AirNice.Services\obj\Debug\netcoreapp3.1\AirNice.Services.AssemblyInfoInputs.cache
+C:\Environment\PP\AirFlightBooking\AirNice.Services\obj\Debug\netcoreapp3.1\AirNice.Services.AssemblyInfo.cs
+C:\Environment\PP\AirFlightBooking\AirNice.Services\obj\Debug\netcoreapp3.1\AirNice.Services.csproj.CoreCompileInputs.cache
+C:\Environment\PP\AirFlightBooking\AirNice.Services\obj\Debug\netcoreapp3.1\AirNice.Services.csproj.CopyComplete
+C:\Environment\PP\AirFlightBooking\AirNice.Services\obj\Debug\netcoreapp3.1\AirNice.Services.dll
+C:\Environment\PP\AirFlightBooking\AirNice.Services\obj\Debug\netcoreapp3.1\AirNice.Services.pdb
