@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VPkIKT22Z1q82zGpy1KpntDKRl+i1/4F3k9offR5y//+lYIA98GaDDvZTWJ41r3m4ZVFA6ih2qqychJ0bpx+lw==",
+  "dgSpecHash": "kSJMB+ENCWJ/pMbhJZ7OOaPR4anN1a09xVYIZeFKwPShYV8tENWCAqIyLo8swCbIF4f2gCn/JTcFlN9VXhPq7w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\IFEANYI\\Source\\Repos\\AirNice-Booking\\AirNice.Web\\AirNice.Web.csproj",
+  "projectFilePath": "C:\\Users\\IFEANYI\\source\\repos\\AirNice-Booking\\AirNice.Web\\AirNice.Web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\IFEANYI\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\IFEANYI\\.nuget\\packages\\azure.core\\1.4.1\\azure.core.1.4.1.nupkg.sha512",

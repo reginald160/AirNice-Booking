@@ -12,3 +12,17 @@ C:\Environment\PP\AirFlightBooking\AirNice.Utility\obj\Debug\netcoreapp3.1\AirNi
 C:\Environment\PP\AirFlightBooking\AirNice.Utility\obj\Debug\netcoreapp3.1\AirNice.Utility.csproj.CopyComplete
 C:\Environment\PP\AirFlightBooking\AirNice.Utility\obj\Debug\netcoreapp3.1\AirNice.Utility.dll
 C:\Environment\PP\AirFlightBooking\AirNice.Utility\obj\Debug\netcoreapp3.1\AirNice.Utility.pdb
+C:\Users\IFEANYI\Source\Repos\AirNice-Booking\AirNice.Utility\bin\Debug\netcoreapp3.1\AirNice.Utility.deps.json
+C:\Users\IFEANYI\Source\Repos\AirNice-Booking\AirNice.Utility\bin\Debug\netcoreapp3.1\AirNice.Utility.dll
+C:\Users\IFEANYI\Source\Repos\AirNice-Booking\AirNice.Utility\bin\Debug\netcoreapp3.1\AirNice.Utility.pdb
+C:\Users\IFEANYI\Source\Repos\AirNice-Booking\AirNice.Utility\bin\Debug\netcoreapp3.1\AirNice.Data.dll
+C:\Users\IFEANYI\Source\Repos\AirNice-Booking\AirNice.Utility\bin\Debug\netcoreapp3.1\AirNice.Models.dll
+C:\Users\IFEANYI\Source\Repos\AirNice-Booking\AirNice.Utility\bin\Debug\netcoreapp3.1\AirNice.Data.pdb
+C:\Users\IFEANYI\Source\Repos\AirNice-Booking\AirNice.Utility\bin\Debug\netcoreapp3.1\AirNice.Models.pdb
+C:\Users\IFEANYI\Source\Repos\AirNice-Booking\AirNice.Utility\obj\Debug\netcoreapp3.1\AirNice.Utility.csprojAssemblyReference.cache
+C:\Users\IFEANYI\Source\Repos\AirNice-Booking\AirNice.Utility\obj\Debug\netcoreapp3.1\AirNice.Utility.AssemblyInfoInputs.cache
+C:\Users\IFEANYI\Source\Repos\AirNice-Booking\AirNice.Utility\obj\Debug\netcoreapp3.1\AirNice.Utility.AssemblyInfo.cs
+C:\Users\IFEANYI\Source\Repos\AirNice-Booking\AirNice.Utility\obj\Debug\netcoreapp3.1\AirNice.Utility.csproj.CoreCompileInputs.cache
+C:\Users\IFEANYI\Source\Repos\AirNice-Booking\AirNice.Utility\obj\Debug\netcoreapp3.1\AirNice.Utility.csproj.CopyComplete
+C:\Users\IFEANYI\Source\Repos\AirNice-Booking\AirNice.Utility\obj\Debug\netcoreapp3.1\AirNice.Utility.dll
+C:\Users\IFEANYI\Source\Repos\AirNice-Booking\AirNice.Utility\obj\Debug\netcoreapp3.1\AirNice.Utility.pdb

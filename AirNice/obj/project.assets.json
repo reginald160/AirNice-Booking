@@ -6207,11 +6207,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\IFEANYI\\Source\\Repos\\AirNice-Booking\\AirNice\\AirNice.csproj",
+      "projectUniqueName": "C:\\Users\\IFEANYI\\source\\repos\\AirNice-Booking\\AirNice\\AirNice.csproj",
       "projectName": "AirNice",
-      "projectPath": "C:\\Users\\IFEANYI\\Source\\Repos\\AirNice-Booking\\AirNice\\AirNice.csproj",
+      "projectPath": "C:\\Users\\IFEANYI\\source\\repos\\AirNice-Booking\\AirNice\\AirNice.csproj",
       "packagesPath": "C:\\Users\\IFEANYI\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\IFEANYI\\Source\\Repos\\AirNice-Booking\\AirNice\\obj\\",
+      "outputPath": "C:\\Users\\IFEANYI\\source\\repos\\AirNice-Booking\\AirNice\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"
@@ -6232,17 +6232,17 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\IFEANYI\\Source\\Repos\\AirNice-Booking\\AirNice.Data\\AirNice.Data.csproj": {
-              "projectPath": "C:\\Users\\IFEANYI\\Source\\Repos\\AirNice-Booking\\AirNice.Data\\AirNice.Data.csproj"
+            "C:\\Users\\IFEANYI\\source\\repos\\AirNice-Booking\\AirNice.Data\\AirNice.Data.csproj": {
+              "projectPath": "C:\\Users\\IFEANYI\\source\\repos\\AirNice-Booking\\AirNice.Data\\AirNice.Data.csproj"
             },
-            "C:\\Users\\IFEANYI\\Source\\Repos\\AirNice-Booking\\AirNice.Models\\AirNice.Models.csproj": {
-              "projectPath": "C:\\Users\\IFEANYI\\Source\\Repos\\AirNice-Booking\\AirNice.Models\\AirNice.Models.csproj"
+            "C:\\Users\\IFEANYI\\source\\repos\\AirNice-Booking\\AirNice.Models\\AirNice.Models.csproj": {
+              "projectPath": "C:\\Users\\IFEANYI\\source\\repos\\AirNice-Booking\\AirNice.Models\\AirNice.Models.csproj"
             },
-            "C:\\Users\\IFEANYI\\Source\\Repos\\AirNice-Booking\\AirNice.Services\\AirNice.Services.csproj": {
-              "projectPath": "C:\\Users\\IFEANYI\\Source\\Repos\\AirNice-Booking\\AirNice.Services\\AirNice.Services.csproj"
+            "C:\\Users\\IFEANYI\\source\\repos\\AirNice-Booking\\AirNice.Services\\AirNice.Services.csproj": {
+              "projectPath": "C:\\Users\\IFEANYI\\source\\repos\\AirNice-Booking\\AirNice.Services\\AirNice.Services.csproj"
             },
-            "C:\\Users\\IFEANYI\\Source\\Repos\\AirNice-Booking\\AirNice.Utility\\AirNice.Utility.csproj": {
-              "projectPath": "C:\\Users\\IFEANYI\\Source\\Repos\\AirNice-Booking\\AirNice.Utility\\AirNice.Utility.csproj"
+            "C:\\Users\\IFEANYI\\source\\repos\\AirNice-Booking\\AirNice.Utility\\AirNice.Utility.csproj": {
+              "projectPath": "C:\\Users\\IFEANYI\\source\\repos\\AirNice-Booking\\AirNice.Utility\\AirNice.Utility.csproj"
             }
           }
         }

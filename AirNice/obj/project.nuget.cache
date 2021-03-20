@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "frQVY6eWo/x+g2ziCEzvommNCLgR24W67CLHTwOi4tBK/bCSwHknKt0Tr7x43YX+8IGb5k2uJLbRkdaD8UPklA==",
+  "dgSpecHash": "UA0E/PnB/qCAMARxYJRwyl/YjIi0hvwOGIUAKNYDT+3xwFsPRcbJOGf4dKgU0I6Bbp6n3phv2VyZDAEDb+xZzA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\IFEANYI\\Source\\Repos\\AirNice-Booking\\AirNice\\AirNice.csproj",
+  "projectFilePath": "C:\\Users\\IFEANYI\\source\\repos\\AirNice-Booking\\AirNice\\AirNice.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\IFEANYI\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\IFEANYI\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",

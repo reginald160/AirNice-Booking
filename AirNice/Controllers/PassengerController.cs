@@ -83,7 +83,7 @@ namespace AirNice.Controllers
 
                 var passenger = _mapper.Map<Passenger>(passengerDTO);
                 var sucess = await _unitOfWork.passenger.UpdateAsync(passenger);
-                if (sucess)
+                if (!sucess)
                 {
                     ModelState.AddModelError("", Universe.Error500);
                     return StatusCode(500, ModelState);
