@@ -12,7 +12,8 @@ namespace AirNice.Services.UnitOfWork
         public interface IUnitOfWork : IDisposable
         {
             IPassengerServices passenger { get; }
-                
+           IBookingEnquiryServices bookingEnquiry { get; }
+
             Task Save();
 
         }

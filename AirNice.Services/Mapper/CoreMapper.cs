@@ -7,11 +7,15 @@ using System.Text;
 
 namespace AirNice.Services.Mapper
 {
+
+
    public  class CoreMapper : Profile
 	{
 		public CoreMapper()
 		{
 			CreateMap<Passenger, PassengerDTO>().ReverseMap();
+			CreateMap<BookingEnquiry, BookingEnquiryDTO>().ReverseMap();
+
 		}
 
 	}

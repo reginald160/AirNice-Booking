@@ -5,7 +5,7 @@ using System.Text;
 
 namespace AirNice.Models.DTO
 {
-    public class PassengerDTO : BaseModel
+    public class PassengerDTO : BaseDTO
     {
         public string Name { get; set; }
         public string Phone { get; set; }
@@ -14,5 +14,6 @@ namespace AirNice.Models.DTO
         public string Password { get; set; }
         public string PassPort { get; set; }
         public string Address { get; set; }
+        public byte[] picture { get; set; }
     }
 }

@@ -18,6 +18,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using AirNice.Services.Mapper;
+using System.Reflection;
+using System.IO;
 
 namespace AirNice
 {
@@ -73,10 +75,51 @@ namespace AirNice
                     new Microsoft.OpenApi.Models.OpenApiInfo()
                     {
                         Title = "AirNice API",
-                        Version = "1.0"
+                        Version = "1.0",
+                        Description = "Airline ticketing applicatyion",
+                        Contact = new Microsoft.OpenApi.Models.OpenApiContact()
+                        {
+                            Email = "ozougwuIfeanyi@gmail.com",
+                            Name = "Ozougwu Ifeanyi",
+                            Url = new Uri("http://ifeanyiozougwu.ml/")
+                        },
+                        License = new Microsoft.OpenApi.Models.OpenApiLicense()
+                        {
+                            Name = "AirNice License",
+                            Url = new Uri("http://ifeanyiozougwu.ml/")
+                        },
                     });
+                var xmlCommentFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var cmlCommentsFullPath = Path.Combine(AppContext.BaseDirectory, xmlCommentFile);
+                options.IncludeXmlComments(cmlCommentsFullPath);
             });
-          
+
+            //services.AddSwaggerGen(options =>
+            //{
+            //    options.SwaggerDoc("AirNiceAPIPassenger",
+            //        new Microsoft.OpenApi.Models.OpenApiInfo()
+            //        {
+            //            Title = "AirNice API (Passenger)",
+            //            Version = "1.0",
+            //            Description = "Airline ticketing applicatyion",
+            //            Contact = new Microsoft.OpenApi.Models.OpenApiContact()
+            //            {
+            //                Email = "ozougwuIfeanyi@gmail.com",
+            //                Name = "Ozougwu Ifeanyi",
+            //                Url = new Uri("http://ifeanyiozougwu.ml/")
+            //            },
+            //            License = new Microsoft.OpenApi.Models.OpenApiLicense()
+            //            {
+            //                Name = "AirNice License",
+            //                Url = new Uri("http://ifeanyiozougwu.ml/")
+            //            },
+            //        });
+            //    var xmlCommentFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            //    var cmlCommentsFullPath = Path.Combine(AppContext.BaseDirectory, xmlCommentFile);
+            //    options.IncludeXmlComments(cmlCommentsFullPath);
+            //});
+
+
             services.AddControllers();
         }
 
@@ -96,7 +139,8 @@ namespace AirNice
             app.UseAuthorization();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/AirNiceAPI/swagger.json", "Foreign Exchange Service");
+                c.SwaggerEndpoint("/swagger/AirNiceAPI/swagger.json", " Booking Enquiry");
+                //c.SwaggerEndpoint("/swagger/AirNiceAPIPassenger/swagger.json", "Passenger");
             });
 
             app.UseEndpoints(endpoints =>

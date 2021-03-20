@@ -16,13 +16,20 @@ namespace AirNice.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    //[ApiExplorerSettings(GroupName = "AirNiceAPIPassenger")]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public class PassengerController : BaseController
     {
         public PassengerController(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, ApplicationDbContext context, SignInManager<ApplicationUser> signInManager, IMapper mapper) : base(unitOfWork, userManager, roleManager, context, signInManager, mapper)
         {
         }
-
+        /// <summary>
+        /// This is the method that returns the list of active passengers
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("[action]")]
+        [ProducesResponseType(200, Type = typeof(List<PassengerDTO>))]
+        [ProducesResponseType(400)]
         public IActionResult Index()
         {
             var entities = _unitOfWork.passenger.ReserveCollection();
@@ -32,6 +39,8 @@ namespace AirNice.Controllers
         }
 
         [HttpGet("[action]")]
+        [ProducesResponseType(200, Type = typeof(List<PassengerDTO>))]
+        [ProducesResponseType(400)]
         public IActionResult Trash()
         {
             var entities = _unitOfWork.passenger.Trashcollection();
@@ -43,6 +52,10 @@ namespace AirNice.Controllers
 
 
         [HttpGet("[action]")]
+        [ProducesResponseType(200, Type = typeof(PassengerDTO))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        [ProducesDefaultResponseType]
         public IActionResult GetPassenger(Guid id)
         {
             var entity = _unitOfWork.passenger.GetById(id);
@@ -55,9 +68,14 @@ namespace AirNice.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task< IActionResult> Create([FromBody] PassengerDTO passengerDTO)
+        [ProducesResponseType(201, Type = typeof(PassengerDTO))]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesDefaultResponseType]
+        public async Task<IActionResult> Create([FromBody] PassengerDTO passengerDTO)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var passenger = _mapper.Map<Passenger>(passengerDTO);
                 var success = await _unitOfWork.passenger.AddAsync(passenger);
@@ -72,7 +90,12 @@ namespace AirNice.Controllers
             }
             return BadRequest(ModelState);
         }
+
         [HttpPatch("[action]")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesDefaultResponseType]
         public async Task< IActionResult> Update(Guid id, [FromBody] PassengerDTO passengerDTO)
         {
             if (passengerDTO == null || id != passengerDTO.Id)
@@ -94,7 +117,12 @@ namespace AirNice.Controllers
 
         }
 
+
         [HttpPatch("[action]")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesDefaultResponseType]
         public async Task<IActionResult> DeleteAndRetrieve(Guid id)
         {
             if (!_unitOfWork.passenger.IsExisting(id))

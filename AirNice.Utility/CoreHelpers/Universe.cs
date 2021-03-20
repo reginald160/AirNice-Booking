@@ -29,6 +29,7 @@ namespace AirNice.Utility.CoreHelpers
 		public static bool Truth = true;
 		public static bool NotTrue = false;
 		public static string Error500 = "Something Went Wrong";
+		public static string APIBaseUrl = "https://localhost:44327";
 		public static string AdminPass
 		{
 			get

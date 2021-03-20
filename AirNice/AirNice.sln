@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirNice", "AirNice.csproj", "{967A80A0-C23E-493F-B261-25B9F38C912B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirNice", "AirNice.csproj", "{967A80A0-C23E-493F-B261-25B9F38C912B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirNice.Models", "..\AirNice.Models\AirNice.Models.csproj", "{F39979FB-A237-4165-9259-C00CFA783F31}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirNice.Models", "..\AirNice.Models\AirNice.Models.csproj", "{F39979FB-A237-4165-9259-C00CFA783F31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirNice.Services", "..\AirNice.Services\AirNice.Services.csproj", "{46C326A7-DFB5-4997-B8CC-A63AA4FB714A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirNice.Services", "..\AirNice.Services\AirNice.Services.csproj", "{46C326A7-DFB5-4997-B8CC-A63AA4FB714A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirNice.Data", "..\AirNice.Data\AirNice.Data.csproj", "{7C0F6776-7BC3-4124-BA6C-50222991D90C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirNice.Data", "..\AirNice.Data\AirNice.Data.csproj", "{7C0F6776-7BC3-4124-BA6C-50222991D90C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirNice.Utility", "..\AirNice.Utility\AirNice.Utility.csproj", "{2D9ADD33-CB86-43B4-A2C3-DAB67962EA8C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirNice.Utility", "..\AirNice.Utility\AirNice.Utility.csproj", "{2D9ADD33-CB86-43B4-A2C3-DAB67962EA8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirNice.Web", "..\AirNice.Web\AirNice.Web.csproj", "{901B6BD6-D92E-4585-BCF2-1FCC24B2FF0D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirNiceWebMVC", "..\AirNiceWebMVC\AirNiceWebMVC.csproj", "{72F3AEA5-B255-45D1-9F0D-59BDB3D981D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{2D9ADD33-CB86-43B4-A2C3-DAB67962EA8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D9ADD33-CB86-43B4-A2C3-DAB67962EA8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D9ADD33-CB86-43B4-A2C3-DAB67962EA8C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{901B6BD6-D92E-4585-BCF2-1FCC24B2FF0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{901B6BD6-D92E-4585-BCF2-1FCC24B2FF0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{901B6BD6-D92E-4585-BCF2-1FCC24B2FF0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{901B6BD6-D92E-4585-BCF2-1FCC24B2FF0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72F3AEA5-B255-45D1-9F0D-59BDB3D981D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72F3AEA5-B255-45D1-9F0D-59BDB3D981D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72F3AEA5-B255-45D1-9F0D-59BDB3D981D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72F3AEA5-B255-45D1-9F0D-59BDB3D981D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

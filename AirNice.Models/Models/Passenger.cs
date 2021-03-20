@@ -13,5 +13,6 @@ namespace AirNice.Models.Models
         public string Password { get; set; }
         public string PassPort { get; set; }
         public string Address { get; set; }
+        public byte[] picture { get; set; }
     }
 }

@@ -198,3 +198,4 @@ C:\Users\IFEANYI\Source\Repos\AirNice-Booking\AirNice\obj\Debug\netcoreapp3.1\Ai
 C:\Users\IFEANYI\Source\Repos\AirNice-Booking\AirNice\obj\Debug\netcoreapp3.1\AirNice.dll
 C:\Users\IFEANYI\Source\Repos\AirNice-Booking\AirNice\obj\Debug\netcoreapp3.1\AirNice.pdb
 C:\Users\IFEANYI\Source\Repos\AirNice-Booking\AirNice\obj\Debug\netcoreapp3.1\AirNice.genruntimeconfig.cache
+C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNice\bin\Debug\netcoreapp3.1\AirNice.xml
