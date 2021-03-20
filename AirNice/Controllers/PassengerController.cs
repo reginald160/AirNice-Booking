@@ -93,5 +93,22 @@ namespace AirNice.Controllers
             return BadRequest(ModelState);
 
         }
+
+        [HttpPatch("[action]")]
+        public async Task<IActionResult> DeleteAndRetrieve(Guid id)
+        {
+            if (!_unitOfWork.passenger.IsExisting(id))
+                return BadRequest(ModelState);
+          
+                var sucess = await _unitOfWork.passenger.DeleteAndRetrieveAsync(id);
+                if (!sucess)
+                {
+                    ModelState.AddModelError("", Universe.Error500);
+                    return StatusCode(500, ModelState);
+                }
+                return Ok();
+           
+ 
+        }
     }
 }

@@ -21,6 +21,6 @@ namespace AirNice.Services.IRepository
         Task Remove(Guid id);
         Task Remove(T entity);
         Task<bool> SaveAsync();
-        //bool IsExisting(string name, Guid id, string propertyName);
+        bool IsExisting(Guid id);
     }
 }

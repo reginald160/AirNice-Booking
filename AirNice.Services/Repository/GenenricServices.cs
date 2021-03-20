@@ -190,6 +190,12 @@ namespace AirNice.Services.Repository
                 return sucess ? true : false;
 
             }
+
+            public bool IsExisting(Guid id)
+            {
+                var status = GetById(id);
+                return status != null ? true : false;
+            }
         }
 
     }
