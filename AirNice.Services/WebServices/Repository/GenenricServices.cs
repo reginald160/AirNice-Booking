@@ -1,7 +1,4 @@
-﻿using AirNice.Data;
-using AirNice.Models.Models;
-using AirNice.Services.IRepository;
-using AirNice.Utility.CoreHelpers;
+﻿
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
@@ -27,14 +24,27 @@ namespace AirNice.Services.WebServices.Repository
            
         }
 
-        public Task<T> GetByIdAsync(string url, Guid id)
+        public async Task<T> GetByIdAsync(string url, Guid id)
         {
-            throw new NotImplementedException();
+            var request = new HttpRequestMessage(HttpMethod.Get, url);
+            var client = _clientFactory.CreateClient();
+            HttpResponseMessage response = await client.SendAsync(request);
+
+            var jsonString = await response.Content.ReadAsStringAsync();
+            var jsonDeseriazed = JsonConvert.DeserializeObject<T>(jsonString);
+            return response.StatusCode == System.Net.HttpStatusCode.OK ? jsonDeseriazed : null;
         }
 
-        public IEnumerable<T> ReserveCollection(string url)
+        public async Task <IEnumerable<T>> ReserveCollection(string url)
         {
-            throw new NotImplementedException();
+            var request = new HttpRequestMessage(HttpMethod.Get, url);
+            var client = _clientFactory.CreateClient();
+            HttpResponseMessage response = await client.SendAsync(request);
+
+            var jsonString = await response.Content.ReadAsStringAsync();
+            var jsonDeseriazed = JsonConvert.DeserializeObject<IEnumerable<T>>(jsonString);
+            return response.StatusCode == System.Net.HttpStatusCode.OK ? jsonDeseriazed: null;
+
         }
 
         public IEnumerable<T> Trashcollection(string url)
@@ -42,7 +52,7 @@ namespace AirNice.Services.WebServices.Repository
             throw new NotImplementedException();
         }
 
-        public T GetFirstOrDefault(Expression<Func<T, bool>> filter = null, string includeProperties = null, string url = null)
+        public T GetFirstOrDefault(Expression<Func<T, bool>> filter = null, string includeProperties = null)
         {
             throw new NotImplementedException();
         }
@@ -52,38 +62,53 @@ namespace AirNice.Services.WebServices.Repository
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeleteAndRetrieveAsync(string url, Guid id)
+        public async Task<bool> DeleteAndRetrieveAsync(string url, Guid id)
         {
-            throw new NotImplementedException();
+            var entity = await GetByIdAsync(url,id);
+            var resquest = new HttpRequestMessage(HttpMethod.Patch, url);
+            if (entity == null)
+                return false;
+            resquest.Content = new StringContent(JsonConvert.SerializeObject(entity), Encoding.UTF8, "application/json");
+
+            HttpClient client = _clientFactory.CreateClient();
+            HttpResponseMessage response = await client.SendAsync(resquest);
+            return response.StatusCode == System.Net.HttpStatusCode.NoContent ? true : false;
         }
 
         public async Task<bool> AddAsync(string url, T entity)
         {
+          
             var resquest = new HttpRequestMessage(HttpMethod.Post, url);
-            if(entity != null)
-                resquest.Content = new StringContent(JsonConvert.SerializeObject(entity), Encoding.UTF8, "application/json");
-            return false;
-
+            if(entity == null)
+                return false;
+            resquest.Content = new StringContent(JsonConvert.SerializeObject(entity), Encoding.UTF8, "application/json");
+    
             HttpClient client = _clientFactory.CreateClient();
-
             HttpResponseMessage response = await client.SendAsync(resquest);
             return response.StatusCode == System.Net.HttpStatusCode.Created ? true : false;
                     
-            
-            
+        }
 
+        public async Task<bool> UpdateAsync(string url, T entity)
+        {
+            var resquest = new HttpRequestMessage(HttpMethod.Patch, url);
+            if (entity == null)
+                return false;
+            resquest.Content = new StringContent(JsonConvert.SerializeObject(entity), Encoding.UTF8, "application/json");
 
+            HttpClient client = _clientFactory.CreateClient();
+            HttpResponseMessage response = await client.SendAsync(resquest);
+            return response.StatusCode == System.Net.HttpStatusCode.NoContent ? true : false;
 
         }
 
-        public Task<bool> UpdateAsync(string url, T entity)
+        public async Task <bool> Remove(string url, Guid id)
         {
-            throw new NotImplementedException();
-        }
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Delete, url + id);
+            HttpClient client =  _clientFactory.CreateClient();
+            HttpResponseMessage response = await client.SendAsync(request);
 
-        public Task Remove(string url, Guid id)
-        {
-            throw new NotImplementedException();
+            return response.StatusCode == System.Net.HttpStatusCode.NoContent ? true : false;
         }
 
         public Task Remove(string url, T entity)
@@ -100,6 +125,8 @@ namespace AirNice.Services.WebServices.Repository
         {
             throw new NotImplementedException();
         }
+
+      
     }
 
 

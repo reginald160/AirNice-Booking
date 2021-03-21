@@ -1,5 +1,6 @@
 ﻿using AirNice.Models.Models;
-using AirNice.Services.IRepository;
+using AirNice.Models.ViewModels.Passenger;
+using AirNice.Services.WebServices.Repository;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace AirNice.Services.WebServices.IRepository
 {
-   public  interface IPassengerServices : IGenericServices<Passenger>
+   public  interface IPassengerServices : IGenericServices<PassengerViewModel>
     {
-         bool Update(Passenger passenger);
+        
     }
 }

@@ -1,9 +1,10 @@
 ﻿using AirNice.Data;
-using AirNice.Services.IRepository;
-using AirNice.Services.Repository;
+using AirNice.Services.WebServices.IRepository;
+using AirNice.Services.WebServices.Repository;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,33 +12,26 @@ namespace AirNice.Services.WebServices.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IHttpClientFactory _clientFActory;
 
 
-        public UnitOfWork(ApplicationDbContext context)
+        public UnitOfWork(IHttpClientFactory clientFActory)
         {
-            _context = context;
-            passenger = new PessengerServices(_context);
-            bookingEnquiry = new BookingEnquiryServices(_context);
+            _clientFActory = clientFActory;
+            passenger = new PessengerServices(_clientFActory);
+            bookingEnquiry = new BookingEnquiryServices(_clientFActory);
 
         }
 
         public IPassengerServices passenger { get; private set; }
         public IBookingEnquiryServices bookingEnquiry { get; private set; }
 
+     
 
-        public void Dispose()
+        public Task Save()
         {
-            _context.Dispose();
+            throw new NotImplementedException();
         }
-
-        public async Task Save()
-        {
-            await _context.SaveChangesAsync();
-        }
-
-
-
     }
 }
 

@@ -4,6 +4,7 @@ using AirNice.Models.Models;
 using AirNice.Services.UnitOfWork;
 using AirNice.Utility.CoreHelpers;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -96,6 +97,7 @@ namespace AirNice.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesDefaultResponseType]
+        [Authorize]
         public async Task< IActionResult> Update(Guid id, [FromBody] PassengerDTO passengerDTO)
         {
             if (passengerDTO == null || id != passengerDTO.Id)

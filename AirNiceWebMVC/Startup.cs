@@ -1,3 +1,4 @@
+using AirNice.Services.WebServices.UnitOfWork;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -17,14 +18,15 @@ namespace AirNiceWebMVC
         {
             Configuration = configuration;
         }
-
+         
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddHttpClient();
-            services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            services.AddControllersWithViews();/*AddRazorRuntimeCompilation();*/
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

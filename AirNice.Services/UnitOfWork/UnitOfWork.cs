@@ -19,11 +19,13 @@ namespace AirNice.Services.UnitOfWork
             _context = context;
             passenger = new PessengerServices(_context);
             bookingEnquiry = new BookingEnquiryServices(_context);
+            user = new UserService(_context);
 
         }
 
         public IPassengerServices passenger { get; private set; }
         public IBookingEnquiryServices bookingEnquiry { get; private set; }
+        public IUserServices user { get; private set; }
 
 
         public void Dispose()

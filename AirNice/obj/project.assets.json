@@ -137,7 +137,7 @@
           "lib/net45/Microsoft.AspNet.Identity.EntityFramework.dll": {}
         }
       },
-      "Microsoft.AspNetCore.Authentication.JwtBearer/3.1.8": {
+      "Microsoft.AspNetCore.Authentication.JwtBearer/3.1.9": {
         "type": "package",
         "dependencies": {
           "Microsoft.IdentityModel.Protocols.OpenIdConnect": "5.5.0"
@@ -1940,10 +1940,10 @@
         "microsoft.aspnet.identity.entityframework.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Authentication.JwtBearer/3.1.8": {
-      "sha512": "sAXFFgsSEYd6PTFCzBKYBlXnb+ncclrQPMyMzARELxBv94Onqtr/JTWKih+NUr/3xR5BAs1xE6boao0Us6xcPA==",
+    "Microsoft.AspNetCore.Authentication.JwtBearer/3.1.9": {
+      "sha512": "6f61m1Rj5qne88CsfuyzRIE9dih7K0e3J3I3A4d9nyPcWhjz+0UUCYGocLHhYihVahxDIifK6Jn2m1LWD8/XEg==",
       "type": "package",
-      "path": "microsoft.aspnetcore.authentication.jwtbearer/3.1.8",
+      "path": "microsoft.aspnetcore.authentication.jwtbearer/3.1.9",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1951,7 +1951,7 @@
         "THIRD-PARTY-NOTICES.TXT",
         "lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.JwtBearer.dll",
         "lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.JwtBearer.xml",
-        "microsoft.aspnetcore.authentication.jwtbearer.3.1.8.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.jwtbearer.3.1.9.nupkg.sha512",
         "microsoft.aspnetcore.authentication.jwtbearer.nuspec"
       ]
     },
@@ -6187,6 +6187,7 @@
       "AirNice.Utility >= 1.0.0",
       "AutoMapper >= 10.1.1",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 8.1.1",
+      "Microsoft.AspNetCore.Authentication.JwtBearer >= 3.1.9",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 5.0.4",
       "Microsoft.EntityFrameworkCore >= 5.0.4",
       "Microsoft.EntityFrameworkCore.Design >= 5.0.4",
@@ -6264,6 +6265,10 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": {
             "target": "Package",
             "version": "[8.1.1, )"
+          },
+          "Microsoft.AspNetCore.Authentication.JwtBearer": {
+            "target": "Package",
+            "version": "[3.1.9, )"
           },
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
             "target": "Package",

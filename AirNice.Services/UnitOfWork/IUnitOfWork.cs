@@ -14,7 +14,9 @@ namespace AirNice.Services.UnitOfWork
             IPassengerServices passenger { get; }
            IBookingEnquiryServices bookingEnquiry { get; }
 
-            Task Save();
+        IUserServices user { get; }
+
+        Task Save();
 
         }
 

@@ -30,6 +30,7 @@
           "AirNice.Utility": "1.0.0",
           "AutoMapper": "10.1.1",
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "8.1.1",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "3.1.9",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.4",
           "Microsoft.EntityFrameworkCore": "5.0.4",
           "Microsoft.EntityFrameworkCore.Design": "5.0.4",
@@ -473,14 +474,14 @@
           "lib/net45/Microsoft.AspNet.Identity.EntityFramework.dll": {}
         }
       },
-      "Microsoft.AspNetCore.Authentication.JwtBearer/3.1.8": {
+      "Microsoft.AspNetCore.Authentication.JwtBearer/3.1.9": {
         "dependencies": {
           "Microsoft.IdentityModel.Protocols.OpenIdConnect": "5.6.0"
         },
         "runtime": {
           "lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {
-            "assemblyVersion": "3.1.8.0",
-            "fileVersion": "3.100.820.42106"
+            "assemblyVersion": "3.1.9.0",
+            "fileVersion": "3.100.920.47309"
           }
         },
         "compile": {
@@ -906,7 +907,7 @@
           "Azure.Identity": "1.2.3",
           "Azure.Security.KeyVault.Certificates": "4.1.0",
           "Azure.Security.KeyVault.Secrets": "4.1.0",
-          "Microsoft.AspNetCore.Authentication.JwtBearer": "3.1.8",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "3.1.9",
           "Microsoft.AspNetCore.Authentication.OpenIdConnect": "3.1.8",
           "Microsoft.Identity.Client": "4.26.0"
         },
@@ -3387,12 +3388,12 @@
       "path": "microsoft.aspnet.identity.entityframework/2.2.3",
       "hashPath": "microsoft.aspnet.identity.entityframework.2.2.3.nupkg.sha512"
     },
-    "Microsoft.AspNetCore.Authentication.JwtBearer/3.1.8": {
+    "Microsoft.AspNetCore.Authentication.JwtBearer/3.1.9": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-sAXFFgsSEYd6PTFCzBKYBlXnb+ncclrQPMyMzARELxBv94Onqtr/JTWKih+NUr/3xR5BAs1xE6boao0Us6xcPA==",
-      "path": "microsoft.aspnetcore.authentication.jwtbearer/3.1.8",
-      "hashPath": "microsoft.aspnetcore.authentication.jwtbearer.3.1.8.nupkg.sha512"
+      "sha512": "sha512-6f61m1Rj5qne88CsfuyzRIE9dih7K0e3J3I3A4d9nyPcWhjz+0UUCYGocLHhYihVahxDIifK6Jn2m1LWD8/XEg==",
+      "path": "microsoft.aspnetcore.authentication.jwtbearer/3.1.9",
+      "hashPath": "microsoft.aspnetcore.authentication.jwtbearer.3.1.9.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Authentication.OpenIdConnect/3.1.8": {
       "type": "package",

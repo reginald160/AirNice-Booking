@@ -1,16 +1,17 @@
 ﻿using AirNice.Data;
 using AirNice.Models.Models;
-using AirNice.Services.IRepository;
+using AirNice.Models.ViewModels.BookingEnquiry;
+using AirNice.Services.WebServices.IRepository;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
-using static AirNice.Services.Repository.GenenricServices;
 
 namespace AirNice.Services.WebServices.Repository
 {
-    public class BookingEnquiryServices :  GenericServices<BookingEnquiry>, IBookingEnquiryServices
+    public class BookingEnquiryServices :  GenericServices<BookingEnquiryViewModel>, IBookingEnquiryServices
     {
-        public BookingEnquiryServices(ApplicationDbContext context) : base(context)
+        public BookingEnquiryServices(IHttpClientFactory clientFactory) : base(clientFactory)
         {
         }
 

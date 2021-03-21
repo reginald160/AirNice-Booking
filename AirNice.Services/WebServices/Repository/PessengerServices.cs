@@ -1,25 +1,22 @@
 ﻿using AirNice.Data;
 using AirNice.Models.Models;
-using AirNice.Services.IRepository;
+using AirNice.Models.ViewModels.Passenger;
+using AirNice.Services.WebServices.IRepository;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using static AirNice.Services.Repository.GenenricServices;
+
 
 namespace AirNice.Services.WebServices.Repository
 {
-   public class PessengerServices : GenericServices<Passenger>, IPassengerServices
+   public class PessengerServices : GenericServices<PassengerViewModel>, IPassengerServices
     {
-        public PessengerServices(ApplicationDbContext context) : base(context)
+        public PessengerServices(IHttpClientFactory clientFactory) : base(clientFactory)
         {
         }
 
-        public  bool Update(Passenger passenger)
-        {
-            _Context.Passengers.Update(passenger);
-            var status = _Context.SaveChanges() > 0;
-            return status ? true : false;
-        }
+  
     }
 }

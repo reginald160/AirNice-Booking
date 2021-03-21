@@ -20,6 +20,11 @@ using AutoMapper;
 using AirNice.Services.Mapper;
 using System.Reflection;
 using System.IO;
+using AirNice.Services.WebServices.Mapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 
 namespace AirNice
 {
@@ -35,11 +40,37 @@ namespace AirNice
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddDbContext<ApplicationDbContext>(options =>
                  options.UseSqlServer(
                      Configuration.GetConnectionString("DefaultConnection")));
             services.AddAutoMapper(typeof(CoreMapper));
+            services.AddAutoMapper(typeof(CoreWebMapper));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            var appSettingsSection = Configuration.GetSection("AppSettings");
+            services.Configure<AppSettings>(appSettingsSection);
+
+            var appSettings = appSettingsSection.Get<AppSettings>();
+            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+            services.AddAuthentication(x =>
+             {
+                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                 x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+             }
+                ).AddJwtBearer(x =>
+                {
+                    x.RequireHttpsMetadata = false;
+                    x.SaveToken = true;
+                    x.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(key),
+                        ValidateLifetime = true,
+                        ValidateIssuer = false,
+                        ValidateAudience = false
+                    };
+                });
+            
             ////IConfigurationSection identityDefaultOptionsConfigurationSection = Configuration.GetSection("IdentityDefaultOptions");
 
             //services.Configure<IdentityDefaultOptions>(identityDefaultOptionsConfigurationSection);
@@ -92,6 +123,33 @@ namespace AirNice
                 var xmlCommentFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var cmlCommentsFullPath = Path.Combine(AppContext.BaseDirectory, xmlCommentFile);
                 options.IncludeXmlComments(cmlCommentsFullPath);
+                options.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+                {
+                    Description = "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then",
+                    Name = "Authorization",
+                    In = Microsoft.OpenApi.Models.ParameterLocation.Header,
+                    Type = Microsoft.OpenApi.Models.SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
+                });
+                options.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement()
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            },
+                            Scheme = "oauth2",
+                            Name = "Bearer",
+                            In = ParameterLocation.Header
+                        },
+                        new List<string>()
+                    }
+                }
+
+                    );
             });
 
             //services.AddSwaggerGen(options =>
@@ -133,8 +191,16 @@ namespace AirNice
 
             app.UseHttpsRedirection();
             app.UseSwagger();
-
+       
             app.UseRouting();
+            app.UseCors(options => options
+           .AllowAnyOrigin()
+           .AllowAnyMethod()
+           .AllowAnyHeader()
+       );
+
+            app.UseAuthentication();
+            app.UseAuthentication();
 
             app.UseAuthorization();
             app.UseSwaggerUI(c =>

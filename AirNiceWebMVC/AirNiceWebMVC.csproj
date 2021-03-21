@@ -3,7 +3,13 @@
   <PropertyGroup>
 	<TargetFramework>netcoreapp3.1</TargetFramework>
 	  <!--<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.6" />-->
-	  <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+	  <!--<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />-->
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AirNice.Models\AirNice.Models.csproj" />
+    <ProjectReference Include="..\AirNice.Services\AirNice.Services.csproj" />
+    <ProjectReference Include="..\AirNice.Utility\AirNice.Utility.csproj" />
+  </ItemGroup>
 
 </Project>

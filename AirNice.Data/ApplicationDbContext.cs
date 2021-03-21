@@ -1,8 +1,5 @@
 ﻿using AirNice.Models.Models;
-using System;
-using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using System.Text;
 using Microsoft.EntityFrameworkCore;
 
 namespace AirNice.Data
@@ -25,6 +22,7 @@ namespace AirNice.Data
         public DbSet<Permission> Permissions { get; set; }
         public DbSet<TicketClass> TicketClasses { get; set; }
         public DbSet<Passenger> Passengers { get; set; }
+        public DbSet<AdditionalUser> AdditionalUsers { get; set; }
 
 
 
