@@ -11,5 +11,6 @@ namespace AirNice.Services.IRepository
         bool IsUniqueUser(string username);
         AdditionalUser Authenticated(string username, string password);
         Task<bool> Register(AdditionalUser user);
+        Task<string> Creatidentityuser(string email, string password);
     }
 }

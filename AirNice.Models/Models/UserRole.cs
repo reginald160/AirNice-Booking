@@ -9,10 +9,9 @@ using System.Text;
 
 namespace AirNice.Models.Models
 {
-   public  class UserRole : IdentityUserRole
+   public  class UserRole : BaseModel
     {
-        [Key]
-        public string Id { get; set; }
+       
         public string Title { get; set; }
 
     }

@@ -11,7 +11,7 @@ namespace AirNice.Models.Models
         public string Title { get; set; }
         public string Module { get; set; }
         public string Description { get; set; }
-        public string RoleId { get; set; }
+        public Guid RoleId { get; set; }
         [ForeignKey("RoleId"), JsonIgnore]
         public virtual UserRole Role { get; set; }
     }

@@ -1,6 +1,8 @@
 ﻿using AirNice.Data;
 using AirNice.Models.Models;
 using AirNice.Services.IRepository;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -17,16 +19,35 @@ namespace AirNice.Services.Repository
     {
         private readonly ApplicationDbContext _context;
         private readonly AppSettings _appSettings;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public UserService(ApplicationDbContext context)
+        public UserService(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         public UserService(ApplicationDbContext context, IOptions<AppSettings> appSettings)
         {
             _context = context;
             _appSettings = appSettings.Value;
+        }
+
+        public async Task<string> Creatidentityuser (string email, string password)
+        {
+            var user = new IdentityUser
+            {
+                Email = email,
+                UserName = email
+            };
+              var result =   await _userManager.CreateAsync(user, password);
+            if(result.Succeeded)
+            {
+                var idUser = _userManager.FindByEmail(email);
+                return idUser != null ? idUser.Id : null;
+            }
+            return null;
+          
         }
 
         public AdditionalUser Authenticated(string username, string password)
@@ -40,7 +61,8 @@ namespace AirNice.Services.Repository
             {
                 Subject = new System.Security.Claims.ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, user.Id.ToString())
+                    new Claim(ClaimTypes.Name, user.Id.ToString()),
+                    new Claim(ClaimTypes.Role, user.Role.Title)
                 }),
                 Expires = DateTime.UtcNow.AddDays(2),
                 SigningCredentials = new SigningCredentials(

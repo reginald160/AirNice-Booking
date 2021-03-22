@@ -79,14 +79,34 @@ namespace AirNice.Controllers
             if (ModelState.IsValid)
             {
                 var passenger = _mapper.Map<Passenger>(passengerDTO);
-                var success = await _unitOfWork.passenger.AddAsync(passenger);
-                if (!success)
+                //var userId = await _unitOfWork.user.Creatidentityuser(passenger.Email, passenger.Password);
+
+                var user = new ApplicationUser
                 {
-                    ModelState.AddModelError("", Universe.Error500);
-                    return StatusCode(500, ModelState);
+                    Email = passenger.Email,
+                    UserName = passenger.Email
+                };
+                var result = await _userManager.CreateAsync(user, passenger.Password);
+                if (result.Succeeded)
+                {
+                    var idUser = _userManager.Users.Where(x => x.Email == passenger.Email).FirstOrDefault();
+
+                    if (idUser == null)
+                        ModelState.AddModelError("", Universe.Error500);
+                    passenger.UserId = idUser.Id;
+
+                    var success = await _unitOfWork.passenger.AddAsync(passenger);
+                    if (!success)
+                    {
+                        ModelState.AddModelError("", Universe.Error500);
+                        return StatusCode(500, ModelState);
+                    }
+
+                    return Ok();
+
                 }
 
-                return Ok();
+                return BadRequest(ModelState);
 
             }
             return BadRequest(ModelState);

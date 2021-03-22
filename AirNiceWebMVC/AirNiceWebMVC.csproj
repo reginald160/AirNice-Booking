@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\AirNice.Models\AirNice.Models.csproj" />
     <ProjectReference Include="..\AirNice.Services\AirNice.Services.csproj" />
     <ProjectReference Include="..\AirNice.Utility\AirNice.Utility.csproj" />

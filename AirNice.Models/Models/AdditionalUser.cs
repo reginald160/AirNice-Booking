@@ -10,7 +10,9 @@ namespace AirNice.Models.Models
       
         public string Username { get; set; }
         public string Password { get; set; }
-        public string Role { get; set; }
+        public Guid RoleId { get; set; }
+        [ForeignKey("RoleId")]
+        public UserRole Role { get; set; }
         [NotMapped]
         public string Token { get; set; }
     }

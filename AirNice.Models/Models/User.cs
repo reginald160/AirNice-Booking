@@ -9,7 +9,7 @@ namespace AirNice.Models.Models
    public  class User
     {
         public string Name { get; set; }
-        public string RoleId { get; set; }
+        public Guid RoleId { get; set; }
         [ForeignKey("RoleId"), JsonIgnore]
         public UserRole Role { get; set; }
         public int email { get; set; }

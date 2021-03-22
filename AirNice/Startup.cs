@@ -70,34 +70,35 @@ namespace AirNice
                         ValidateAudience = false
                     };
                 });
-            
+
             ////IConfigurationSection identityDefaultOptionsConfigurationSection = Configuration.GetSection("IdentityDefaultOptions");
 
             //services.Configure<IdentityDefaultOptions>(identityDefaultOptionsConfigurationSection);
 
             //var IdentityDefaultOptions = identityDefaultOptionsConfigurationSection.Get<IdentityDefaultOptions>();
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-            //{
-            //    // Password settings
-            //    options.Password.RequireDigit = identityDefaultOptions.PasswordRequireDigit;
-            //    options.Password.RequiredLength = identityDefaultOptions.PasswordRequiredLength;
-            //    options.Password.RequireNonAlphanumeric = identityDefaultOptions.PasswordRequireNonAlphanumeric;
-            //    options.Password.RequireUppercase = identityDefaultOptions.PasswordRequireUppercase;
-            //    options.Password.RequireLowercase = identityDefaultOptions.PasswordRequireLowercase;
-            //    options.Password.RequiredUniqueChars = identityDefaultOptions.PasswordRequiredUniqueChars;
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+           {
+               options.SignIn.RequireConfirmedEmail = true;
+                //Password settings
+                //options.Password.RequireDigit = identityDefaultOptions.PasswordRequireDigit;
+                //options.Password.RequiredLength = identityDefaultOptions.PasswordRequiredLength;
+                //options.Password.RequireNonAlphanumeric = identityDefaultOptions.PasswordRequireNonAlphanumeric;
+                //options.Password.RequireUppercase = identityDefaultOptions.PasswordRequireUppercase;
+                //options.Password.RequireLowercase = identityDefaultOptions.PasswordRequireLowercase;
+                //options.Password.RequiredUniqueChars = identityDefaultOptions.PasswordRequiredUniqueChars;
 
-            //    // Lockout settings
-            //    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(identityDefaultOptions.LockoutDefaultLockoutTimeSpanInMinutes);
-            //    options.Lockout.MaxFailedAccessAttempts = identityDefaultOptions.LockoutMaxFailedAccessAttempts;
-            //    options.Lockout.AllowedForNewUsers = identityDefaultOptions.LockoutAllowedForNewUsers;
+                //Lockout settings
+                //options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(identityDefaultOptions.LockoutDefaultLockoutTimeSpanInMinutes);
+                //options.Lockout.MaxFailedAccessAttempts = identityDefaultOptions.LockoutMaxFailedAccessAttempts;
+                //options.Lockout.AllowedForNewUsers = identityDefaultOptions.LockoutAllowedForNewUsers;
 
-            //    // User settings
-            //    options.User.RequireUniqueEmail = identityDefaultOptions.UserRequireUniqueEmail;
+                //User settings
+                //options.User.RequireUniqueEmail = identityDefaultOptions.UserRequireUniqueEmail;
 
-            //    // email confirmation require
-            //    options.SignIn.RequireConfirmedEmail = identityDefaultOptions.SignInRequireConfirmedEmail;
-            //})
+                //email confirmation require
+
+            })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
             services.AddSwaggerGen(options =>
