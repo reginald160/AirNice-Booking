@@ -89,6 +89,7 @@ namespace AirNice.Controllers
                 var result = await _userManager.CreateAsync(user, passenger.Password);
                 if (result.Succeeded)
                 {
+
                     var idUser = _userManager.Users.Where(x => x.Email == passenger.Email).FirstOrDefault();
 
                     if (idUser == null)

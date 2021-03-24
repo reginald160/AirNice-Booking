@@ -1,10 +1,12 @@
-using AirNice.Services.WebServices.UnitOfWork;
+
+using AirNiceWebMVC.Abstractions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Refit;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,9 +26,10 @@ namespace AirNiceWebMVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+          
             services.AddHttpClient();
             services.AddControllersWithViews();/*AddRazorRuntimeCompilation();*/
+            AddRefitHttpClient(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -55,6 +58,17 @@ namespace AirNiceWebMVC
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+        }
+
+        private void AddRefitHttpClient(IServiceCollection services)
+        {
+            services.AddHttpClient("Api", options =>
+            {
+                options.BaseAddress = new Uri(Configuration["BaseUrl"]);
+            }).AddTypedClient(a => RestService.For<IBookingServices>(a));
+
+
+            
         }
     }
 }

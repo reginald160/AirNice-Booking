@@ -4,6 +4,12 @@
         <name>AirNice</name>
     </assembly>
     <members>
+        <member name="M:AirNice.Controllers.BookingController.Index">
+            <summary>
+            This is the method that returns the list of active Enquiries
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:AirNice.Controllers.BookingEnquiryController.Index">
             <summary>
             This is the method that returns the list of active Enquiries
@@ -13,6 +19,12 @@
         <member name="M:AirNice.Controllers.PassengerController.Index">
             <summary>
             This is the method that returns the list of active passengers
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AirNice.Controllers.PermissionController.Index">
+            <summary>
+            This is the method that returns the list of active Enquiries
             </summary>
             <returns></returns>
         </member>

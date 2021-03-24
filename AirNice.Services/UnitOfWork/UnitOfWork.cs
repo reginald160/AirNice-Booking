@@ -22,6 +22,9 @@ namespace AirNice.Services.UnitOfWork
             passenger = new PessengerServices(_context);
             bookingEnquiry = new BookingEnquiryServices(_context);
             user = new UserService(_context, userManager);
+            permission = new PermissionServices(_context);
+            ticketClass = new TicketClassServices(_context);
+            booking = new BookingServices(_context);
 
         }
 
@@ -33,6 +36,9 @@ namespace AirNice.Services.UnitOfWork
         public IPassengerServices passenger { get; private set; }
         public IBookingEnquiryServices bookingEnquiry { get; private set; }
         public IUserServices user { get; private set; }
+        public IPermissionServices permission { get; private set; }
+        public IBookingServices booking { get; private set; }
+        public ITicketClassServices ticketClass { get; private set; }
 
 
         public void Dispose()

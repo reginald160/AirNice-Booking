@@ -9,16 +9,19 @@ using System.Threading.Tasks;
 namespace AirNice.Services.UnitOfWork
 {
     
-        public interface IUnitOfWork : IDisposable
-        {
-            IPassengerServices passenger { get; }
-           IBookingEnquiryServices bookingEnquiry { get; }
+    public interface IUnitOfWork : IDisposable
+    {
+        IPassengerServices passenger { get; }
+        IBookingEnquiryServices bookingEnquiry { get; }
 
         IUserServices user { get; }
-
+        IPermissionServices permission { get; }
+        IBookingServices booking { get; }
+        ITicketClassServices ticketClass { get; }
         Task Save();
 
-        }
+    }
+
 
 
 

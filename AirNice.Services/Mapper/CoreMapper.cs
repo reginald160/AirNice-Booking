@@ -16,6 +16,7 @@ namespace AirNice.Services.Mapper
 			CreateMap<Passenger, PassengerDTO>().ReverseMap();
 			CreateMap<BookingEnquiry, BookingEnquiryDTO>().ReverseMap();
 			CreateMap<AdditionalUser, AdditionalUserDTO>().ReverseMap();
+			CreateMap<Booking, BookingDTO>().ReverseMap();
 
 		}
 

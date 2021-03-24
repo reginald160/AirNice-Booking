@@ -1,4 +1,5 @@
-﻿using AirNiceWebMVC.Models;
+﻿using AirNice.Models.ViewModels.Identity;
+using AirNiceWebMVC.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -22,6 +23,17 @@ namespace AirNiceWebMVC.Controllers
         {
             return View();
         }
+        public IActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Login(LoginViewModel login)
+        {
+            
+            return View();
+        }
+
 
         public IActionResult Privacy()
         {
