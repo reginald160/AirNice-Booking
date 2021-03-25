@@ -1,9 +1,9 @@
 ﻿using AirNice.Data;
+using AirNice.Models.Models;
 using AirNice.Services.IRepository;
 using AirNice.Services.Repository;
 using AutoMapper;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,8 +15,8 @@ namespace AirNice.Services.UnitOfWork
     {
         private readonly ApplicationDbContext _context;
 
-        private readonly UserManager<IdentityUser> userManager;
-        public UnitOfWork(ApplicationDbContext context)
+        private readonly UserManager<ApplicationUser> _userManager;
+        public UnitOfWork(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
             passenger = new PessengerServices(_context);
@@ -28,10 +28,7 @@ namespace AirNice.Services.UnitOfWork
 
         }
 
-        public UnitOfWork(UserManager<IdentityUser> userManager)
-        {
-            this.userManager = userManager;
-        }
+       
 
         public IPassengerServices passenger { get; private set; }
         public IBookingEnquiryServices bookingEnquiry { get; private set; }

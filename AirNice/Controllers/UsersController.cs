@@ -36,15 +36,12 @@ namespace AirNice.Controllers
         [AllowAnonymous]
         [HttpPost("[action]")]
     
-        public async Task< IActionResult> AddUser([FromBody] AdditionalUserDTO userDTO)
+        public async Task< IActionResult> AddUser([FromBody] ApplicationUser userDTO)
         {
-            var isUnique = _unitOfWork.user.IsUniqueUser(userDTO.Username);
-                if (!isUnique)
-                return BadRequest(new { message = "usernamer already exists" });
-
-            var userMaped = _mapper.Map<AdditionalUser>(userDTO);
+      
+            var userMaped = _mapper.Map<ApplicationUser>(userDTO);
             var user = await _unitOfWork.user.Register(userMaped);
-            if (user == false)
+            if (user == null)
                 return BadRequest(new { message = "username or password is in correct" });
             return Ok(user);
         }

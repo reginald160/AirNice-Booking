@@ -191,3 +191,5 @@ C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNiceWebMVC\bin\Debug\netcoreapp
 C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNiceWebMVC\bin\Debug\netcoreapp3.1\System.Net.Http.Json.dll
 C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNiceWebMVC\bin\Debug\netcoreapp3.1\System.Text.Json.dll
 C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNiceWebMVC\obj\Debug\netcoreapp3.1\AirNiceWebMVC.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNiceWebMVC\obj\Debug\netcoreapp3.1\Razor\Views\Passenger\Register.cshtml.g.cs
+C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNiceWebMVC\obj\Debug\netcoreapp3.1\Razor\Views\Passenger\View.cshtml.g.cs

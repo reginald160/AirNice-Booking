@@ -1,4 +1,5 @@
 ﻿
+
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,9 @@ namespace AirNice.Models.Models
 {
    public  class ApplicationUser : IdentityUser
     {
-        
+        public string Role { get; set; }
+       [NotMapped]
+        public string Passcode { get; set; }
 
     }
 }

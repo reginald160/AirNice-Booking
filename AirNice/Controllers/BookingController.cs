@@ -55,7 +55,7 @@ namespace AirNice.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         [ProducesDefaultResponseType]
-        public IActionResult GetPassenger(Guid id)
+        public IActionResult GetBooking(Guid id)
         {
             var entity = _unitOfWork.booking.GetById(id);
             if (entity == null)

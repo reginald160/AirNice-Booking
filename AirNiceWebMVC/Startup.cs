@@ -26,7 +26,7 @@ namespace AirNiceWebMVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-          
+
             services.AddHttpClient();
             services.AddControllersWithViews();/*AddRazorRuntimeCompilation();*/
             AddRefitHttpClient(services);
@@ -67,8 +67,26 @@ namespace AirNiceWebMVC
                 options.BaseAddress = new Uri(Configuration["BaseUrl"]);
             }).AddTypedClient(a => RestService.For<IBookingServices>(a));
 
+            services.AddHttpClient("Api", options =>
+            {
+                options.BaseAddress = new Uri(Configuration["BaseUrl"]);
+            }).AddTypedClient(a => RestService.For<IPassengerServices>(a));
+
+            services.AddHttpClient("Api", options =>
+            {
+                options.BaseAddress = new Uri(Configuration["BaseUrl"]);
+            }).AddTypedClient(a => RestService.For<IBookingEnquiryServices>(a));
+            services.AddHttpClient("Api", options =>
+            {
+                options.BaseAddress = new Uri(Configuration["BaseUrl"]);
+            }).AddTypedClient(a => RestService.For<IPermissionServices>(a));
+
+
 
             
+
+
+
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿
-using AirNice.Services.WebServices.UnitOfWork;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,12 +9,7 @@ namespace AirNiceWebMVC.Controllers
 {
     public class BaseController : Controller
     {
-        protected readonly IUnitOfWork _unitOfWork;
-
-        public BaseController(IUnitOfWork unitOfWork)
-        {
-            _unitOfWork = unitOfWork;
-        }
+        
 
        
     }

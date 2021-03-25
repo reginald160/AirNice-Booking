@@ -20,7 +20,6 @@ using AutoMapper;
 using AirNice.Services.Mapper;
 using System.Reflection;
 using System.IO;
-using AirNice.Services.WebServices.Mapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
@@ -45,8 +44,9 @@ namespace AirNice
                  options.UseSqlServer(
                      Configuration.GetConnectionString("DefaultConnection")));
             services.AddAutoMapper(typeof(CoreMapper));
-            services.AddAutoMapper(typeof(CoreWebMapper));
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+ 
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
+            //services.AddTransient<IUserServices, UserServices>()
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
 

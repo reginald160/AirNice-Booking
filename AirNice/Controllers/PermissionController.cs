@@ -53,7 +53,7 @@ namespace AirNice.Controllers
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         [ProducesDefaultResponseType]
-        public IActionResult GetPassenger(Guid id)
+        public IActionResult GetPermission(Guid id)
         {
             var entity = _unitOfWork.permission.GetById(id);
             if (entity == null)

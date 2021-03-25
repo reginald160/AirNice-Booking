@@ -16,7 +16,7 @@ namespace AirNiceWebMVC.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var response = await _bookingServices.GetBookingDetails();
+            var response = await _bookingServices.GetBookings();
             return View();
         }
     }

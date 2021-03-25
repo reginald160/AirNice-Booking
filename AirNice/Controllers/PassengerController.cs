@@ -84,17 +84,19 @@ namespace AirNice.Controllers
                 var user = new ApplicationUser
                 {
                     Email = passenger.Email,
-                    UserName = passenger.Email
+                    UserName = passenger.Email,
+                    Passcode = passenger.Password,
+                    Role = "Passenger"      
                 };
-                var result = await _userManager.CreateAsync(user, passenger.Password);
-                if (result.Succeeded)
+                var result = await _unitOfWork.user.Register(user);
+  
+                if (result != null)
                 {
 
-                    var idUser = _userManager.Users.Where(x => x.Email == passenger.Email).FirstOrDefault();
-
-                    if (idUser == null)
+                    var query = _userManager.Users.Where(x => x.Email == passenger.Email).FirstOrDefault();
+                    if (query == null)
                         ModelState.AddModelError("", Universe.Error500);
-                    passenger.UserId = idUser.Id;
+                    passenger.UserId = query.Id;
 
                     var success = await _unitOfWork.passenger.AddAsync(passenger);
                     if (!success)

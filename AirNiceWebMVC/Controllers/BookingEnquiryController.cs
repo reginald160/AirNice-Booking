@@ -1,4 +1,5 @@
-﻿using AirNice.Services.WebServices.UnitOfWork;
+﻿
+using AirNiceWebMVC.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,9 +10,6 @@ namespace AirNiceWebMVC.Controllers
 {
     public class BookingEnquiryController : BaseController
     {
-        public BookingEnquiryController(IUnitOfWork unitOfWork) : base(unitOfWork)
-        {
-        }
-
+       
     }
 }
