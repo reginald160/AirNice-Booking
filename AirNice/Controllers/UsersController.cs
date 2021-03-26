@@ -36,7 +36,7 @@ namespace AirNice.Controllers
         [AllowAnonymous]
         [HttpPost("[action]")]
     
-        public async Task< IActionResult> AddUser([FromBody] ApplicationUser userDTO)
+        public async Task< IActionResult> AddUser([FromBody] AdditionalUserDTO userDTO)
         {
       
             var userMaped = _mapper.Map<ApplicationUser>(userDTO);

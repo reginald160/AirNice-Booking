@@ -81,9 +81,15 @@ namespace AirNiceWebMVC
                 options.BaseAddress = new Uri(Configuration["BaseUrl"]);
             }).AddTypedClient(a => RestService.For<IPermissionServices>(a));
 
+            services.AddHttpClient("Api", options =>
+            {
+                options.BaseAddress = new Uri(Configuration["BaseUrl"]);
+            }).AddTypedClient(a => RestService.For<IUserServices>(a));
 
 
             
+
+
 
 
 

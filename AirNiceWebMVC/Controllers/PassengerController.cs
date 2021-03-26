@@ -13,10 +13,12 @@ namespace AirNiceWebMVC.Controllers
     public class PassengerController : Controller
     { private static string Url = StaticDetails.PassengerUrl;
         private readonly IPassengerServices _passengerServices;
+        private readonly IUserServices _userServices;
 
-        public PassengerController(IPassengerServices passengerServices)
+        public PassengerController(IPassengerServices passengerServices, IUserServices userServices)
         {
             _passengerServices = passengerServices;
+            _userServices = userServices;
         }
 
         public async Task<IActionResult> Index()
@@ -49,8 +51,26 @@ namespace AirNiceWebMVC.Controllers
         [HttpPost]
         public async Task< IActionResult> Register(PassengerDTO passenger)
         {
+            if(ModelState.IsValid)
+            {
+                var user = new ApplicationUserDTO()
+                {
+                    Username = passenger.Email,
+                    Email = passenger.Email,
+                    Passcode = passenger.Password
+                };
+
+                    var id = await   _userServices.AddUser(user);
+                passenger.UserId = id;
             await _passengerServices.AddPassenger(passenger);
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+
+            return View();
+
+        
+
+
         }
 
         [HttpPost]
