@@ -25,7 +25,7 @@ namespace AirNiceWebMVC.Controllers
         {
             //return Json(new { data = await _unitOfWork.passenger.ReserveCollection(StaticDetails.PassengerUrl) });
             var response = await _passengerServices.GetPassengerss();
-            return View(response);
+            return View(/*response*/);
 
         }
         public async Task<IActionResult> GetAll()
@@ -53,15 +53,6 @@ namespace AirNiceWebMVC.Controllers
         {
             if(ModelState.IsValid)
             {
-                var user = new ApplicationUserDTO()
-                {
-                    Username = passenger.Email,
-                    Email = passenger.Email,
-                    Passcode = passenger.Password
-                };
-
-                    var id = await   _userServices.AddUser(user);
-                passenger.UserId = id;
             await _passengerServices.AddPassenger(passenger);
                 return RedirectToAction("Index");
             }

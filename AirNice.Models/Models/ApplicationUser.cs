@@ -12,9 +12,14 @@ namespace AirNice.Models.Models
 {
    public  class ApplicationUser : IdentityUser
     {
-        public string Role { get; set; }
+        public ApplicationUser()
+        {
+            IsSuccessful = false;
+        }
+        public string RoleTitle { get; set; }
        [NotMapped]
         public string Passcode { get; set; }
+        public bool IsSuccessful { get; set; }
 
     }
 }

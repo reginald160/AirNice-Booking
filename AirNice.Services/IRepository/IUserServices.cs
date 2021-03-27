@@ -1,4 +1,5 @@
-﻿using AirNice.Models.Models;
+﻿using AirNice.Models.DTO.UserDTO;
+using AirNice.Models.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,8 +11,10 @@ namespace AirNice.Services.IRepository
     {
         bool IsUniqueUser(string username);
         AdditionalUser Authenticated(string username, string password);
-        Task<string> Register(ApplicationUser user);
-        Task<string> Creatidentityuser(string email, string password);
+        Task<ApplicationUser> Register(ApplicationUser user);
+        Task<ApplicationUser> Creatidentityuser(string email, string password);
          Task<bool> Register(AdditionalUser user);
+        Task DeleteUser(string email);
+        Task<bool> Login(LoginDTO loginDTO);
     }
 }

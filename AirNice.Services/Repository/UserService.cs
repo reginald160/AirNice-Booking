@@ -1,8 +1,10 @@
 ﻿using AirNice.Data;
 using AirNice.Models.DTO;
+using AirNice.Models.DTO.UserDTO;
 using AirNice.Models.Models;
 using AirNice.Services.IRepository;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -20,12 +22,15 @@ namespace AirNice.Services.Repository
         private readonly ApplicationDbContext _context;
         private readonly AppSettings _appSettings;
         private readonly UserManager<ApplicationUser> _userManager;
+        //private readonly SignInManager<IdentityUser> _signInManager;
+        //private readonly ILogger<ApplicationUser> _logger;
 
 
         public UserService(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
             _userManager = userManager;
+         
         }
 
         public UserService(ApplicationDbContext context, IOptions<AppSettings> appSettings)
@@ -43,6 +48,17 @@ namespace AirNice.Services.Repository
                 return idUser != null ? idUser.Id : null;
             }
             return null;
+        }
+
+        public async Task<bool> Login(LoginDTO loginDTO)
+        {
+            //var result = await _signInManager.PasswordSignInAsync(loginDTO.Email, loginDTO.Password, true,  false);
+            //if (result.Succeeded)
+            //{
+            //    _logger.LogInformation("User logged in.");
+            //    return true;
+            //}
+            return false;
         }
 
         public AdditionalUser Authenticated(string username, string password)
@@ -82,21 +98,31 @@ namespace AirNice.Services.Repository
             return sucess ? true : false;
         }
 
-        public async Task<string> Register(ApplicationUser user)
+        public async Task<ApplicationUser> Register(ApplicationUser user)
         {
 
             var result = await _userManager.CreateAsync(user, user.Passcode);
             if (result.Succeeded)
             {
-                var idUser = await _userManager.FindByEmailAsync(user.Email);
-                return idUser != null ? idUser.Id : null;
+                user.IsSuccessful = true;
+                return user;
             }
-            return null;
+            return user;
         }
 
-        public Task<string> Creatidentityuser(string email, string password)
+    
+
+        public async Task DeleteUser(string email)
+        {
+                var user = await  _userManager.FindByNameAsync(email);
+            await _userManager.DeleteAsync(user);
+        }
+
+        public Task<ApplicationUser> Creatidentityuser(string email, string password)
         {
             throw new NotImplementedException();
         }
+
+     
     }
 }

@@ -80,27 +80,34 @@ namespace AirNice
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
            {
                options.SignIn.RequireConfirmedEmail = true;
-                //Password settings
-                //options.Password.RequireDigit = identityDefaultOptions.PasswordRequireDigit;
-                //options.Password.RequiredLength = identityDefaultOptions.PasswordRequiredLength;
-                //options.Password.RequireNonAlphanumeric = identityDefaultOptions.PasswordRequireNonAlphanumeric;
-                //options.Password.RequireUppercase = identityDefaultOptions.PasswordRequireUppercase;
-                //options.Password.RequireLowercase = identityDefaultOptions.PasswordRequireLowercase;
-                //options.Password.RequiredUniqueChars = identityDefaultOptions.PasswordRequiredUniqueChars;
+               options.Password.RequireDigit = false;
+               options.Password.RequireLowercase = false;
+               options.Password.RequireNonAlphanumeric = false;
+               options.Password.RequireUppercase = false;
+               options.Password.RequiredLength = 6;
+               options.Password.RequiredUniqueChars = 1;
 
-                //Lockout settings
-                //options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(identityDefaultOptions.LockoutDefaultLockoutTimeSpanInMinutes);
-                //options.Lockout.MaxFailedAccessAttempts = identityDefaultOptions.LockoutMaxFailedAccessAttempts;
-                //options.Lockout.AllowedForNewUsers = identityDefaultOptions.LockoutAllowedForNewUsers;
+               // Lockout settings.
+               options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+               options.Lockout.MaxFailedAccessAttempts = 3;
+               options.Lockout.AllowedForNewUsers = true;
 
-                //User settings
-                //options.User.RequireUniqueEmail = identityDefaultOptions.UserRequireUniqueEmail;
+               // User settings.
+               options.User.AllowedUserNameCharacters =
+               "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+               options.User.RequireUniqueEmail = false;
 
-                //email confirmation require
+           }).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+            services.ConfigureApplicationCookie(options =>
+            {
+                // Cookie settings
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
 
-            })
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+                options.LoginPath = "/User/Login";
+                options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+                options.SlidingExpiration = true;
+            });
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("AirNiceAPI",

@@ -79,11 +79,11 @@ namespace AirNice.Controllers
             {
                 var bookingEnquiry = _mapper.Map<BookingEnquiry>(bookingEnquiryDTO);
                 var success = await _unitOfWork.bookingEnquiry.AddAsync(bookingEnquiry);
-                if (!success)
-                {
-                    ModelState.AddModelError("", Universe.Error500);
-                    return StatusCode(500, ModelState);
-                }
+                //if (!success)
+                //{
+                //    ModelState.AddModelError("", Universe.Error500);
+                //    return StatusCode(500, ModelState);
+                //}
 
                 return Ok(bookingEnquiry);
 

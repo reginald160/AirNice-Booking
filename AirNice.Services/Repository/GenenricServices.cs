@@ -29,18 +29,36 @@ namespace AirNice.Services.Repository
                 //var IsCoreDeletetable = typeof(T).GetInterfaces().Contains(typeof(ICoreDeletable));
 
             }
-    
+
             //private readonly IRoles _roles;
             //private readonly SuperAdminDefaultOptions _superAdminDefaultOptions;
 
-
-
-            public async Task<bool> AddAsync(T entity)
+            public IEnumerable<T> AddRange(IEnumerable<T> entities)
             {
-               await  dbSet.AddAsync(entity);
-                var success = await _Context.SaveChangesAsync() > 0;
+                if (entities == null)
+                    throw new ArgumentNullException("entities");
+                dbSet.AddRange(entities);
+                return entities;
+            }
 
-                return success ? true : false;
+            public async Task<IEnumerable<T>> AddRangeAsync(IEnumerable<T> entities)
+            {
+                if (entities == null)
+                    throw new ArgumentNullException("entities");
+                await dbSet.AddRangeAsync(entities);
+                return entities;
+            }
+
+            public async Task<T> AddAsync(T entity)
+            {
+                if (entity == null)
+                    throw new ArgumentNullException("entity");
+
+                await  dbSet.AddAsync(entity);
+            var  success = await   _Context.SaveChangesAsync() > 0;
+                if(success.Equals(true))
+                    return entity;
+                return null;
 
             }
             public bool GetDeletedValue()

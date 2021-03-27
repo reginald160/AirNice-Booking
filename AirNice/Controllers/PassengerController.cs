@@ -80,32 +80,32 @@ namespace AirNice.Controllers
             {
                 var passenger = _mapper.Map<Passenger>(passengerDTO);
                 //var userId = await _unitOfWork.user.Creatidentityuser(passenger.Email, passenger.Password);
-
-                var user = new ApplicationUser
+                var userDTO = new ApplicationUserDTO()
                 {
+                    Username = passenger.Email,
                     Email = passenger.Email,
-                    UserName = passenger.Email,
                     Passcode = passenger.Password,
-                    Role = "Passenger"      
+                    RoleTitle = "Passenger",
+                    Id = Guid.NewGuid().ToString()
+
                 };
+                var user = _mapper.Map<ApplicationUser>(userDTO);
                 var result = await _unitOfWork.user.Register(user);
   
-                if (result != null)
+                if (result.IsSuccessful.Equals(true))
                 {
 
-                    var query = _userManager.Users.Where(x => x.Email == passenger.Email).FirstOrDefault();
-                    if (query == null)
-                        ModelState.AddModelError("", Universe.Error500);
-                    passenger.UserId = query.Id;
+                    passenger.UserId = user.Id;
 
-                    var success = await _unitOfWork.passenger.AddAsync(passenger);
-                    if (!success)
-                    {
-                        ModelState.AddModelError("", Universe.Error500);
-                        return StatusCode(500, ModelState);
-                    }
+                    var reponse = await _unitOfWork.passenger.AddAsync(passenger);
+                    //if (!null)
+                    //{
+                    //  await  _unitOfWork.user.DeleteUser(user.Email);
+                    //    ModelState.AddModelError("", Universe.Error500);
+                    //    return StatusCode(500, ModelState);
+                    //}
 
-                    return Ok();
+                    return Ok(reponse);
 
                 }
 

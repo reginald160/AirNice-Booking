@@ -12,11 +12,13 @@ namespace AirNice.Services.IRepository
 
         IEnumerable<T> ReserveCollection();
         IEnumerable<T> Trashcollection();
+        Task<IEnumerable<T>> AddRangeAsync(IEnumerable<T> entities);
+        IEnumerable<T> AddRange(IEnumerable<T> entities);
 
         T GetFirstOrDefault(Expression<Func<T, bool>> filter = null, string includeProperties = null);
         Task<bool> DeleteAndRetrieveAync(T TEntity);
         Task <bool>DeleteAndRetrieveAsync(Guid id);
-        Task<bool> AddAsync(T entity);
+        Task<T> AddAsync(T entity);
         Task<bool> UpdateAsync(T entity);
         Task Remove(Guid id);
         Task Remove(T entity);

@@ -76,11 +76,11 @@ namespace AirNice.Controllers
             {
                 var booking = _mapper.Map<Permission>(bookingDTO);
                 var success = await _unitOfWork.permission.AddAsync(booking);
-                if (!success)
-                {
-                    ModelState.AddModelError("", Universe.Error500);
-                    return StatusCode(500, ModelState);
-                }
+                //if (!success)
+                //{
+                //    ModelState.AddModelError("", Universe.Error500);
+                //    return StatusCode(500, ModelState);
+                //}
 
                 return Ok(booking);
 

@@ -1,5 +1,6 @@
 ﻿using AirNice.Data;
 using AirNice.Models.DTO;
+using AirNice.Models.DTO.UserDTO;
 using AirNice.Models.Models;
 using AirNice.Services.UnitOfWork;
 using AutoMapper;
@@ -44,6 +45,29 @@ namespace AirNice.Controllers
             if (user == null)
                 return BadRequest(new { message = "username or password is in correct" });
             return Ok(user);
+        }
+
+        [AllowAnonymous]
+        [HttpPost("[action]")]
+
+        public async Task<IActionResult> Login([FromBody] LoginDTO loginDTO)
+        {
+            var result = await _signInManager.PasswordSignInAsync(loginDTO.Email, loginDTO.Password, false, true);
+            if (result.Succeeded)
+                return BadRequest(new { message = "username or password is in correct" });
+            return Ok(loginDTO);
+        }
+
+        [AllowAnonymous]
+        [HttpPost("[action]")]
+
+        public async Task<IActionResult> LogOut()
+        {
+            var user = new LoginDTO();
+            await _signInManager.SignOutAsync();
+
+            return Ok(user);
+           
         }
     }
 }
