@@ -1,4 +1,5 @@
 
+using AirNice.Utility.Extensions.HostedServices;
 using AirNiceWebMVC.Abstractions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,6 +30,7 @@ namespace AirNiceWebMVC
 
             services.AddHttpClient();
             services.AddControllersWithViews();/*AddRazorRuntimeCompilation();*/
+            services.AddSingleton<IHostedService, CoreHostService>();
             AddRefitHttpClient(services);
         }
 
@@ -85,12 +87,6 @@ namespace AirNiceWebMVC
             {
                 options.BaseAddress = new Uri(Configuration["BaseUrl"]);
             }).AddTypedClient(a => RestService.For<IUserServices>(a));
-
-
-            
-
-
-
 
 
         }

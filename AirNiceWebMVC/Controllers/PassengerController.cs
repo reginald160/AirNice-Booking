@@ -59,9 +59,7 @@ namespace AirNiceWebMVC.Controllers
 
             return View();
 
-        
-
-
+       
         }
 
         [HttpPost]

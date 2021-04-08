@@ -9,7 +9,7 @@ namespace AirNice.Models.DTO
 {
     public class PassengerDTO : BaseDTO
     {
-        [DataType(DataType.Text), Required]
+        //[GlobalName,Required]
         public string Name { get; set; }
         [DataType(DataType.PhoneNumber), Required]
         public string Phone { get; set; }

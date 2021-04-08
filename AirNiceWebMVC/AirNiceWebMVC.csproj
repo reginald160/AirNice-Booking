@@ -18,4 +18,10 @@
 	<ProjectReference Include="..\AirNice.Utility\AirNice.Utility.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="wwwroot\HostedServices\services.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

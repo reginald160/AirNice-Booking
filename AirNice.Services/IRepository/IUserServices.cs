@@ -13,7 +13,7 @@ namespace AirNice.Services.IRepository
         AdditionalUser Authenticated(string username, string password);
         Task<ApplicationUser> Register(ApplicationUser user);
         Task<ApplicationUser> Creatidentityuser(string email, string password);
-         Task<bool> Register(AdditionalUser user);
+        Task<string> RegisterUser(ApplicationUser user);
         Task DeleteUser(string email);
         Task<bool> Login(LoginDTO loginDTO);
     }

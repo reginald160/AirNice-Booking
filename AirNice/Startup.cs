@@ -24,6 +24,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using AirNice.Utility.Extensions.Middlewares.NumberChecker;
 
 namespace AirNice
 {
@@ -204,8 +205,7 @@ namespace AirNice
             app.UseCors(options => options
            .AllowAnyOrigin()
            .AllowAnyMethod()
-           .AllowAnyHeader()
-       );
+           .AllowAnyHeader());
 
             app.UseAuthentication();
             app.UseAuthentication();
@@ -216,6 +216,7 @@ namespace AirNice
                 c.SwaggerEndpoint("/swagger/AirNiceAPI/swagger.json", " Booking Enquiry");
                 //c.SwaggerEndpoint("/swagger/AirNiceAPIPassenger/swagger.json", "Passenger");
             });
+            app.UserNumberChecker();
 
             app.UseEndpoints(endpoints =>
             {

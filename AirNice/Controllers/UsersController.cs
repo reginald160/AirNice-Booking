@@ -41,10 +41,10 @@ namespace AirNice.Controllers
         {
       
             var userMaped = _mapper.Map<ApplicationUser>(userDTO);
-            var user = await _unitOfWork.user.Register(userMaped);
-            if (user == null)
+            var code = await _unitOfWork.user.RegisterUser(userMaped);
+            if (code == null)
                 return BadRequest(new { message = "username or password is in correct" });
-            return Ok(user);
+            return Ok(code);
         }
 
         [AllowAnonymous]

@@ -90,12 +90,13 @@ namespace AirNice.Controllers
 
                 };
                 var user = _mapper.Map<ApplicationUser>(userDTO);
-                var result = await _unitOfWork.user.Register(user);
+                var code = await _unitOfWork.user.RegisterUser(user);
   
-                if (result.IsSuccessful.Equals(true))
+                if (code != null)
                 {
 
                     passenger.UserId = user.Id;
+                    passenger.PassPort = code;
 
                     var reponse = await _unitOfWork.passenger.AddAsync(passenger);
                     //if (!null)
@@ -105,7 +106,7 @@ namespace AirNice.Controllers
                     //    return StatusCode(500, ModelState);
                     //}
 
-                    return Ok(reponse);
+                    return Ok(code);
 
                 }
 

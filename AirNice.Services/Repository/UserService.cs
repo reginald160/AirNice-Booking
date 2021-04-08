@@ -3,7 +3,12 @@ using AirNice.Models.DTO;
 using AirNice.Models.DTO.UserDTO;
 using AirNice.Models.Models;
 using AirNice.Services.IRepository;
+using Azure.Core;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -12,6 +17,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -44,8 +50,9 @@ namespace AirNice.Services.Repository
               var result =   await _userManager.CreateAsync(user, user.Passcode);
             if(result.Succeeded)
             {
+                var code = await  _userManager.GenerateEmailConfirmationTokenAsync(user);
                 var idUser =  await _userManager.FindByEmailAsync(user.Email);
-                return idUser != null ? idUser.Id : null;
+                return idUser != null ? code : null;
             }
             return null;
         }
@@ -91,11 +98,23 @@ namespace AirNice.Services.Repository
             return user == null ? true : false;
         }
 
-        public async Task<bool> Register(AdditionalUser user)
+        public async Task<string> RegisterUser(ApplicationUser user)
         {
-           await _context.AdditionalUsers.AddAsync(user);
-            var sucess = await _context.SaveChangesAsync() > 0;
-            return sucess ? true : false;
+            
+            var result = await _userManager.CreateAsync(user, user.Passcode);
+            if (result.Succeeded)
+            {
+                var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+                //var EmailConfirmationUrl = UrlHelper.Action( nameof(VerifyEmail), "User", new { userId = user.Id, code },
+                //     protocol: 
+
+                //    );
+
+                var idUser = await _userManager.FindByEmailAsync(user.Email);
+                return idUser != null ? code : null;
+            }
+            return null;
         }
 
         public async Task<ApplicationUser> Register(ApplicationUser user)
@@ -110,7 +129,11 @@ namespace AirNice.Services.Repository
             return user;
         }
 
-    
+        public async Task VerifyEmail(string email)
+        {
+            var user = await _userManager.FindByNameAsync(email);
+            await _userManager.DeleteAsync(user);
+        }
 
         public async Task DeleteUser(string email)
         {

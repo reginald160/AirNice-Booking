@@ -193,3 +193,4 @@ C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNiceWebMVC\obj\Debug\netcoreapp
 C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNiceWebMVC\obj\Debug\netcoreapp3.1\AirNiceWebMVC.dll
 C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNiceWebMVC\obj\Debug\netcoreapp3.1\AirNiceWebMVC.pdb
 C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNiceWebMVC\obj\Debug\netcoreapp3.1\AirNiceWebMVC.genruntimeconfig.cache
+C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNiceWebMVC\bin\Debug\netcoreapp3.1\wwwroot\HostedServices\services.json
