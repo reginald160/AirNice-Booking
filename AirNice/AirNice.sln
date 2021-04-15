@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirNice.Data", "..\AirNice.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirNice.Utility", "..\AirNice.Utility\AirNice.Utility.csproj", "{2D9ADD33-CB86-43B4-A2C3-DAB67962EA8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirNiceWebMVC", "..\AirNiceWebMVC\AirNiceWebMVC.csproj", "{72F3AEA5-B255-45D1-9F0D-59BDB3D981D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirNiceWebMVC", "..\AirNiceWebMVC\AirNiceWebMVC.csproj", "{72F3AEA5-B255-45D1-9F0D-59BDB3D981D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirNice.IdentityServer", "..\AirNice.IdentityServer\AirNice.IdentityServer.csproj", "{83AB3827-57E8-4914-82EB-34A7F8A998FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{72F3AEA5-B255-45D1-9F0D-59BDB3D981D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72F3AEA5-B255-45D1-9F0D-59BDB3D981D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72F3AEA5-B255-45D1-9F0D-59BDB3D981D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83AB3827-57E8-4914-82EB-34A7F8A998FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83AB3827-57E8-4914-82EB-34A7F8A998FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83AB3827-57E8-4914-82EB-34A7F8A998FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83AB3827-57E8-4914-82EB-34A7F8A998FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

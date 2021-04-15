@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace AirNice.Models
-{
+{  
+    public class Enum
+    { 
+
     public enum BookingEnquiryType
     {
         Cashual, Reserve
@@ -21,6 +25,26 @@ namespace AirNice.Models
 
     public enum BookingType
     {
-        Online,Office
+        FirstClass,Premium, Economy
     }
+
+    public enum PassengerCategory
+    {
+        Adult, Child, Infant
+    }
+    
+    public enum TripType
+    {
+        [Display(Name ="One way Rip")]
+        Oneway,
+        [Display(Name ="Round trip")]
+        RoundTrip
+    }
+
+    public enum FlightCategory
+    {
+
+    }
+        }
+       
 }

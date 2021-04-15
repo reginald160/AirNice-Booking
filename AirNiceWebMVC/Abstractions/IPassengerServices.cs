@@ -17,6 +17,9 @@ namespace AirNiceWebMVC.Abstractions
         [Post("/Passenger/GetPassenger")]
         Task<PassengerDTO> GetPassenger(Guid id);
 
+        [Post("/Flight/GetFlight")]
+        Task<FlightDTO> GetFlight(Guid id);
+
         [Post("/Passenger/Create")]
         Task<PassengerDTO> AddPassenger(PassengerDTO passengerDTO);
         [Post("/Passenger/Update")]

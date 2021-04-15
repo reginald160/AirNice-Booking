@@ -25,6 +25,7 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using AirNice.Utility.Extensions.Middlewares.NumberChecker;
+using Microsoft.AspNet.OData.Extensions;
 
 namespace AirNice
 {
@@ -187,7 +188,9 @@ namespace AirNice
             //});
 
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
+            services.AddOData();
+        
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -197,9 +200,15 @@ namespace AirNice
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            else
+            {
+                app.UseHsts();
+            }
+      
             app.UseHttpsRedirection();
+           
             app.UseSwagger();
+           
        
             app.UseRouting();
             app.UseCors(options => options
@@ -220,6 +229,8 @@ namespace AirNice
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.EnableDependencyInjection();
+                endpoints.Select().Expand().OrderBy().Count().Filter();
                 endpoints.MapControllers();
             });
         }

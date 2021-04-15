@@ -1,0 +1,120 @@
+﻿@model IEnumerable<AirNice.Models.DTO.FlightDTO>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+<section id="container" style="margin-top:70px">
+
+    <!--main content start-->
+    <section id="main-content">
+        <section class="wrapper">
+
+            <div class="row mb">
+                <!-- page start-->
+                <div class="content-panel col-md-2"></div>
+                <div class="content-panel col-md-8">
+                    <div class="col-md-4 text-right" id="Add_button">
+                        <a asp-controller="Flight" asp-action="Create" class="btn btn-info">
+                            <i class="fa fa-plus"></i> New Flight
+                        </a>
+                    </div>
+                    <div class="adv-table">
+                        <div class="text-center @TempData["Color"]">@TempData["Message"]</div>
+                        <div></div>
+                        <table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered" id="hidden-table-info">
+                            <thead>
+                                <tr>
+                                    <th>SN</th>
+                                    <th>FlightNumber</th>
+                                    <th>AirLine</th>
+                                    <th>Available Sit</th>
+                                    <th>Departure Location</th>
+                                    <th>Departure Time</th>
+                                    <th>Arrival Location</th>
+                                    <th>Arrival Time</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.Any())
+                                {
+                                    var i = 1;
+
+
+                                    @foreach (var item in Model)
+                                    {
+
+                                        <tr class="">
+                                            <td> @i</td>
+                                            <td> @Html.DisplayFor(modelItem => item.FlightNumber)</td>
+                                            <td> @Html.DisplayFor(modelItem => item.AirLine)</td>
+                                            <td> @Html.DisplayFor(modelItem => item.TotalVacantSeat)</td>
+                                            <td> @Html.DisplayFor(modelItem => item.DepartureCountry)</td>
+                                            <td> @Html.DisplayFor(modelItem => item.DepartureDateTime)</td>
+                                            <td> @Html.DisplayFor(modelItem => item.DepartureCountry)</td>
+                                            <td> @Html.DisplayFor(modelItem => item.DepartureDateTime)</td>
+                                            <td>
+                                                @*<a class="btn btn-success btn-xs" asp-action=""   asp-route="@item.Id"><i class="fa fa-check"></i></a>
+                                        <a class="btn btn-primary btn-xs" asp-route="@item.Id"  asp-action="Edit"><i class="fa fa-pencil"></i></a>
+                                        <a class="btn btn-danger btn-xs"asp-route="@item.Id"   asp-action="Delte"><i class="fa fa-trash-o "></i></a>*@
+                                                <a class="text-primary" asp-action="Edit" asp-route-id="@item.Id">
+                                                    <i class="fa fa-pencil"></i> Edit
+                                                </a>
+                                                <a class="text-success" asp-action="Profile" asp-route-id="@item.Id">
+                                                    <i class="fa fa-bars"></i> Detail
+                                                </a>
+                                                <button class="text-danger" asp-route-id="@item.Id" id="deleteButton">
+                                                    <i class="fa fa-trash-o"></i> Delete
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        i++;
+                                    }
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="content-panel col-md-2"></div><!-- page end-->
+            </div>
+            <!-- /row -->
+        </section>
+        <!-- /wrapper -->
+    </section>
+    <!-- /MAIN CONTENT -->
+    <!--main content end-->
+    <!--footer start-->
+    <!--footer end-->
+</section>
+
+
+
+
+<script>
+    $(document).ready(function () {
+        alert("Hello");
+    });
+</script>
+<script>
+    //$('#deleteButton').click(
+
+
+        $('#deleteButton').click(function () {
+            alert("Hello");
+
+            $.ajax({
+                type: "DELETE",
+                url: "/flight/delete/" + this.val,
+                cache: false,
+                success: function (data) {
+                   alert("Hello")
+                }
+            });
+        });
+
+</script>
+}
+
+<!--script for this page-->

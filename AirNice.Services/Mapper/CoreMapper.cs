@@ -13,10 +13,10 @@ namespace AirNice.Services.Mapper
 	{
 		public CoreMapper()
 		{
-			CreateMap<Passenger, PassengerDTO>().ReverseMap();
-			CreateMap<BookingEnquiry, BookingEnquiryDTO>().ReverseMap();
-			CreateMap<ApplicationUser, ApplicationUserDTO>().ReverseMap();
 			CreateMap<Booking, BookingDTO>().ReverseMap();
+			CreateMap<Flight, FlightDTO>().ReverseMap();
+			CreateMap<Passenger, PassengerDTO>().ReverseMap();
+			CreateMap<ApplicationUser, ApplicationUserDTO>().ReverseMap();
 
 		}
 

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<AirNice.Models.DTO.FlightDTO>
+@{
+    ViewData["Title"] = "AvailableFlight";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<body style="margin-top:50px; background-color:lightslategrey">
+    <section class="">
+        <div class="container">
+            <div class="row">
+
+                @if (Model.Any())
+                {
+
+
+                    var j = 1;
+                    var imageNo = String.Empty;
+
+                    @foreach (var item in Model)
+                    {
+
+                        var count = Model.Count();
+                        for (int i = 1; i < count; i++)
+                        {
+                            imageNo = $"{j++}.jpg";
+                        }
+
+                <div class="col-md-4  card mb30" style="background-image:url(../../BLUETEC_HTML/images/gallery/@imageNo); background-size:auto; background-repeat:no-repeat; position:center">
+                    <div class="de-image-hover card-title rounded">
+
+
+                    </div>
+                    <div class="card-body">
+
+
+                        <div> @Html.DisplayFor(modelItem => item.FlightNumber)</div>
+                        <div> @Html.DisplayFor(modelItem => item.AirLine)</div>
+                        <div> @Html.DisplayFor(modelItem => item.TotalVacantSeat)</div>
+                        <div> @Html.DisplayFor(modelItem => item.DepartureCountry)</div>
+                        <div> @Html.DisplayFor(modelItem => item.DepartureDateTime)</div>
+                        <div> @Html.DisplayFor(modelItem => item.DepartureCountry)</div>
+                        <div> @Html.DisplayFor(modelItem => item.DepartureDateTime)</div>
+                      
+
+
+                    </div>
+                    <a class="text-danger card-footer" asp-action="BookTicket" asp-controller="Booking" asp-route-id="@item.Id" id="deleteButton">
+                        <i class="fa fa-trash-o"></i> Book Flight
+                    </a>
+                </div>
+                       
+                    }
+                  
+
+
+
+                  }
+
+                </div>
+
+        </div>
+
+    </section>
+
+</body>

@@ -19,5 +19,7 @@ namespace AirNiceWebMVC.Controllers
             var response = await _bookingServices.GetBookings();
             return View();
         }
+
+      
     }
 }

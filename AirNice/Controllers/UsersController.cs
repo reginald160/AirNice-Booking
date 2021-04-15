@@ -30,8 +30,8 @@ namespace AirNice.Controllers
         {
             var authenticateUser = _mapper.Map<AdditionalUser>(userDTO);
             var user = _unitOfWork.user.Authenticated(authenticateUser.Username, authenticateUser.Password);
-            if (user == null)
-                return BadRequest(new { message = "username or password is in correct" });
+            //if (user == null)
+            //    return BadRequest(new { message = "username or password is in correct" });
             return Ok(user);
         }
         [AllowAnonymous]
@@ -52,10 +52,11 @@ namespace AirNice.Controllers
 
         public async Task<IActionResult> Login([FromBody] LoginDTO loginDTO)
         {
-            var result = await _signInManager.PasswordSignInAsync(loginDTO.Email, loginDTO.Password, false, true);
-            if (result.Succeeded)
-                return BadRequest(new { message = "username or password is in correct" });
-            return Ok(loginDTO);
+            //var result = await _signInManager.PasswordSignInAsync(loginDTO.Email, loginDTO.Password, false, true);
+            var result = _unitOfWork.user.Authenticated(loginDTO.Email, loginDTO.Password);
+            //if (result )
+                //return BadRequest(new { message = "username or password is in correct" });
+            return Ok(result);
         }
 
         [AllowAnonymous]

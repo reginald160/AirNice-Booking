@@ -1,4 +1,5 @@
 
+using AirNice.Models.Helper;
 using AirNice.Utility.Extensions.HostedServices;
 using AirNiceWebMVC.Abstractions;
 using Microsoft.AspNetCore.Builder;
@@ -27,11 +28,15 @@ namespace AirNiceWebMVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+           
             services.AddHttpClient();
             services.AddControllersWithViews();/*AddRazorRuntimeCompilation();*/
             services.AddSingleton<IHostedService, CoreHostService>();
             AddRefitHttpClient(services);
+            var builder = services.AddIdentityServer()
+        .AddDeveloperSigningCredential();        //This is for dev only scenarios when you don’t have a certificate to use.
+        //.AddInMemoryApiScopes(Config.ApiScopes)
+        //.AddInMemoryClients(Config.Clients);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,7 +56,7 @@ namespace AirNiceWebMVC
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseIdentityServer();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -87,6 +92,11 @@ namespace AirNiceWebMVC
             {
                 options.BaseAddress = new Uri(Configuration["BaseUrl"]);
             }).AddTypedClient(a => RestService.For<IUserServices>(a));
+
+            services.AddHttpClient("Api", options =>
+            {
+                options.BaseAddress = new Uri(Configuration["BaseUrl"]);
+            }).AddTypedClient(a => RestService.For<IFlightServices>(a));
 
 
         }

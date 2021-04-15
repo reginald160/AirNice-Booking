@@ -19,6 +19,7 @@ namespace AirNice.Services.Repository
         public class GenericServices<T> : IGenericServices<T> where T : class
         {
             protected readonly ApplicationDbContext _Context;
+            protected readonly SignInManager<ApplicationUser> signInUser;
             public bool IsCoreDeletetable { get; set; }
             internal DbSet<T> dbSet;
 
@@ -28,6 +29,11 @@ namespace AirNice.Services.Repository
                 this.dbSet = context.Set<T>();
                 //var IsCoreDeletetable = typeof(T).GetInterfaces().Contains(typeof(ICoreDeletable));
 
+            }
+
+            public GenericServices(SignInManager<ApplicationUser> signInUser)
+            {
+                this.signInUser = signInUser;
             }
 
             //private readonly IRoles _roles;
@@ -53,7 +59,18 @@ namespace AirNice.Services.Repository
             {
                 if (entity == null)
                     throw new ArgumentNullException("entity");
+                var createById = entity.GetType().GetProperty("CreateById");
+                var EditedById = entity.GetType().GetProperty("EditedById");
+                string userName = null;
+                //using (System.Security.Principal.WindowsIdentity wi = System.Security.Principal.WindowsIdentity.GetCurrent())
+                //{
+                //    userName = wi.Name;
+                //    createById.SetValue(entity, Universe.Deleted);
+                //    createById.SetValue(entity, Universe.Deleted);
+                //}
 
+
+                //string userName = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
                 await  dbSet.AddAsync(entity);
             var  success = await   _Context.SaveChangesAsync() > 0;
                 if(success.Equals(true))

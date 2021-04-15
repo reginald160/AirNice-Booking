@@ -72,7 +72,15 @@ namespace AirNice.Services.Repository
         {
             var user = _context.AdditionalUsers.SingleOrDefault(x => x.Username.Equals(username) && x.Password.Equals(password));
             if (user == null)
-                return null;
+            {
+                var newUser = new AdditionalUser()
+                {
+                    Token = null
+                };
+                return newUser;
+                
+            }
+
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes("This is used to sign in and verify user, the user must be Authenticated. 1123445@#$%&^*&^");
             var tokenDescriptor = new SecurityTokenDescriptor

@@ -25,6 +25,7 @@ namespace AirNice.Services.UnitOfWork
             permission = new PermissionServices(_context);
             ticketClass = new TicketClassServices(_context);
             booking = new BookingServices(_context);
+            flight = new FlightServices(context);
 
         }
 
@@ -35,6 +36,7 @@ namespace AirNice.Services.UnitOfWork
         public IUserServices user { get; private set; }
         public IPermissionServices permission { get; private set; }
         public IBookingServices booking { get; private set; }
+        public IFlightServices flight { get; private set; }
         public ITicketClassServices ticketClass { get; private set; }
 
 

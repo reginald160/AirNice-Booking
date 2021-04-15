@@ -27,20 +27,20 @@ namespace AirNice.Utility.Extensions.HostedServices
 
          
 
-            while (true || i <= 12270860)
-            {
-                var response = await client.GetAsync("http://localhost:52903/api/Passenger/Index");
-                using (var output = File.OpenWrite(file)) using (var content = await response.Content.ReadAsStreamAsync())
-                {
-                    content.CopyTo(output);
-                }
+            //while (true || i <= 12270860)
+            //{
+            //    var response = await client.GetAsync("http://localhost:52903/api/Passenger/Index");
+            //    using (var output = File.OpenWrite(file)) using (var content = await response.Content.ReadAsStreamAsync())
+            //    {
+            //        content.CopyTo(output);
+            //    }
 
-                test += "INC-" + i + ".eml \n ";
-                File.WriteAllText(@"C:\Environment\PP\counter.csv", test);
+            //    test += "INC-" + i + ".eml \n ";
+            //    File.WriteAllText(@"C:\Environment\PP\counter.csv", test);
 
-                Thread.Sleep(10000);
-            }
-            i = i + 1;
+            //    Thread.Sleep(10000);
+            //}
+            //i = i + 1;
         }
 
         public Task StopAsync(CancellationToken cancellationToken)

@@ -1,5 +1,6 @@
 ﻿using AirNice.Models.DTO.UserDTO;
 using AirNiceWebMVC.Abstractions;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -32,8 +33,14 @@ namespace AirNiceWebMVC.Controllers
             if(ModelState.IsValid)
             {
               var user = await _user.Login(loginDTO);
-                if(user != null)
+                var token = user.Token;
+                if(user.Token == null)
+                {
+                    ViewBag.Message = "Invalid login details";
                     return View();
+                }
+                HttpContext.Session.SetString("Token", token);
+                    return Redirect("~/Dashboard/Index");
             }
             return View();
 

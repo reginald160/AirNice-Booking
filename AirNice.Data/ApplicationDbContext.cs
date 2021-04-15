@@ -24,6 +24,12 @@ namespace AirNice.Data
         public DbSet<Passenger> Passengers { get; set; }
         public DbSet<AdditionalUser> AdditionalUsers { get; set; }
 
+        public DbSet<Flight> Flights { get; set; }
+        public DbSet<AirPort> AirPorts { get; set; }
+
+        public DbSet<Location> Locations { get; set; }
+        public DbSet<Bank> Bank { get; set; }
+
 
 
 

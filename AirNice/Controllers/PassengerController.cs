@@ -4,7 +4,9 @@ using AirNice.Models.Models;
 using AirNice.Services.UnitOfWork;
 using AirNice.Utility.CoreHelpers;
 using AutoMapper;
+using Microsoft.AspNet.OData;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -21,8 +23,10 @@ namespace AirNice.Controllers
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public class PassengerController : BaseController
     {
-        public PassengerController(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, ApplicationDbContext context, SignInManager<ApplicationUser> signInManager, IMapper mapper) : base(unitOfWork, userManager, roleManager, context, signInManager, mapper)
+        private readonly IHostingEnvironment env;
+        public PassengerController(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, ApplicationDbContext context, SignInManager<ApplicationUser> signInManager, IMapper mapper, IHostingEnvironment env) : base(unitOfWork, userManager, roleManager, context, signInManager, mapper)
         {
+            this.env = env;
         }
         /// <summary>
         /// This is the method that returns the list of active passengers
@@ -31,6 +35,7 @@ namespace AirNice.Controllers
         [HttpGet("[action]")]
         [ProducesResponseType(200, Type = typeof(List<PassengerDTO>))]
         [ProducesResponseType(400)]
+        [EnableQuery()]
         public IActionResult Index()
         {
             var entities = _unitOfWork.passenger.ReserveCollection();
@@ -48,6 +53,18 @@ namespace AirNice.Controllers
             var passengers = _mapper.Map<List<PassengerDTO>>(entities);
 
             return Ok(passengers);
+        }
+
+        [HttpGet("[action]")]
+        [ProducesResponseType(400)]
+        public IActionResult Location()
+        {
+            var file = $@"{env.ContentRootPath}\Properties\location.json";
+            //deserialize JSON from file  
+            string Json = System.IO.File.ReadAllText(file);
+
+
+            return Ok(Json);
         }
 
 

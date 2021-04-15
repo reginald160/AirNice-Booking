@@ -16,7 +16,7 @@ namespace AirNiceWebMVC.Abstractions
         Task<ApplicationUserDTO> Authenticate(ApplicationUserDTO permissionDTO);
 
         [Post("/Users/Login")]
-        Task<LoginDTO> Login(LoginDTO loginDTO);
+        Task<ApplicationUserDTO> Login(LoginDTO loginDTO);
 
 
     }

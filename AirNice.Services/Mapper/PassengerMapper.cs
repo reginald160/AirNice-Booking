@@ -1,16 +1,16 @@
 ﻿using AirNice.Models.DTO;
 using AirNice.Models.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using AutoMapper;
+
 
 namespace AirNice.Services.Mapper
 {
-    public class PassengerMapper 
-    {
-        public PassengerMapper()
-        {
-         
-        }
-    }
+    //public class PassengerMapper : Profile
+    //{
+    //    public PassengerMapper()
+    //    {
+    //        CreateMap<Passenger, PassengerDTO>().ReverseMap();
+
+    //    }
+    //}
 }

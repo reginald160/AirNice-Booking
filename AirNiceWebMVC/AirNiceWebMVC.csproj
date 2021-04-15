@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+	  <PackageReference Include="AutoMapper" Version="10.1.1" />
+	<PackageReference Include="IdentityServer4" Version="3.1.2" />
+	<PackageReference Include="IdentityServer4.AccessTokenValidation" Version="3.0.1" />
+	<PackageReference Include="IdentityServer4.AspNetIdentity" Version="3.1.2" />
+	<PackageReference Include="IdentityServer4.Storage" Version="4.1.2" />
 	<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
 	<PackageReference Include="Refit" Version="6.0.38" />
 	<PackageReference Include="Refit.HttpClientFactory" Version="6.0.38" />
@@ -19,9 +24,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="wwwroot\HostedServices\services.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+	<Content Update="wwwroot\HostedServices\services.json">
+	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Helper\" />
   </ItemGroup>
 
 </Project>

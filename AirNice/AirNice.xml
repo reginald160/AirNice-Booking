@@ -16,6 +16,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:AirNice.Controllers.FlightController.Index">
+            <summary>
+            This is the method that returns the list of active flight
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:AirNice.Controllers.PassengerController.Index">
             <summary>
             This is the method that returns the list of active passengers

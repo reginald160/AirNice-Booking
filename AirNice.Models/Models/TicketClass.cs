@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 using System.Text.Json.Serialization;
+using static AirNice.Models.Enum;
 
 namespace AirNice.Models.Models
 {
