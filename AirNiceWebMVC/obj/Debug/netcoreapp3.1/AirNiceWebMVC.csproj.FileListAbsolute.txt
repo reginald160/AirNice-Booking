@@ -16,6 +16,12 @@ C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNiceWebMVC\bin\Debug\netcoreapp
 C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNiceWebMVC\bin\Debug\netcoreapp3.1\Azure.Security.KeyVault.Secrets.dll
 C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNiceWebMVC\bin\Debug\netcoreapp3.1\EntityFramework.SqlServer.dll
 C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNiceWebMVC\bin\Debug\netcoreapp3.1\EntityFramework.dll
+C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNiceWebMVC\bin\Debug\netcoreapp3.1\IdentityModel.dll
+C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNiceWebMVC\bin\Debug\netcoreapp3.1\IdentityModel.AspNetCore.OAuth2Introspection.dll
+C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNiceWebMVC\bin\Debug\netcoreapp3.1\IdentityServer4.dll
+C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNiceWebMVC\bin\Debug\netcoreapp3.1\IdentityServer4.AccessTokenValidation.dll
+C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNiceWebMVC\bin\Debug\netcoreapp3.1\IdentityServer4.AspNetIdentity.dll
+C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNiceWebMVC\bin\Debug\netcoreapp3.1\IdentityServer4.Storage.dll
 C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNiceWebMVC\bin\Debug\netcoreapp3.1\Microsoft.AspNet.Identity.Core.dll
 C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNiceWebMVC\bin\Debug\netcoreapp3.1\Microsoft.AspNet.Identity.EntityFramework.dll
 C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNiceWebMVC\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
@@ -202,9 +208,3 @@ C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNiceWebMVC\obj\Debug\netcoreapp
 C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNiceWebMVC\obj\Debug\netcoreapp3.1\AirNiceWebMVC.dll
 C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNiceWebMVC\obj\Debug\netcoreapp3.1\AirNiceWebMVC.pdb
 C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNiceWebMVC\obj\Debug\netcoreapp3.1\AirNiceWebMVC.genruntimeconfig.cache
-C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNiceWebMVC\bin\Debug\netcoreapp3.1\IdentityModel.dll
-C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNiceWebMVC\bin\Debug\netcoreapp3.1\IdentityServer4.dll
-C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNiceWebMVC\bin\Debug\netcoreapp3.1\IdentityServer4.AspNetIdentity.dll
-C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNiceWebMVC\bin\Debug\netcoreapp3.1\IdentityServer4.Storage.dll
-C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNiceWebMVC\bin\Debug\netcoreapp3.1\IdentityModel.AspNetCore.OAuth2Introspection.dll
-C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNiceWebMVC\bin\Debug\netcoreapp3.1\IdentityServer4.AccessTokenValidation.dll

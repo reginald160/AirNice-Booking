@@ -8,12 +8,14 @@ namespace AirNice.IdentityServer.Models
 {
     public static class Config
     {
+        public static string Secret { get; set; }
+        public static string Url { get; set; }
         public static IEnumerable<ApiScope> ApiScopes =>
             new List<ApiScope>
             {
                 new ApiScope("api1", "My API")
             };
-
+    
         public static IEnumerable<Client> Clients =>
             new List<Client>
             {

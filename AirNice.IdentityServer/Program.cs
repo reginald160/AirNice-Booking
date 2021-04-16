@@ -13,6 +13,7 @@ namespace AirNice.IdentityServer
     {
         public static void Main(string[] args)
         {
+
             CreateHostBuilder(args).Build().Run();
         }
 
