@@ -26,3 +26,17 @@ C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNice.Utility\obj\Debug\netcorea
 C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNice.Utility\obj\Debug\netcoreapp3.1\AirNice.Utility.csproj.CopyComplete
 C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNice.Utility\obj\Debug\netcoreapp3.1\AirNice.Utility.dll
 C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNice.Utility\obj\Debug\netcoreapp3.1\AirNice.Utility.pdb
+C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice.Utility\bin\Debug\netcoreapp3.1\AirNice.Utility.deps.json
+C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice.Utility\bin\Debug\netcoreapp3.1\AirNice.Utility.dll
+C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice.Utility\bin\Debug\netcoreapp3.1\AirNice.Utility.pdb
+C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice.Utility\bin\Debug\netcoreapp3.1\AirNice.Data.dll
+C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice.Utility\bin\Debug\netcoreapp3.1\AirNice.Models.dll
+C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice.Utility\bin\Debug\netcoreapp3.1\AirNice.Data.pdb
+C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice.Utility\bin\Debug\netcoreapp3.1\AirNice.Models.pdb
+C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice.Utility\obj\Debug\netcoreapp3.1\AirNice.Utility.csprojAssemblyReference.cache
+C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice.Utility\obj\Debug\netcoreapp3.1\AirNice.Utility.AssemblyInfoInputs.cache
+C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice.Utility\obj\Debug\netcoreapp3.1\AirNice.Utility.AssemblyInfo.cs
+C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice.Utility\obj\Debug\netcoreapp3.1\AirNice.Utility.csproj.CoreCompileInputs.cache
+C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice.Utility\obj\Debug\netcoreapp3.1\AirNice.Utility.csproj.CopyComplete
+C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice.Utility\obj\Debug\netcoreapp3.1\AirNice.Utility.dll
+C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice.Utility\obj\Debug\netcoreapp3.1\AirNice.Utility.pdb

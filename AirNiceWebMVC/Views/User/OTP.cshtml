@@ -1,0 +1,92 @@
+﻿
+@model AirNice.Models.DTO.UserDTO.OTPDTO
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_MainLayout";
+}
+<div class="no-bottom no-top" id="content">
+    <div id="top"></div>
+
+    <!-- section begin -->
+    <section id="subheader" data-bgimage="url(../BLUETEC_HTML/images/background/2.png) bottom">
+        <div class="center-y relative text-center" data-scroll-speed="4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <form action='blank.php' class="row" id='form_subscribe' method="post" name="myForm">
+                            <div class="col-md-12 text-center">
+                                <h1>Just one Step ahead</h1>
+                                <p>Awsome Page Teaser Here</p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="no-top" data-bgimage="url(../BLUETEC_HTML/images/background/4.png) top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <h3>Confirm your phone number.</h3>
+                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+
+                    <div class="spacer-10"></div>
+
+                    <form name="contactForm" id='contact_form' class="form-border" asp-controller="Passenger" asp-action="Register">
+
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4 mb60">
+
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                    Click to proceed
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade text-dark text-dark" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title text-center text-primary" id="exampleModalLabel">Kindly input your correct Phone Number</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class=" col-md-2">
+
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="field-set">
+                                                        <label>Phone Number:</label>
+                                                        <input asp-for="Phone" class="form-control" required>
+                                                        <span asp-validation-for="Phone" class="text-danger"></span>
+
+                                                    </div>
+                                                </div>
+                                                <div class=" col-md-2">
+
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                <input type="submit" class="btn btn-primary" value="Submit" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4"></div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+   

@@ -1,0 +1,483 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+	<TargetFramework>netcoreapp3.1</TargetFramework>
+	<UserSecretsId>aspnet-AirNiceWeb-C330E322-A974-4D4D-838A-5F0DACF291F8</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+	<Content Remove="Areas\Identity\Pages\Account\AccessDenied.cshtml" />
+	<Content Remove="Areas\Identity\Pages\Account\ConfirmEmail.cshtml" />
+	<Content Remove="Areas\Identity\Pages\Account\ConfirmEmailChange.cshtml" />
+	<Content Remove="Areas\Identity\Pages\Account\ExternalLogin.cshtml" />
+	<Content Remove="Areas\Identity\Pages\Account\ForgotPassword.cshtml" />
+	<Content Remove="Areas\Identity\Pages\Account\ForgotPasswordConfirmation.cshtml" />
+	<Content Remove="Areas\Identity\Pages\Account\Lockout.cshtml" />
+	<Content Remove="Areas\Identity\Pages\Account\Login.cshtml" />
+	<Content Remove="Areas\Identity\Pages\Account\LoginWith2fa.cshtml" />
+	<Content Remove="Areas\Identity\Pages\Account\LoginWithRecoveryCode.cshtml" />
+	<Content Remove="Areas\Identity\Pages\Account\Logout.cshtml" />
+	<Content Remove="Areas\Identity\Pages\Account\Manage\ChangePassword.cshtml" />
+	<Content Remove="Areas\Identity\Pages\Account\Manage\DeletePersonalData.cshtml" />
+	<Content Remove="Areas\Identity\Pages\Account\Manage\Disable2fa.cshtml" />
+	<Content Remove="Areas\Identity\Pages\Account\Manage\DownloadPersonalData.cshtml" />
+	<Content Remove="Areas\Identity\Pages\Account\Manage\Email.cshtml" />
+	<Content Remove="Areas\Identity\Pages\Account\Manage\EnableAuthenticator.cshtml" />
+	<Content Remove="Areas\Identity\Pages\Account\Manage\ExternalLogins.cshtml" />
+	<Content Remove="Areas\Identity\Pages\Account\Manage\GenerateRecoveryCodes.cshtml" />
+	<Content Remove="Areas\Identity\Pages\Account\Manage\Index.cshtml" />
+	<Content Remove="Areas\Identity\Pages\Account\Manage\PersonalData.cshtml" />
+	<Content Remove="Areas\Identity\Pages\Account\Manage\ResetAuthenticator.cshtml" />
+	<Content Remove="Areas\Identity\Pages\Account\Manage\SetPassword.cshtml" />
+	<Content Remove="Areas\Identity\Pages\Account\Manage\ShowRecoveryCodes.cshtml" />
+	<Content Remove="Areas\Identity\Pages\Account\Manage\TwoFactorAuthentication.cshtml" />
+	<Content Remove="Areas\Identity\Pages\Account\Manage\_Layout.cshtml" />
+	<Content Remove="Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml" />
+	<Content Remove="Areas\Identity\Pages\Account\Manage\_StatusMessage.cshtml" />
+	<Content Remove="Areas\Identity\Pages\Account\Manage\_ViewImports.cshtml" />
+	<Content Remove="Areas\Identity\Pages\Account\Register.cshtml" />
+	<Content Remove="Areas\Identity\Pages\Account\RegisterConfirmation.cshtml" />
+	<Content Remove="Areas\Identity\Pages\Account\ResetPassword.cshtml" />
+	<Content Remove="Areas\Identity\Pages\Account\ResetPasswordConfirmation.cshtml" />
+	<Content Remove="Areas\Identity\Pages\Account\_StatusMessage.cshtml" />
+	<Content Remove="Areas\Identity\Pages\Account\_ViewImports.cshtml" />
+	<Content Remove="Areas\Identity\Pages\Error.cshtml" />
+	<Content Remove="Areas\Identity\Pages\_ValidationScriptsPartial.cshtml" />
+	<Content Remove="Areas\Identity\Pages\_ViewImports.cshtml" />
+	<Content Remove="Areas\Identity\Pages\_ViewStart.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<None Include="Areas\Identity\Pages\Account\AccessDenied.cshtml" />
+	<None Include="Areas\Identity\Pages\Account\ConfirmEmail.cshtml" />
+	<None Include="Areas\Identity\Pages\Account\ConfirmEmailChange.cshtml" />
+	<None Include="Areas\Identity\Pages\Account\ExternalLogin.cshtml" />
+	<None Include="Areas\Identity\Pages\Account\ForgotPassword.cshtml" />
+	<None Include="Areas\Identity\Pages\Account\ForgotPasswordConfirmation.cshtml" />
+	<None Include="Areas\Identity\Pages\Account\Lockout.cshtml" />
+	<None Include="Areas\Identity\Pages\Account\Login.cshtml" />
+	<None Include="Areas\Identity\Pages\Account\LoginWith2fa.cshtml" />
+	<None Include="Areas\Identity\Pages\Account\LoginWithRecoveryCode.cshtml" />
+	<None Include="Areas\Identity\Pages\Account\Logout.cshtml" />
+	<None Include="Areas\Identity\Pages\Account\Manage\ChangePassword.cshtml" />
+	<None Include="Areas\Identity\Pages\Account\Manage\DeletePersonalData.cshtml" />
+	<None Include="Areas\Identity\Pages\Account\Manage\Disable2fa.cshtml" />
+	<None Include="Areas\Identity\Pages\Account\Manage\DownloadPersonalData.cshtml" />
+	<None Include="Areas\Identity\Pages\Account\Manage\Email.cshtml" />
+	<None Include="Areas\Identity\Pages\Account\Manage\EnableAuthenticator.cshtml" />
+	<None Include="Areas\Identity\Pages\Account\Manage\ExternalLogins.cshtml" />
+	<None Include="Areas\Identity\Pages\Account\Manage\GenerateRecoveryCodes.cshtml" />
+	<None Include="Areas\Identity\Pages\Account\Manage\Index.cshtml" />
+	<None Include="Areas\Identity\Pages\Account\Manage\PersonalData.cshtml" />
+	<None Include="Areas\Identity\Pages\Account\Manage\ResetAuthenticator.cshtml" />
+	<None Include="Areas\Identity\Pages\Account\Manage\SetPassword.cshtml" />
+	<None Include="Areas\Identity\Pages\Account\Manage\ShowRecoveryCodes.cshtml" />
+	<None Include="Areas\Identity\Pages\Account\Manage\TwoFactorAuthentication.cshtml" />
+	<None Include="Areas\Identity\Pages\Account\Manage\_Layout.cshtml" />
+	<None Include="Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml" />
+	<None Include="Areas\Identity\Pages\Account\Manage\_StatusMessage.cshtml" />
+	<None Include="Areas\Identity\Pages\Account\Manage\_ViewImports.cshtml" />
+	<None Include="Areas\Identity\Pages\Account\Register.cshtml" />
+	<None Include="Areas\Identity\Pages\Account\RegisterConfirmation.cshtml" />
+	<None Include="Areas\Identity\Pages\Account\ResetPassword.cshtml" />
+	<None Include="Areas\Identity\Pages\Account\ResetPasswordConfirmation.cshtml" />
+	<None Include="Areas\Identity\Pages\Account\_StatusMessage.cshtml" />
+	<None Include="Areas\Identity\Pages\Account\_ViewImports.cshtml" />
+	<None Include="Areas\Identity\Pages\Error.cshtml" />
+	<None Include="Areas\Identity\Pages\_ValidationScriptsPartial.cshtml" />
+	<None Include="Areas\Identity\Pages\_ViewImports.cshtml" />
+	<None Include="Areas\Identity\Pages\_ViewStart.cshtml" />
+	<None Include="bin\Debug\netcoreapp3.1\AirNice.Data.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\AirNice.Data.pdb" />
+	<None Include="bin\Debug\netcoreapp3.1\AirNice.Models.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\AirNice.Models.pdb" />
+	<None Include="bin\Debug\netcoreapp3.1\AirNice.Services.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\AirNice.Services.pdb" />
+	<None Include="bin\Debug\netcoreapp3.1\AirNice.Utility.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\AirNice.Utility.pdb" />
+	<None Include="bin\Debug\netcoreapp3.1\AirNiceWeb.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\AirNiceWeb.exe" />
+	<None Include="bin\Debug\netcoreapp3.1\AirNiceWeb.pdb" />
+	<None Include="bin\Debug\netcoreapp3.1\AirNiceWeb.Views.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\AirNiceWeb.Views.pdb" />
+	<None Include="bin\Debug\netcoreapp3.1\AutoMapper.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Azure.Core.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Azure.Identity.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Azure.Security.KeyVault.Certificates.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Azure.Security.KeyVault.Secrets.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\cs\Microsoft.CodeAnalysis.CSharp.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\cs\Microsoft.CodeAnalysis.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\de\Microsoft.CodeAnalysis.CSharp.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\de\Microsoft.CodeAnalysis.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\de\Microsoft.CodeAnalysis.Workspaces.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\dotnet-aspnet-codegenerator-design.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\EntityFramework.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\EntityFramework.SqlServer.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\es\Microsoft.CodeAnalysis.CSharp.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\es\Microsoft.CodeAnalysis.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\es\Microsoft.CodeAnalysis.Workspaces.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\fr\Microsoft.CodeAnalysis.CSharp.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\fr\Microsoft.CodeAnalysis.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Humanizer.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\IdentityModel.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\IdentityServer4.Storage.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\it\Microsoft.CodeAnalysis.CSharp.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\it\Microsoft.CodeAnalysis.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\it\Microsoft.CodeAnalysis.Workspaces.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\ja\Microsoft.CodeAnalysis.CSharp.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\ja\Microsoft.CodeAnalysis.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\ko\Microsoft.CodeAnalysis.CSharp.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\ko\Microsoft.CodeAnalysis.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.AspNet.Identity.Core.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.AspNet.Identity.EntityFramework.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.OpenIdConnect.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.Internal.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.UI.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.UI.Views.V3.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.UI.Views.V4.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Razor.Language.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.CSharp.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.CSharp.Workspaces.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.Razor.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.Workspaces.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.Data.SqlClient.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Abstractions.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Relational.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.SqlServer.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Abstractions.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.Extensions.Caching.Memory.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Abstractions.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Abstractions.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Embedded.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.Extensions.Http.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.Identity.Client.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.Identity.Client.Extensions.Msal.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.Identity.Web.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.Identity.Web.UI.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.Identity.Web.UI.Views.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.Contracts.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.Core.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\NuGet.Frameworks.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\pl\Microsoft.CodeAnalysis.CSharp.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\pl\Microsoft.CodeAnalysis.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\pt-BR\Microsoft.CodeAnalysis.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Refit.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\Refit.HttpClientFactory.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.pdb" />
+	<None Include="bin\Debug\netcoreapp3.1\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.pdb" />
+	<None Include="bin\Debug\netcoreapp3.1\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.pdb" />
+	<None Include="bin\Debug\netcoreapp3.1\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb" />
+	<None Include="bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\ru\Microsoft.CodeAnalysis.CSharp.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\ru\Microsoft.CodeAnalysis.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\SendGrid.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\StarkbankEcdsa.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\System.ComponentModel.Annotations.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\System.Composition.AttributedModel.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\System.Composition.Convention.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\System.Composition.Hosting.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\System.Composition.Runtime.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\System.Composition.TypedParts.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\System.Configuration.ConfigurationManager.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\System.Diagnostics.DiagnosticSource.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\System.Net.Http.Json.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\System.Runtime.Caching.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\System.Security.Cryptography.ProtectedData.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\System.Text.Json.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.CSharp.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.resources.dll" />
+	<None Include="bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.8" />
+	<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.8" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.4" />
+	  <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.4" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.4" />
+	<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+	  <PackageReference Include="Refit" Version="6.0.38" />
+	  <PackageReference Include="Refit.HttpClientFactory" Version="6.0.38" />
+	   <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.4" />
+	  <!--<PackageReference Include="Refit" Version="6.0.38" />
+	  <PackageReference Include="Refit.HttpClientFactory" Version="6.0.38" />-->
+	  
+  </ItemGroup>
+
+  <ItemGroup>
+	<ProjectReference Include="..\AirNice.Data\AirNice.Data.csproj" />
+	<ProjectReference Include="..\AirNice.Models\AirNice.Models.csproj" />
+	<ProjectReference Include="..\AirNice.Services\AirNice.Services.csproj" />
+	<ProjectReference Include="..\AirNice.Utility\AirNice.Utility.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<UpToDateCheckInput Remove="Areas\Identity\Pages\Account\Manage\_Layout.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\AccessDenied.cshtml" />
+	<_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\ConfirmEmail.cshtml" />
+	<_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\ConfirmEmailChange.cshtml" />
+	<_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\ExternalLogin.cshtml" />
+	<_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\ForgotPassword.cshtml" />
+	<_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\ForgotPasswordConfirmation.cshtml" />
+	<_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Lockout.cshtml" />
+	<_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Login.cshtml" />
+	<_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\LoginWith2fa.cshtml" />
+	<_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\LoginWithRecoveryCode.cshtml" />
+	<_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Logout.cshtml" />
+	<_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\ChangePassword.cshtml" />
+	<_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\DeletePersonalData.cshtml" />
+	<_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\Disable2fa.cshtml" />
+	<_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\DownloadPersonalData.cshtml" />
+	<_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\Email.cshtml" />
+	<_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\EnableAuthenticator.cshtml" />
+	<_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\ExternalLogins.cshtml" />
+	<_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\GenerateRecoveryCodes.cshtml" />
+	<_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\Index.cshtml" />
+	<_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\PersonalData.cshtml" />
+	<_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\ResetAuthenticator.cshtml" />
+	<_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\SetPassword.cshtml" />
+	<_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\ShowRecoveryCodes.cshtml" />
+	<_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\TwoFactorAuthentication.cshtml" />
+	<_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\_Layout.cshtml" />
+	<_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml" />
+	<_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\_StatusMessage.cshtml" />
+	<_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Manage\_ViewImports.cshtml" />
+	<_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\Register.cshtml" />
+	<_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\RegisterConfirmation.cshtml" />
+	<_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\ResetPassword.cshtml" />
+	<_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\ResetPasswordConfirmation.cshtml" />
+	<_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\_StatusMessage.cshtml" />
+	<_ContentIncludedByDefault Remove="Areas\Identity\Pages\Account\_ViewImports.cshtml" />
+	<_ContentIncludedByDefault Remove="Areas\Identity\Pages\_ValidationScriptsPartial.cshtml" />
+	<_ContentIncludedByDefault Remove="Areas\Identity\Pages\_ViewImports.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<UpToDateCheckInput Remove="Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<UpToDateCheckInput Remove="Areas\Identity\Pages\Account\Manage\_StatusMessage.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<UpToDateCheckInput Remove="Areas\Identity\Pages\Account\Manage\_ViewImports.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<UpToDateCheckInput Remove="Areas\Identity\Pages\Account\Manage\ChangePassword.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<UpToDateCheckInput Remove="Areas\Identity\Pages\Account\Manage\DeletePersonalData.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<UpToDateCheckInput Remove="Areas\Identity\Pages\Account\Manage\Disable2fa.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<UpToDateCheckInput Remove="Areas\Identity\Pages\Account\Manage\DownloadPersonalData.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<UpToDateCheckInput Remove="Areas\Identity\Pages\Account\Manage\Email.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<UpToDateCheckInput Remove="Areas\Identity\Pages\Account\Manage\EnableAuthenticator.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<UpToDateCheckInput Remove="Areas\Identity\Pages\Account\Manage\ExternalLogins.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<UpToDateCheckInput Remove="Areas\Identity\Pages\Account\Manage\GenerateRecoveryCodes.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<UpToDateCheckInput Remove="Areas\Identity\Pages\Account\Manage\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<UpToDateCheckInput Remove="Areas\Identity\Pages\Account\Manage\PersonalData.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<UpToDateCheckInput Remove="Areas\Identity\Pages\Account\Manage\ResetAuthenticator.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<UpToDateCheckInput Remove="Areas\Identity\Pages\Account\Manage\SetPassword.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<UpToDateCheckInput Remove="Areas\Identity\Pages\Account\Manage\ShowRecoveryCodes.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<UpToDateCheckInput Remove="Areas\Identity\Pages\Account\Manage\TwoFactorAuthentication.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<UpToDateCheckInput Remove="Areas\Identity\Pages\Account\_StatusMessage.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<UpToDateCheckInput Remove="Areas\Identity\Pages\Account\_ViewImports.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<UpToDateCheckInput Remove="Areas\Identity\Pages\Account\AccessDenied.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<UpToDateCheckInput Remove="Areas\Identity\Pages\Account\ConfirmEmail.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<UpToDateCheckInput Remove="Areas\Identity\Pages\Account\ConfirmEmailChange.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<UpToDateCheckInput Remove="Areas\Identity\Pages\Account\ExternalLogin.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<UpToDateCheckInput Remove="Areas\Identity\Pages\Account\ForgotPassword.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<UpToDateCheckInput Remove="Areas\Identity\Pages\Account\ForgotPasswordConfirmation.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<UpToDateCheckInput Remove="Areas\Identity\Pages\Account\Lockout.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<UpToDateCheckInput Remove="Areas\Identity\Pages\Account\Login.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<UpToDateCheckInput Remove="Areas\Identity\Pages\Account\LoginWith2fa.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<UpToDateCheckInput Remove="Areas\Identity\Pages\Account\LoginWithRecoveryCode.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<UpToDateCheckInput Remove="Areas\Identity\Pages\Account\Logout.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<UpToDateCheckInput Remove="Areas\Identity\Pages\Account\Register.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<UpToDateCheckInput Remove="Areas\Identity\Pages\Account\RegisterConfirmation.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<UpToDateCheckInput Remove="Areas\Identity\Pages\Account\ResetPassword.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<UpToDateCheckInput Remove="Areas\Identity\Pages\Account\ResetPasswordConfirmation.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<UpToDateCheckInput Remove="Areas\Identity\Pages\_ValidationScriptsPartial.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<UpToDateCheckInput Remove="Areas\Identity\Pages\_ViewImports.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="bin\Debug\netcoreapp3.1\AirNiceWeb.deps.json" />
+    <Content Include="bin\Debug\netcoreapp3.1\AirNiceWeb.runtimeconfig.dev.json" />
+    <Content Include="bin\Debug\netcoreapp3.1\AirNiceWeb.runtimeconfig.json" />
+    <Content Include="bin\Debug\netcoreapp3.1\AirNiceWeb.StaticWebAssets.xml" />
+    <Content Include="bin\Debug\netcoreapp3.1\appsettings.Development.json" />
+    <Content Include="bin\Debug\netcoreapp3.1\appsettings.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="bin\Debug\netcoreapp3.1\HostedServices\" />
+    <Folder Include="bin\Debug\netcoreapp3.1\Properties\" />
+    <Folder Include="bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\" />
+    <Folder Include="bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\" />
+    <Folder Include="bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\" />
+    <Folder Include="bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\" />
+  </ItemGroup>
+
+</Project>

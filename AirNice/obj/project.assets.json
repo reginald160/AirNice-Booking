@@ -1226,10 +1226,7 @@
         },
         "runtime": {
           "bin/placeholder/AirNice.Data.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
+        }
       },
       "AirNice.Models/1.0.0": {
         "type": "project",
@@ -1248,10 +1245,7 @@
         },
         "runtime": {
           "bin/placeholder/AirNice.Models.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
+        }
       },
       "AirNice.Services/1.0.0": {
         "type": "project",
@@ -1272,10 +1266,7 @@
         },
         "runtime": {
           "bin/placeholder/AirNice.Services.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
+        }
       },
       "AirNice.Utility/1.0.0": {
         "type": "project",
@@ -1294,10 +1285,7 @@
         },
         "runtime": {
           "bin/placeholder/AirNice.Utility.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
+        }
       }
     }
   },
@@ -3539,25 +3527,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\IFEANYI\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\PROGRESSIVE\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\IFEANYI\\source\\repos\\AirNice-Booking\\AirNice\\AirNice.csproj",
+      "projectUniqueName": "C:\\Users\\PROGRESSIVE\\source\\repos\\AirNice-Booking\\AirNice\\AirNice.csproj",
       "projectName": "AirNice",
-      "projectPath": "C:\\Users\\IFEANYI\\source\\repos\\AirNice-Booking\\AirNice\\AirNice.csproj",
-      "packagesPath": "C:\\Users\\IFEANYI\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\IFEANYI\\source\\repos\\AirNice-Booking\\AirNice\\obj\\",
+      "projectPath": "C:\\Users\\PROGRESSIVE\\source\\repos\\AirNice-Booking\\AirNice\\AirNice.csproj",
+      "packagesPath": "C:\\Users\\PROGRESSIVE\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\PROGRESSIVE\\source\\repos\\AirNice-Booking\\AirNice\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\"
-      ],
       "configFilePaths": [
-        "C:\\Users\\IFEANYI\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\PROGRESSIVE\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -3570,17 +3553,17 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\IFEANYI\\source\\repos\\AirNice-Booking\\AirNice.Data\\AirNice.Data.csproj": {
-              "projectPath": "C:\\Users\\IFEANYI\\source\\repos\\AirNice-Booking\\AirNice.Data\\AirNice.Data.csproj"
+            "C:\\Users\\PROGRESSIVE\\source\\repos\\AirNice-Booking\\AirNice.Data\\AirNice.Data.csproj": {
+              "projectPath": "C:\\Users\\PROGRESSIVE\\source\\repos\\AirNice-Booking\\AirNice.Data\\AirNice.Data.csproj"
             },
-            "C:\\Users\\IFEANYI\\source\\repos\\AirNice-Booking\\AirNice.Models\\AirNice.Models.csproj": {
-              "projectPath": "C:\\Users\\IFEANYI\\source\\repos\\AirNice-Booking\\AirNice.Models\\AirNice.Models.csproj"
+            "C:\\Users\\PROGRESSIVE\\source\\repos\\AirNice-Booking\\AirNice.Models\\AirNice.Models.csproj": {
+              "projectPath": "C:\\Users\\PROGRESSIVE\\source\\repos\\AirNice-Booking\\AirNice.Models\\AirNice.Models.csproj"
             },
-            "C:\\Users\\IFEANYI\\source\\repos\\AirNice-Booking\\AirNice.Services\\AirNice.Services.csproj": {
-              "projectPath": "C:\\Users\\IFEANYI\\source\\repos\\AirNice-Booking\\AirNice.Services\\AirNice.Services.csproj"
+            "C:\\Users\\PROGRESSIVE\\source\\repos\\AirNice-Booking\\AirNice.Services\\AirNice.Services.csproj": {
+              "projectPath": "C:\\Users\\PROGRESSIVE\\source\\repos\\AirNice-Booking\\AirNice.Services\\AirNice.Services.csproj"
             },
-            "C:\\Users\\IFEANYI\\source\\repos\\AirNice-Booking\\AirNice.Utility\\AirNice.Utility.csproj": {
-              "projectPath": "C:\\Users\\IFEANYI\\source\\repos\\AirNice-Booking\\AirNice.Utility\\AirNice.Utility.csproj"
+            "C:\\Users\\PROGRESSIVE\\source\\repos\\AirNice-Booking\\AirNice.Utility\\AirNice.Utility.csproj": {
+              "projectPath": "C:\\Users\\PROGRESSIVE\\source\\repos\\AirNice-Booking\\AirNice.Utility\\AirNice.Utility.csproj"
             }
           }
         }
@@ -3684,7 +3667,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   },

@@ -1,9 +1,14 @@
 
+using AirNice.Data;
+using AirNice.Models.Models;
 using AirNice.Utility.Extensions.HostedServices;
 using AirNiceWebMVC.Abstractions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -12,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 
 namespace AirNiceWebMVC
 {
@@ -28,10 +34,42 @@ namespace AirNiceWebMVC
         public void ConfigureServices(IServiceCollection services)
         {
 
+             services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection")));
+       
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.Stores.MaxLengthForKeys = 128;
+                options.SignIn.RequireConfirmedAccount = true;
+            }
+           
+            )
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
             services.AddHttpClient();
             services.AddControllersWithViews();/*AddRazorRuntimeCompilation();*/
             services.AddSingleton<IHostedService, CoreHostService>();
             AddRefitHttpClient(services);
+            services.AddRazorPages();
+            // services.AddTransient<IEmailSender, EmailSender>(i =>
+            //    new EmailSender(
+            //        Configuration["EmailSender:Host"],
+            //        Configuration.GetValue<int>("EmailSender:Port"),
+            //        Configuration.GetValue<bool>("EmailSender:EnableSSL"),
+            //        Configuration["EmailSender:UserName"],
+            //        Configuration["EmailSender:Password"]
+            //    )
+            //);
+            services.AddMvc();
+     //.SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = $"/User/Login";
+                options.LogoutPath = $"/account/logout";
+                options.AccessDeniedPath = $"/account/access-denied";
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +90,7 @@ namespace AirNiceWebMVC
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -59,6 +98,7 @@ namespace AirNiceWebMVC
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
 

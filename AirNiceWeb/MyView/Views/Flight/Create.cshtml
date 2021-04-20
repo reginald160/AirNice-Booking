@@ -1,0 +1,239 @@
+﻿@model AirNice.Models.DTO.FlightDTO
+@{
+    ViewData["Title"] = "AddFlight";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+@*<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="//geodata.solutions/includes/countrystatecity.js"></script>
+</head>*@
+
+@{
+    var countryName = String.Empty;
+}
+
+<body>
+    <section id="container">
+        <!--main content start-->
+        <section id="main-content">
+            <section class="wrapper">
+
+
+                <div class="row mt">
+                    <div class="col-lg-12">
+                        <h4 class="text-center"><i></i> Flight Registration Form @countryName</h4>
+                        <div class="form-panel">
+                            <div class=" form">
+                                <form class="cmxform form-horizontal style-form" id="commentForm" method="post" enctype="multipart/form-data" asp-action="Create">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <div class="field-set">
+                                                <label>AirLine:</label>
+                                                <input type='text' asp-for="AirLine" class="form-control" >
+                                                <span asp-validation-for="AirLine" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="field-set">
+                                                <label>Flight Number:</label>
+                                                <input type='text' asp-for="FlightNumber" class="form-control">
+                                                <span asp-validation-for="FlightNumber" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="field-set">
+                                                <label>Total Seat:</label>
+                                                <input type='text' asp-for="TotalSeat" class="form-control">
+                                                <span asp-validation-for="TotalSeat" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="field-set">
+                                                <label>Total Vacant Seat:</label>
+                                                <input type='text' asp-for="TotalVacantSeat" class="form-control">
+                                                <span asp-validation-for="TotalVacantSeat" class="text-danger"></span>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="field-set">
+                                                <label>Departure Country:</label>
+                                                <select name="country" class="countries form-control" id="countryId">
+                                                    <option value="">Select Country</option>
+                                                </select>
+                                                <input asp-for="DepartureCountry" hidden="hidden" id="cont" />
+                                                <span asp-validation-for="DepartureCountry" class="text-danger"></span>
+
+
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="field-set">
+                                                <label>Departure State:</label>
+                                                <select name="state" class="states form-control" id="stateId">
+                                                    <option value="">Select State</option>
+                                                </select>
+                                                <span asp-validation-for="DepartureState" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="field-set">
+                                                <label>Departure City:</label>
+                                                <select name="city" class="cities form-control" id="cityId">
+                                                    <option value="">Select City</option>
+                                                </select>
+                                                <span asp-validation-for="DepartureCity" class="text-danger"></span>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="field-set">
+                                                <label>Departure Time:</label>
+                                                <input type='text' class="form-control">
+                                                <span asp-validation-for="DepartureDateTime" class="text-danger"></span>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="field-set">
+                                                <label>Arrival Country:</label>
+                                                <select name="country" class="countries form-control" id="countryId">
+                                                    <option value="">Select Country</option>
+                                                </select>
+                                                <input asp-for="ArrivalCountry" hidden="hidden" id="cont" />
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="field-set">
+                                                <label>Arrival State:</label>
+                                                <select name="state" class="states form-control" id="stateId">
+                                                    <option value="">Select State</option>
+                                                </select>
+                                                <span asp-validation-for="ArrivalState" class="text-danger"></span>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="field-set">
+                                                <label>Arrival City:</label>
+                                                <select name="city" class="cities form-control" id="cityId">
+                                                    <option value="">Select City</option>
+                                                </select>
+                                                <span asp-validation-for="ArrivalCity" class="text-danger"></span>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="field-set">
+                                                <label>Arrival Time:</label>
+                                                <input type='text' class="form-control">
+                                                <span asp-validation-for="ArrivateDateTime" class="text-danger"></span>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="field-set">
+                                                <label>Flight Category:</label>
+                                                <select name="city" class="cities form-control" id="cityId" asp-items="@Html.GetEnumSelectList<AirNice.Models.Enum.FlightCategory>()">
+                                                    <option value="">Select Category</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="field-set">
+                                                <label>Price:</label>
+                                                <input type='text' asp-for="Price" class="form-control">
+                                                <span asp-validation-for="Price" class="text-danger"></span>
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="col-md-12 form-group text-center" style="margin-top: 20px">
+
+                                        <div class="col-lg-offset-2 col-lg-10">
+                                            <button class="btn btn-theme" type="submit">Save</button>
+                                            <a asp-action="Index" class="btn btn-theme04" type="button">Cancel</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- /form-panel -->
+                    </div>
+                    <!-- /col-lg-12 -->
+                </div>
+
+            </section>
+            <!-- /wrapper -->
+        </section>
+
+    </section>
+
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+
+</body>
+
+@*<select name="country" class="countries" id="countryId">
+    <option value="">Select Country</option>
+</select>
+<select name="state" class="states" id="stateId">
+    <option value="">Select State</option>
+</select>
+<select name="city" class="cities" id="cityId">
+    <option value="">Select City</option>
+</select>*@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//geodata.solutions/includes/countrystatecity.js"></script>
+
+<script>
+
+    $(document).ready(
+        function () {
+            alert("Hello");
+        }
+    );
+    $('#countryId').change(function () {
+        
+        $('#cont').val() = $('#countryId');
+        alert(dd);
+
+      
+
+    });
+
+</script>
+
+@*<div class="form-group">
+        <label asp-for="ArrivateDateTime" class="control-label"></label>
+        <input asp-for="ArrivateDateTime" id="datepicker" type="text" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")" />
+        <span asp-validation-for="ArrivateDateTime" class="text-danger"></span>
+    </div>
+    @section Scripts
+    {
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+            $(function () {
+                $("#datepicker").datepicker();
+            });
+        </script>
+    }*@
