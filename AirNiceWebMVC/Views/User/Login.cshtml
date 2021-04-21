@@ -40,9 +40,6 @@
                                         <input type="submit" id='send_message' value='Login' class="btn btn-custom btn-fullwidth color-2">
                                     </div>
                                     <div class="field-set">
-                                        <input type="submit" id='send_message' value='Login' class="btn btn-custom btn-fullwidth color-2">
-                                    </div>
-                                    <div class="field-set">
                                         <label asp-for="RememberMe">
                                             <input asp-for="RememberMe" />
                                             @Html.DisplayNameFor(m => m.RememberMe)
@@ -55,7 +52,7 @@
                                     <!-- social icons -->
                                     <ul class="list s3">
                                         <li>Dont have account ?:</li>
-                                        <li><a asp-controller="Passenger" asp-action="Register">Register</a></li>
+                                        <li><a asp-controller="User" asp-action="Register">Register</a></li>
 
                                     </ul>
                                     <!-- social icons close -->

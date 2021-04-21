@@ -3,6 +3,7 @@ using AirNice.Data;
 using AirNice.Models.Models;
 using AirNice.Utility.Extensions.HostedServices;
 using AirNiceWebMVC.Abstractions;
+using AirNiceWebMVC.Helper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -52,17 +53,17 @@ namespace AirNiceWebMVC
             services.AddSingleton<IHostedService, CoreHostService>();
             AddRefitHttpClient(services);
             services.AddRazorPages();
-            // services.AddTransient<IEmailSender, EmailSender>(i =>
-            //    new EmailSender(
-            //        Configuration["EmailSender:Host"],
-            //        Configuration.GetValue<int>("EmailSender:Port"),
-            //        Configuration.GetValue<bool>("EmailSender:EnableSSL"),
-            //        Configuration["EmailSender:UserName"],
-            //        Configuration["EmailSender:Password"]
-            //    )
-            //);
+            services.AddTransient<IEmailSender, EmailSender>(i =>
+               new EmailSender(
+                   Configuration["EmailSender:Host"],
+                   Configuration.GetValue<int>("EmailSender:Port"),
+                   Configuration.GetValue<bool>("EmailSender:EnableSSL"),
+                   Configuration["EmailSender:UserName"],
+                   Configuration["EmailSender:Password"]
+               )
+           );
             services.AddMvc();
-     //.SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            //.SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.ConfigureApplicationCookie(options =>
             {
                 options.LoginPath = $"/User/Login";

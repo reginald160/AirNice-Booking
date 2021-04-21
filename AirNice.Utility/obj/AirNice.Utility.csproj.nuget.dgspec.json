@@ -243,6 +243,18 @@
             "SendGrid": {
               "target": "Package",
               "version": "[9.22.0, )"
+            },
+            "System.Configuration.ConfigurationManager": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Twilio": {
+              "target": "Package",
+              "version": "[5.58.0, )"
+            },
+            "Twilio.AspNet.Mvc": {
+              "target": "Package",
+              "version": "[5.37.2, )"
             }
           },
           "imports": [

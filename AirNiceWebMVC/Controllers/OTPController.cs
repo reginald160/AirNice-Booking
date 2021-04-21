@@ -16,7 +16,7 @@ using Twilio.Jwt.AccessToken;
 
 namespace AirNiceWebMVC.Controllers
 {
-    public class OTPController : TwilioController
+    public class OTPController : Controller
     {
         public IActionResult SendSMS()
         {
