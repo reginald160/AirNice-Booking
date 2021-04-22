@@ -1,0 +1,74 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using AirNice.Models.Models
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    if (SignInManager.IsSignedIn(User))
+    {
+        <div class="align-self-center ml-auto header-col-right">
+            <p>
+                <a class="nav-link text-white" asp-controller="User" asp-action="Manage" title="Manage"><i class="fa fa-user-circle"></i>Hello  @User.Identity.Name</a>
+
+            </p>
+            <p>
+                <a class="btn-custom" id="logOut" asp-controller="User" asp-action="LogOut"><i class="fa fa-lock"></i> LogOut</a>
+            
+
+            </p>
+            <span id="menu-btn"></span>
+        </div>
+    }
+    else
+    {
+        <div class="align-self-center ml-auto header-col-right">
+            <a class="btn-custom" asp-controller="User" asp-action="Login"><i class="fa fa-arrow-down"></i> Login</a>
+            <span id="menu-btn"></span>
+        </div>
+       
+    }
+}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.min.js"></script>
+<script>
+    $("#logOut").click(function (event) {
+        event.preventDefault();
+        swal({
+            title: "Are you sure you want to Logout?",
+            text: "Once you logout you wont be able to access some futures till you login again!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    logOut();
+                } else {
+                    return false;
+                }
+            });
+
+    });
+
+    function logOut() {
+
+        $.ajax({
+            type: "GET",
+            url: "/User/LogOut",
+            cache: false,
+            success: function (data) {
+
+                swal("You have successfuly loged out!", {
+                    icon: "success",
+                    buttons: false,
+                });
+                window.location = "/Home";
+                
+            }
+        });
+
+
+    }
+
+
+</script>

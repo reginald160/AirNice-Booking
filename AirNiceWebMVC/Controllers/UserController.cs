@@ -2,6 +2,7 @@
 using AirNice.Models.Models;
 using AirNiceWebMVC.Abstractions;
 using AirNiceWebMVC.Helper;
+using EasyBanking.Utility.CoreHelpers;
 using IdentityServer4.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -39,15 +40,22 @@ namespace AirNiceWebMVC.Controllers
         }
         [HttpGet]
 
-        public IActionResult Login()
+        public IActionResult Login(string userId, string code)
         {
-            return View();
+
+            if (userId == String.Empty || code == null)
+                return View();
+            else
+            {
+
+                return RedirectToAction("ConfirmEmail", new { userId = userId, code = code });
+            }
+           
         }
 
         [HttpGet]
-        public async Task<IActionResult> Register(string userId, string code)
+        public IActionResult Register(string userId, string code)
         {
-          var query = Request.Query["userId"].ToString();
 
             if(userId == String.Empty || code == null)
                 return View();
@@ -72,7 +80,7 @@ namespace AirNiceWebMVC.Controllers
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     returnUrl = returnUrl ?? Url.Content("~/");
-                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+                    code = LogicHelper.StringEncoder(code);
                     var callbackUrl = Url.Page(
                         "/User/ConfirmEmail",
                         pageHandler: null,
@@ -129,9 +137,9 @@ namespace AirNiceWebMVC.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            //code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
+            code = LogicHelper.StringDecoder(code); ;
             var result = await _userManager.ConfirmEmailAsync(user, code);
-            ViewBag.Message = result.Succeeded ? "Thank you for confirming your email." : "Error confirming your email.";
+            ViewBag.Message = result.Succeeded ? "Thank you for confirming your email , Kindly login to your account." : "Error confirming your email.";
             return View();
         }
         [HttpGet]
@@ -146,16 +154,41 @@ namespace AirNiceWebMVC.Controllers
             return View();
         }
 
+       
+
         [HttpPost]
-        public async Task< IActionResult> Login(LoginDTO loginDTO)
+        public async Task< IActionResult> Login(LoginDTO loginDTO, string returnUrl)
         {
             if (ModelState.IsValid)
-            {        
+            {
+                var user = await _userManager.FindByEmailAsync(loginDTO.Email);
+                if(user != null)
+                {
+                    if (user.EmailConfirmed.Equals(false))
+                    {
+                        var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                        returnUrl = returnUrl ?? Url.Content("~/");
+                        code = LogicHelper.StringEncoder(code);
+                        var callbackUrl = Url.Page(
+                            "/User/ConfirmEmail",
+                            pageHandler: null,
+                            values: new { Controller = "User", userId = user.Id, code = code, returnUrl = returnUrl },
+                            protocol: Request.Scheme);
+                        var number = callbackUrl;
+                        //await _emailSender.SendEmailAsync(user.Email, "Confirm your email",
+                        //    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                        ViewBag.Message = user.Email;
+                        return View("RegisterConfirmation");
+                    }
+
+                }
+
+
                 var result = await _signInManager.PasswordSignInAsync(loginDTO.Email, loginDTO.Password, loginDTO.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", "Home");
                 }
                 if (result.IsLockedOut)
                 {
@@ -172,12 +205,114 @@ namespace AirNiceWebMVC.Controllers
             return View();
 
         }
-        [HttpPost]
+
+
+       [HttpGet]
         public async Task< IActionResult> LogOut()
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
             return RedirectToAction("Index", "Home");
         }
+
+
+        [HttpGet]
+        public IActionResult ForgetPassword(string code, string email, string time)
+        {
+            if(code == null)
+                return View();
+            return RedirectToAction("ResetPassword", new { code = code, email = email, time = time});
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> ForgetPassword(LoginDTO loginDTO)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByEmailAsync(loginDTO.Email);
+                if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
+                {
+                    // Don't reveal that the user does not exist or is not confirmed
+                    ViewBag.Message = "User does not exist";
+                    return View();
+                }
+
+                // For more information on how to enable account confirmation and password reset please 
+                // visit https://go.microsoft.com/fwlink/?LinkID=532713
+                var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+                code = LogicHelper.StringEncoder(code);
+                var startIme = LogicHelper.StringEncoder(DateTime.Now.ToString());
+                var email = LogicHelper.StringEncoder(loginDTO.Email);
+
+                var callbackUrl = Url.Page(
+                    "/User/ResetPassword",
+                    pageHandler: null,
+                    values: new { Controller = "User", code , email = email, time = startIme},
+                    protocol: Request.Scheme);
+
+                //await _emailSender.SendEmailAsync(
+                //    loginDTO.Email,
+                //    "Reset Password",
+                //    $"Please reset your password by <a href='{callbackUrl}'>clicking here</a>.");
+
+                ViewBag.Message = user.Email;
+                return View("RegisterConfirmation");
+            }
+
+            return View();
+
+        }
+
+        public IActionResult ResetPassword(string code, string email, string time)
+        {
+            var Email = LogicHelper.StringDecoder(email);
+            var Code = LogicHelper.StringDecoder(code);
+            var startTime = LogicHelper.StringDecoder(time);
+
+
+            ViewBag.Time = startTime;
+            ViewBag.Code = code;
+            ViewBag.Email = email;
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(ResetPasswordDTO resetPasswordDTO)
+        {
+            if (ModelState.IsValid)
+            {
+                var linkExpire = LogicHelper.TimeExpire(resetPasswordDTO.Time);
+                if (linkExpire.Equals(true))
+                    return RedirectToAction("LinkExpiry");
+
+                var password = resetPasswordDTO.Password;
+                var user = await _userManager.FindByEmailAsync(resetPasswordDTO.Email);
+                var code = resetPasswordDTO.Code;
+            
+
+            var result = await _userManager.ResetPasswordAsync(user, code, password);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("ResetPasswordConfirmation");
+            }
+
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+
+            }
+            return View();
+        }
+        public IActionResult ResetPasswordConfirmation()
+        {
+            return View();
+        }
+
+        public IActionResult LinkExpiry()
+        {
+            return View();
+        }
+
     }
 }

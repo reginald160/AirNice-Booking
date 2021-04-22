@@ -103,6 +103,9 @@
     </section>
 
 </div>
+@section LoginScripts {
+    <partial name="_LoginPartial" />
+}
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

@@ -26,6 +26,8 @@ using Microsoft.IdentityModel.Protocols;
 using System.Configuration;
 using Twilio.Rest.Api.V2010.Account;
 using Twilio.Jwt.AccessToken;
+using Microsoft.AspNetCore.WebUtilities;
+
 namespace EasyBanking.Utility.CoreHelpers
 {
     public static class LogicHelper
@@ -64,6 +66,26 @@ namespace EasyBanking.Utility.CoreHelpers
         //    return ba
 
         //}
+        public static bool TimeExpire(string startTime)
+        {
+            var t1 = DateTime.Parse(startTime);
+            var t2 = DateTime.Now;
+
+            var timeDifference = t2.Subtract(t1).Minutes;
+
+            return timeDifference > 1 ? true : false;
+
+        }
+        public static string StringEncoder(string value)
+        {
+            var code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(value));
+            return code;
+        }
+        public static string StringDecoder(string value)
+        {
+            var code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(value));
+            return code;
+        }
         public static long AccountNumberGenerator()
         {
             var random = new Random(System.DateTime.Now.Millisecond);

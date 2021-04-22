@@ -462,3 +462,9 @@ C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNiceWebMVC\bin\Debug\netcor
 C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNiceWebMVC\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNiceWebMVC\obj\Debug\netcoreapp3.1\Razor\Views\User\ConfirmEmail.cshtml.g.cs
 C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNiceWebMVC\obj\Debug\netcoreapp3.1\Razor\Views\User\RegisterConfirmation.cshtml.g.cs
+C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNiceWebMVC\obj\Debug\netcoreapp3.1\Razor\Views\User\EmailValidation.cshtml.g.cs
+C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNiceWebMVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
+C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNiceWebMVC\obj\Debug\netcoreapp3.1\Razor\Views\User\ForgetPassword.cshtml.g.cs
+C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNiceWebMVC\obj\Debug\netcoreapp3.1\Razor\Views\User\ResetPasswordConfirmation.cshtml.g.cs
+C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNiceWebMVC\obj\Debug\netcoreapp3.1\Razor\Views\User\ResetPassword.cshtml.g.cs
+C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNiceWebMVC\obj\Debug\netcoreapp3.1\Razor\Views\User\LinkExpiry.cshtml.g.cs

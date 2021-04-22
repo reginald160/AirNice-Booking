@@ -44,17 +44,20 @@
                                             <input asp-for="RememberMe" />
                                             @Html.DisplayNameFor(m => m.RememberMe)
                                         </label>
-                                    </div>                                   
+                                    </div>
                                     <div class="clearfix"></div>
 
                                     <div class="spacer-single"></div>
 
                                     <!-- social icons -->
                                     <ul class="list s3">
-                                        <li>Dont have account ?:</li>
+                                        
                                         <li><a asp-controller="User" asp-action="Register">Register</a></li>
+                                        
+                                        <li><a asp-controller="User" asp-action="ForgetPassword">Reset Password</a></li>
 
                                     </ul>
+                                    
                                     <!-- social icons close -->
                                 </div>
                             </div>

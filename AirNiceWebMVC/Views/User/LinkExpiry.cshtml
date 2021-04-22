@@ -1,0 +1,64 @@
+﻿@model AirNice.Models.DTO.UserDTO.RegisterDTO
+
+@{
+    ViewData["Title"] = "Expiry Link";
+    Layout = "_MainLayout";
+}
+
+<div class="no-bottom no-top" id="content">
+    <div id="top"></div>
+
+    <!-- section begin -->
+    <section id="subheader" data-bgimage="url(../BLUETEC_HTML/images/background/5.png) bottom">
+        <div class="center-y relative text-center" data-scroll-speed="4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 offset-md-2">
+                        <form action='blank.php' class="row" id='form_subscribe' method="post" name="myForm">
+                            <div class="col-md-12 text-center">
+
+
+                                <p>Your link has expire, follow the link to reset your password</p>
+
+                                <a asp-controller="User" asp-action="ForgetPassword">Reset Password</a>
+                            </div>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- section close -->
+
+    <section class="no-top" data-bgimage="url(../BLUETEC_HTML/images/background/3.png) top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pt60 pb60 bg-color-2 text-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8 mb-sm-30 text-lg-left text-sm-center">
+                    <h3 class="no-bottom">Awesomeness begin here. Are you ready?</h3>
+                </div>
+
+                <div class="col-md-4 text-lg-right text-sm-center">
+                    <a href="#" class="btn-custom capsule med">Let's do it!</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

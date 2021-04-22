@@ -1,13 +1,4 @@
-﻿@using Microsoft.AspNetCore.Identity
-@using AirNice.Models.Models
-@inject SignInManager<ApplicationUser> SignInManager
-@inject UserManager<ApplicationUser> UserManager
-@{
-    bool IsSinedIn;
-    if (SignInManager.IsSignedIn(User))
-        IsSinedIn = true;
-    IsSinedIn = false;
-}
+﻿
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,17 +25,18 @@
     <link href="~/BLUETEC_HTML/css/jquery.countdown.css" rel="stylesheet" type="text/css">
     <link href="~/BLUETEC_HTML/css/style.css" rel="stylesheet" type="text/css">
 
+
     <!-- color scheme -->
     <link id="colors" href="~/BLUETEC_HTML/css/colors/scheme-03.css" rel="stylesheet" type="text/css">
     <link href="~/BLUETEC_HTML/css/coloring.css" rel="stylesheet" type="text/css">
 
-    <!-- Country Drop Down -->
-
-
+    
+    <!-- CDN -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="//geodata.solutions/includes/countrystatecity.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 </head>
 <body>
@@ -133,30 +125,8 @@
                                     </li>
                                 </ul>
                             </div>
-                            @{
-                                if (IsSinedIn)
-                                {
-                                    <div class="align-self-center ml-auto header-col-right">
-                                        <p>
-                                            <a class="nav-link text-white" asp-controller="User" asp-action="Manage" title="Manage"><i class="fa fa-user-circle"></i>Hello  @User.Identity.Name</a>
-
-                                        </p>
-                                        <p>
-                                            <a class="btn-custom" asp-controller="User" asp-action="LogOut"><i class="fa fa-lock"></i> LogOut</a>
-
-                                        </p>
-                                        <span id="menu-btn"></span>
-                                    </div>
-                                }
-                                else
-                                {
-                                    <div class="align-self-center ml-auto header-col-right">
-                                        <a class="btn-custom" asp-controller="User" asp-action="Login"><i class="fa fa-arrow-down"></i> Login</a>
-                                        <span id="menu-btn"></span>
-                                    </div>
-                                }
-                            }
-
+                            @RenderSection("LoginScripts", required: false)
+                          
                             <div class="clearfix"></div>
                         </div>
                     </div>
