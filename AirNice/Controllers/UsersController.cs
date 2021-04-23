@@ -26,49 +26,67 @@ namespace AirNice.Controllers
         [AllowAnonymous]
         [HttpPost("[action]")]
     
-        public IActionResult Authenticate([FromBody] AdditionalUserDTO userDTO)
-        {
-            var authenticateUser = _mapper.Map<AdditionalUser>(userDTO);
-            var user = _unitOfWork.user.Authenticated(authenticateUser.Username, authenticateUser.Password);
-            //if (user == null)
-            //    return BadRequest(new { message = "username or password is in correct" });
-            return Ok(user);
-        }
-        [AllowAnonymous]
-        [HttpPost("[action]")]
+        //public IActionResult Authenticate([FromBody] AdditionalUserDTO userDTO)
+        //{
+        //    var authenticateUser = _mapper.Map<AdditionalUser>(userDTO);
+        //    var user = _unitOfWork.user.Authenticated(authenticateUser.Username, authenticateUser.Password);
+        //    //if (user == null)
+        //    //    return BadRequest(new { message = "username or password is in correct" });
+        //    return Ok(user);
+        //}
+        //[AllowAnonymous]
+        //[HttpPost("[action]")]
     
-        public async Task< IActionResult> AddUser([FromBody] AdditionalUserDTO userDTO)
-        {
+        //public async Task< IActionResult> AddUser([FromBody] AdditionalUserDTO userDTO)
+        //{
       
-            var userMaped = _mapper.Map<ApplicationUser>(userDTO);
-            var code = await _unitOfWork.user.RegisterUser(userMaped);
-            if (code == null)
-                return BadRequest(new { message = "username or password is in correct" });
-            return Ok(code);
-        }
+        //    var userMaped = _mapper.Map<ApplicationUser>(userDTO);
+        //    var code = await _unitOfWork.user.RegisterUser(userMaped);
+        //    if (code == null)
+        //        return BadRequest(new { message = "username or password is in correct" });
+        //    return Ok(code);
+        //}
 
-        [AllowAnonymous]
-        [HttpPost("[action]")]
+        //[AllowAnonymous]
+        //[HttpPost("[action]")]
 
-        public async Task<IActionResult> Login([FromBody] LoginDTO loginDTO)
-        {
-            //var result = await _signInManager.PasswordSignInAsync(loginDTO.Email, loginDTO.Password, false, true);
-            var result = _unitOfWork.user.Authenticated(loginDTO.Email, loginDTO.Password);
-            //if (result )
-                //return BadRequest(new { message = "username or password is in correct" });
-            return Ok(result);
-        }
+        //public async Task<IActionResult> Login([FromBody] LoginDTO loginDTO)
+        //{
+        //    //var result = await _signInManager.PasswordSignInAsync(loginDTO.Email, loginDTO.Password, false, true);
+        //    var result = _unitOfWork.user.Authenticated(loginDTO.Email, loginDTO.Password);
+        //    //if (result )
+        //        //return BadRequest(new { message = "username or password is in correct" });
+        //    return Ok(result);
+        //}
 
-        [AllowAnonymous]
-        [HttpPost("[action]")]
+        //[AllowAnonymous]
+        //[HttpPost("[action]")]
 
-        public async Task<IActionResult> LogOut()
-        {
-            var user = new LoginDTO();
-            await _signInManager.SignOutAsync();
+        //public async Task<IActionResult> LogOut()
+        //{
+        //    var user = new LoginDTO();
+        //    await _signInManager.SignOutAsync();
 
-            return Ok(user);
+        //    return Ok(user);
            
+        //}
+        [HttpPost("[action]")]
+        [ProducesResponseType(201, Type = typeof(ProfileDTO))]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesDefaultResponseType]
+        public async Task<IActionResult> Create([FromBody] ProfileDTO profileDTO)
+        {
+            if (ModelState.IsValid)
+            {
+                var profile = _mapper.Map<CoreProfile>(profileDTO);
+                await _unitOfWork.user.CreateProfile(profile);
+
+                return Ok(profile);
+
+            }
+            return BadRequest(ModelState);
         }
     }
 }

@@ -168,7 +168,7 @@ namespace AirNice.Data.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsSuccessful")
+                    b.Property<bool>("IsProfiled")
                         .HasColumnType("bit");
 
                     b.Property<bool>("LockoutEnabled")
@@ -367,6 +367,68 @@ namespace AirNice.Data.Migrations
                     b.HasIndex("EditedById");
 
                     b.ToTable("BookingEnquiries");
+                });
+
+            modelBuilder.Entity("AirNice.Models.Models.CoreProfile", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreateById")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("DOB")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("EditedById")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsNewRecord")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsProfiled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<byte[]>("picture")
+                        .HasColumnType("varbinary(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreateById");
+
+                    b.HasIndex("EditedById");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("UserProfiles");
                 });
 
             modelBuilder.Entity("AirNice.Models.Models.Flight", b =>
@@ -588,7 +650,13 @@ namespace AirNice.Data.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsNewRecord")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsProfiled")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
@@ -717,32 +785,16 @@ namespace AirNice.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("CreateById")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime?>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateModified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("EditedById")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<bool>("IsNewRecord")
-                        .HasColumnType("bit");
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
-
-                    b.HasIndex("CreateById");
-
-                    b.HasIndex("EditedById");
 
                     b.ToTable("UserRole");
                 });
@@ -998,6 +1050,29 @@ namespace AirNice.Data.Migrations
                     b.Navigation("EdityBy");
                 });
 
+            modelBuilder.Entity("AirNice.Models.Models.CoreProfile", b =>
+                {
+                    b.HasOne("AirNice.Models.Models.ApplicationUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreateById");
+
+                    b.HasOne("AirNice.Models.Models.ApplicationUser", "EdityBy")
+                        .WithMany()
+                        .HasForeignKey("EditedById");
+
+                    b.HasOne("AirNice.Models.Models.UserRole", "Role")
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("EdityBy");
+
+                    b.Navigation("Role");
+                });
+
             modelBuilder.Entity("AirNice.Models.Models.Flight", b =>
                 {
                     b.HasOne("AirNice.Models.Models.ApplicationUser", "CreatedBy")
@@ -1108,21 +1183,6 @@ namespace AirNice.Data.Migrations
                     b.Navigation("EdityBy");
 
                     b.Navigation("Passenger");
-                });
-
-            modelBuilder.Entity("AirNice.Models.Models.UserRole", b =>
-                {
-                    b.HasOne("AirNice.Models.Models.ApplicationUser", "CreatedBy")
-                        .WithMany()
-                        .HasForeignKey("CreateById");
-
-                    b.HasOne("AirNice.Models.Models.ApplicationUser", "EdityBy")
-                        .WithMany()
-                        .HasForeignKey("EditedById");
-
-                    b.Navigation("CreatedBy");
-
-                    b.Navigation("EdityBy");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

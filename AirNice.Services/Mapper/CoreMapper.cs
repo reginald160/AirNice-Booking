@@ -17,7 +17,10 @@ namespace AirNice.Services.Mapper
 			CreateMap<Flight, FlightDTO>().ReverseMap();
 			CreateMap<Passenger, PassengerDTO>().ReverseMap();
 			CreateMap<ApplicationUser, ApplicationUserDTO>().ReverseMap();
-
+			CreateMap<ProfileDTO, CoreProfile>()
+			.ForMember(x => x.Name, o => o.MapFrom(f => f.FirstName + f.MiddleName + f.LastName));
+				
+			
 		}
 
 	}

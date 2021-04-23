@@ -27,6 +27,8 @@ C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNice.Utility\obj\Debug\netcorea
 C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNice.Utility\obj\Debug\netcoreapp3.1\AirNice.Utility.dll
 C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNice.Utility\obj\Debug\netcoreapp3.1\AirNice.Utility.pdb
 C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice.Utility\bin\Debug\netcoreapp3.1\AirNice.Utility.deps.json
+C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice.Utility\bin\Debug\netcoreapp3.1\AirNice.Utility.runtimeconfig.json
+C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice.Utility\bin\Debug\netcoreapp3.1\AirNice.Utility.runtimeconfig.dev.json
 C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice.Utility\bin\Debug\netcoreapp3.1\AirNice.Utility.dll
 C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice.Utility\bin\Debug\netcoreapp3.1\AirNice.Utility.pdb
 C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice.Utility\bin\Debug\netcoreapp3.1\AirNice.Data.dll
@@ -40,3 +42,4 @@ C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice.Utility\obj\Debug\netc
 C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice.Utility\obj\Debug\netcoreapp3.1\AirNice.Utility.csproj.CopyComplete
 C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice.Utility\obj\Debug\netcoreapp3.1\AirNice.Utility.dll
 C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice.Utility\obj\Debug\netcoreapp3.1\AirNice.Utility.pdb
+C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice.Utility\obj\Debug\netcoreapp3.1\AirNice.Utility.genruntimeconfig.cache

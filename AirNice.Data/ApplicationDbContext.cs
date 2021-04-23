@@ -14,8 +14,10 @@ namespace AirNice.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
         }
         public DbSet<NumberSequence> NumberSequences { get; set; }
+        public DbSet<CoreProfile> UserProfiles { get; set; }
         public DbSet<AirLinesEnquiry> AirLinesEnquiries { get; set; }
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<BookingEnquiry> BookingEnquiries { get; set; }

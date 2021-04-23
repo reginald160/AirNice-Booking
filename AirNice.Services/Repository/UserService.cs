@@ -131,7 +131,7 @@ namespace AirNice.Services.Repository
             var result = await _userManager.CreateAsync(user, user.Passcode);
             if (result.Succeeded)
             {
-                user.IsSuccessful = true;
+                user.IsProfiled = true;
                 return user;
             }
             return user;
@@ -154,6 +154,12 @@ namespace AirNice.Services.Repository
             throw new NotImplementedException();
         }
 
-     
+        public async Task<CoreProfile> CreateProfile(CoreProfile user)
+        {
+           await _context.UserProfiles.AddAsync(user);
+            await _context.SaveChangesAsync();
+            return user;
+
+        }
     }
 }

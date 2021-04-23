@@ -186,9 +186,17 @@ namespace AirNiceWebMVC.Controllers
 
                 var result = await _signInManager.PasswordSignInAsync(loginDTO.Email, loginDTO.Password, loginDTO.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
-                {
+                {   
                     _logger.LogInformation("User logged in.");
-                    return RedirectToAction("Index", "Home");
+                    var entity  = await _userManager.FindByEmailAsync(loginDTO.Email);
+                    if(entity.IsProfiled.Equals(true))
+                        return RedirectToAction("Index", "Home");
+                    else
+                    {
+                        var email = LogicHelper.StringEncoder(loginDTO.Email);
+                        return RedirectToAction("Profile", new { email = email });
+                    }
+                    
                 }
                 if (result.IsLockedOut)
                 {
@@ -313,6 +321,21 @@ namespace AirNiceWebMVC.Controllers
         {
             return View();
         }
+
+        public IActionResult Profile(string email)
+        {
+            ViewBag.Email = LogicHelper.StringDecoder(email);
+
+            return View();
+        }
+
+
+        //public async Task< IActionResult> Profile(string email)
+        //{
+        //    ViewBag.Email = LogicHelper.StringDecoder(email);
+
+        //    return View();
+        //}
 
     }
 }

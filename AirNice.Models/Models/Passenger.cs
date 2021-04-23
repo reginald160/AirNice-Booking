@@ -7,6 +7,7 @@ using System.Text.Json.Serialization;
 
 namespace AirNice.Models.Models
 {
+   
    public class Passenger : BaseModel
     {
         public string Name { get; set; }
@@ -17,11 +18,18 @@ namespace AirNice.Models.Models
         public string Address { get; set; }
         [JsonIgnore]
         public byte[] picture { get; set; }
+        public string Image { get; set; }
         public DateTime DOB { get; set; }
         public string UserId { get; set; }
         [ForeignKey("UserId")]
         [JsonIgnore]
         public ApplicationUser User { get; set; }
+        public bool IsProfiled { get; set; }
+
+        public Passenger()
+        {
+            IsProfiled = false;
+        }
 
     }
 }
