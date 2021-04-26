@@ -212,11 +212,6 @@ C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNice\obj\Debug\netcoreapp3.1\Ai
 C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNice\obj\Debug\netcoreapp3.1\AirNice.dll
 C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNice\obj\Debug\netcoreapp3.1\AirNice.pdb
 C:\Users\IFEANYI\source\repos\AirNice-Booking\AirNice\obj\Debug\netcoreapp3.1\AirNice.genruntimeconfig.cache
-C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice\obj\Debug\netcoreapp3.1\AirNice.csprojAssemblyReference.cache
-C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice\obj\Debug\netcoreapp3.1\AirNice.AssemblyInfoInputs.cache
-C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice\obj\Debug\netcoreapp3.1\AirNice.AssemblyInfo.cs
-C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice\obj\Debug\netcoreapp3.1\AirNice.csproj.CoreCompileInputs.cache
-C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice\obj\Debug\netcoreapp3.1\AirNice.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice\bin\Debug\netcoreapp3.1\appsettings.json
 C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice\bin\Debug\netcoreapp3.1\HostedServices\services.json
@@ -347,6 +342,12 @@ C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice\bin\Debug\netcoreapp3.
 C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice\bin\Debug\netcoreapp3.1\AirNice.Models.pdb
 C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice\bin\Debug\netcoreapp3.1\AirNice.Services.pdb
 C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice\bin\Debug\netcoreapp3.1\AirNice.Utility.pdb
+C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice\obj\Debug\netcoreapp3.1\AirNice.csprojAssemblyReference.cache
+C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice\obj\Debug\netcoreapp3.1\AirNice.AssemblyInfoInputs.cache
+C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice\obj\Debug\netcoreapp3.1\AirNice.AssemblyInfo.cs
+C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice\obj\Debug\netcoreapp3.1\AirNice.csproj.CoreCompileInputs.cache
+C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice\obj\Debug\netcoreapp3.1\AirNice.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice\obj\Debug\netcoreapp3.1\AirNice.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice\obj\Debug\netcoreapp3.1\staticwebassets\AirNice.StaticWebAssets.Manifest.cache
 C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice\obj\Debug\netcoreapp3.1\staticwebassets\AirNice.StaticWebAssets.xml
 C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice\obj\Debug\netcoreapp3.1\scopedcss\bundle\AirNice.styles.css

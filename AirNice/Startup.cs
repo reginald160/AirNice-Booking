@@ -51,6 +51,7 @@ namespace AirNice
             //services.AddTransient<IUserServices, UserServices>()
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
+            services.AddMvc();
 
             var appSettings = appSettingsSection.Get<AppSettings>();
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
@@ -109,6 +110,8 @@ namespace AirNice
                 options.AccessDeniedPath = "/Identity/Account/AccessDenied";
                 options.SlidingExpiration = true;
             });
+
+
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("AirNiceAPI",
@@ -116,7 +119,7 @@ namespace AirNice
                     {
                         Title = "AirNice API",
                         Version = "1.0",
-                        Description = "Airline ticketing applicatyion",
+                        Description = "Airline ticketing application",
                         Contact = new Microsoft.OpenApi.Models.OpenApiContact()
                         {
                             Email = "ozougwuIfeanyi@gmail.com",
@@ -197,40 +200,48 @@ namespace AirNice
         {
             if (env.IsDevelopment())
             {
+               
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseHsts();
-            }
+
       
-            app.UseHttpsRedirection();
-           
-            app.UseSwagger();
-           
-       
+          
             app.UseRouting();
             app.UseCors(options => options
            .AllowAnyOrigin()
            .AllowAnyMethod()
            .AllowAnyHeader());
 
-            app.UseAuthentication();
-            app.UseAuthentication();
-
-            app.UseAuthorization();
+            app.UseSwagger(c =>
+             {
+                c.RouteTemplate = "<AirNice>/swagger/{documentName}/swagger.json";
+             });
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/AirNiceAPI/swagger.json", " Booking Enquiry");
+
+
                 //c.SwaggerEndpoint("/swagger/AirNiceAPIPassenger/swagger.json", "Passenger");
             });
-            app.UserNumberChecker();
+            //ap
+
+
+
+
+            app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
+            app.UseHttpsRedirection();
+
+
+          //p.UserNumberChecker();
 
             app.UseEndpoints(endpoints =>
             {
+                
+                endpoints.MapControllers();
                 endpoints.EnableDependencyInjection();
                 endpoints.Select().Expand().OrderBy().Count().Filter();
-                endpoints.MapControllers();
             });
         }
     }

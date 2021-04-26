@@ -1,5 +1,6 @@
 ﻿using AirNice.Models.DTO;
 using AirNice.Models.DTO.UserDTO;
+using AirNice.Models.Models;
 using Refit;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,9 @@ namespace AirNiceWebMVC.Abstractions
 
         [Post("/Users/Login")]
         Task<ApplicationUserDTO> Login(LoginDTO loginDTO);
+
+        [Post("/Users/UserProfile")]
+        Task<CoreProfile> UserProfile(ProfileDTO profile);
 
 
     }

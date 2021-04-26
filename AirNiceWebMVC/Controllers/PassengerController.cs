@@ -11,7 +11,8 @@ using System.Threading.Tasks;
 namespace AirNiceWebMVC.Controllers
 {
     public class PassengerController : Controller
-    { private static string Url = StaticDetails.PassengerUrl;
+    { 
+        private new static string Url = StaticDetails.PassengerUrl;
         private readonly IPassengerServices _passengerServices;
         private readonly IUserServices _userServices;
 

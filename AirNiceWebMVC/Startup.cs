@@ -70,6 +70,7 @@ namespace AirNiceWebMVC
                 options.LogoutPath = $"/account/logout";
                 options.AccessDeniedPath = $"/account/access-denied";
             });
+            services.AddSession();
 
         }
 
@@ -90,7 +91,8 @@ namespace AirNiceWebMVC
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseSession();
+            
             app.UseAuthentication();
             app.UseAuthorization();
 

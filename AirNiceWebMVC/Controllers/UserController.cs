@@ -1,4 +1,5 @@
-﻿using AirNice.Models.DTO.UserDTO;
+﻿using AirNice.Models.DTO;
+using AirNice.Models.DTO.UserDTO;
 using AirNice.Models.Models;
 using AirNiceWebMVC.Abstractions;
 using AirNiceWebMVC.Helper;
@@ -7,11 +8,11 @@ using IdentityServer4.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
@@ -194,7 +195,7 @@ namespace AirNiceWebMVC.Controllers
                     else
                     {
                         var email = LogicHelper.StringEncoder(loginDTO.Email);
-                        return RedirectToAction("Profile", new { email = email });
+                        return RedirectToAction("UserProfile", new { email = email });
                     }
                     
                 }
@@ -321,21 +322,40 @@ namespace AirNiceWebMVC.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public IActionResult UserProfile(string email)
+            {
+            var emailValue = LogicHelper.StringDecoder(email);
+            HttpContext.Session.SetString("email", emailValue);
+            HttpContext.Session.GetString("email");
+            ViewBag.Email = emailValue;
+            var profileDTO = new ProfileDTO();
+            profileDTO.Email = HttpContext.Session.GetString("email");
 
-        public IActionResult Profile(string email)
+            return View(profileDTO);
+
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UserProfile(ProfileDTO profile, HttpListenerRequest request)
         {
-            ViewBag.Email = LogicHelper.StringDecoder(email);
+            if(ModelState.IsValid)
+            {
+                //    await _user.UserProfile(profile);
+                //    return View();
+                //Request.Url.AbsolutePath.ToString();
+
+                string referer = ControllerContext.HttpContext.Request.Headers["Referer"].ToString();
+                Uri baseUri = new Uri(referer);
+            
+                 return Redirect(baseUri.AbsolutePath.ToString());
+                
+                    
+            }
 
             return View();
         }
-
-
-        //public async Task< IActionResult> Profile(string email)
-        //{
-        //    ViewBag.Email = LogicHelper.StringDecoder(email);
-
-        //    return View();
-        //}
 
     }
 }

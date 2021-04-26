@@ -17,14 +17,14 @@ namespace AirNice.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class UsersController : BaseController
     {
         public UsersController(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, ApplicationDbContext context, SignInManager<ApplicationUser> signInManager, IMapper mapper) : base(unitOfWork, userManager, roleManager, context, signInManager, mapper)
         {
         }
-        [AllowAnonymous]
-        [HttpPost("[action]")]
+        //[AllowAnonymous]
+        //[HttpPost("[action]")]
     
         //public IActionResult Authenticate([FromBody] AdditionalUserDTO userDTO)
         //{
@@ -76,12 +76,12 @@ namespace AirNice.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesDefaultResponseType]
-        public async Task<IActionResult> Create([FromBody] ProfileDTO profileDTO)
+        public async Task<IActionResult> UserProfile([FromBody] ProfileDTO profileDTO)
         {
             if (ModelState.IsValid)
             {
-                var profile = _mapper.Map<CoreProfile>(profileDTO);
-                await _unitOfWork.user.CreateProfile(profile);
+                var map = _mapper.Map<CoreProfile>(profileDTO);
+               var profile =  await _unitOfWork.user.CreateProfile(map);
 
                 return Ok(profile);
 

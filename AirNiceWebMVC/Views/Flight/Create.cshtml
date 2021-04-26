@@ -6,14 +6,14 @@
 
 
 @*<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <script src="//geodata.solutions/includes/countrystatecity.js"></script>
-</head>*@
+        <script src="//geodata.solutions/includes/countrystatecity.js"></script>
+    </head>*@
 
 @{
     var countryName = String.Empty;
@@ -38,7 +38,7 @@
                                         <div class="col-md-6">
                                             <div class="field-set">
                                                 <label>AirLine:</label>
-                                                <input type='text' asp-for="AirLine" class="form-control" >
+                                                <input type='text' asp-for="AirLine" class="form-control">
                                                 <span asp-validation-for="AirLine" class="text-danger"></span>
                                             </div>
                                         </div>
@@ -192,14 +192,14 @@
 </body>
 
 @*<select name="country" class="countries" id="countryId">
-    <option value="">Select Country</option>
-</select>
-<select name="state" class="states" id="stateId">
-    <option value="">Select State</option>
-</select>
-<select name="city" class="cities" id="cityId">
-    <option value="">Select City</option>
-</select>*@
+        <option value="">Select Country</option>
+    </select>
+    <select name="state" class="states" id="stateId">
+        <option value="">Select State</option>
+    </select>
+    <select name="city" class="cities" id="cityId">
+        <option value="">Select City</option>
+    </select>*@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="//geodata.solutions/includes/countrystatecity.js"></script>
 
@@ -211,11 +211,11 @@
         }
     );
     $('#countryId').change(function () {
-        
+
         $('#cont').val() = $('#countryId');
         alert(dd);
 
-      
+
 
     });
 
@@ -237,3 +237,4 @@
             });
         </script>
     }*@
+

@@ -154,11 +154,18 @@ namespace AirNice.Services.Repository
             throw new NotImplementedException();
         }
 
-        public async Task<CoreProfile> CreateProfile(CoreProfile user)
+        public async Task<CoreProfile> CreateProfile(CoreProfile profileData)
         {
-           await _context.UserProfiles.AddAsync(user);
-            await _context.SaveChangesAsync();
-            return user;
+           await _context.UserProfiles.AddAsync(profileData);
+           var profile = await _context.SaveChangesAsync() > 0;
+            if (profile)
+            {
+                var user = await _userManager.FindByNameAsync(profileData.Email);
+                user.IsProfiled = true;
+              await  _context.SaveChangesAsync();
+                return profileData;
+            }
+            return null;         
 
         }
     }

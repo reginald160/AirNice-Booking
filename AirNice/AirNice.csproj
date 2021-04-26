@@ -3,6 +3,7 @@
   <PropertyGroup>
 	<TargetFramework>netcoreapp3.1</TargetFramework>
 	<Nullable>annotations</Nullable>
+	<SignAssembly>false</SignAssembly>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -39,10 +40,6 @@
 	<ProjectReference Include="..\AirNice.Models\AirNice.Models.csproj" />
 	<ProjectReference Include="..\AirNice.Services\AirNice.Services.csproj" />
 	<ProjectReference Include="..\AirNice.Utility\AirNice.Utility.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-	<Folder Include="NewFolder\" />
   </ItemGroup>
 
   <ItemGroup>

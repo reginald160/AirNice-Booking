@@ -85,53 +85,53 @@ namespace AirNice.Controllers
             return Ok(passenger);
         }
 
-        [HttpPost("[action]")]
-        [ProducesResponseType(201, Type = typeof(PassengerDTO))]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [ProducesDefaultResponseType]
-        public async Task<IActionResult> Create([FromBody] PassengerDTO passengerDTO)
-        {
-            if (ModelState.IsValid)
-            {
-                var passenger = _mapper.Map<Passenger>(passengerDTO);
-                //var userId = await _unitOfWork.user.Creatidentityuser(passenger.Email, passenger.Password);
-                var userDTO = new ApplicationUserDTO()
-                {
-                    Username = passenger.Email,
-                    Email = passenger.Email,
-                    Passcode = passenger.Password,
-                    RoleTitle = "Passenger",
-                    Id = Guid.NewGuid().ToString()
+        //[HttpPost("[action]")]
+        //[ProducesResponseType(201, Type = typeof(PassengerDTO))]
+        //[ProducesResponseType(StatusCodes.Status201Created)]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        //[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        //[ProducesDefaultResponseType]
+        //public async Task<IActionResult> Create([FromBody] PassengerDTO passengerDTO)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var passenger = _mapper.Map<Passenger>(passengerDTO);
+        //        //var userId = await _unitOfWork.user.Creatidentityuser(passenger.Email, passenger.Password);
+        //        var userDTO = new ApplicationUserDTO()
+        //        {
+        //            Username = passenger.Email,
+        //            Email = passenger.Email,
+        //            Passcode = passenger.Password,
+        //            RoleTitle = "Passenger",
+        //            Id = Guid.NewGuid().ToString()
 
-                };
-                var user = _mapper.Map<ApplicationUser>(userDTO);
-                var code = await _unitOfWork.user.RegisterUser(user);
+        //        };
+        //        var user = _mapper.Map<ApplicationUser>(userDTO);
+        //        var code = await _unitOfWork.user.CreateProfile(user);
   
-                if (code != null)
-                {
+        //        if (code != null)
+        //        {
 
-                    passenger.UserId = user.Id;
-                    passenger.PassPort = code;
+        //            passenger.UserId = user.Id;
+        //            passenger.PassPort = code;
 
-                    var reponse = await _unitOfWork.passenger.AddAsync(passenger);
-                    //if (!null)
-                    //{
-                    //  await  _unitOfWork.user.DeleteUser(user.Email);
-                    //    ModelState.AddModelError("", Universe.Error500);
-                    //    return StatusCode(500, ModelState);
-                    //}
+        //            var reponse = await _unitOfWork.passenger.AddAsync(passenger);
+        //            //if (!null)
+        //            //{
+        //            //  await  _unitOfWork.user.DeleteUser(user.Email);
+        //            //    ModelState.AddModelError("", Universe.Error500);
+        //            //    return StatusCode(500, ModelState);
+        //            //}
 
-                    return Ok(code);
+        //            return Ok(code);
 
-                }
+        //        }
 
-                return BadRequest(ModelState);
+        //        return BadRequest(ModelState);
 
-            }
-            return BadRequest(ModelState);
-        }
+        //    }
+        //    return BadRequest(ModelState);
+        //}
 
         [HttpPatch("[action]")]
         [ProducesResponseType(204)]

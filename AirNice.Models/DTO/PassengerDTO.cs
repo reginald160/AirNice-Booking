@@ -9,7 +9,7 @@ namespace AirNice.Models.DTO
 {
     public class PassengerDTO : BaseDTO
     {
-        //[GlobalName,Required]
+        //[GlobalName,Required
         public string Name { get; set; }
         [DataType(DataType.PhoneNumber), Required]
         public string Phone { get; set; }
@@ -25,7 +25,10 @@ namespace AirNice.Models.DTO
         [JsonIgnore]
         public byte[] picture { get; set; }
         [DataType(DataType.Date), Required]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime DOB { get; set; }
         public string UserId { get; set; }
+
+        
     }
 }
