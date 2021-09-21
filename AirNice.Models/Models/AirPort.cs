@@ -6,16 +6,21 @@ using System.Text.Json.Serialization;
 
 namespace AirNice.Models.Models
 {
-   public  class AirPort : BaseModel
+   public  class AirPort 
     {
-        public string Name { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public AirPort()
+        {
+            this.PlaneAirports = new HashSet<PlaneAirport>();
+        }
+		public int ID { get; set; }
+		public string Name { get; set; }
+        public string City { get; set; }
+        public int? CountryID { get; set; }
 
-        public string Abbreviation { get; set; }
-        public Guid? LocationId { get; set; }
-        [ForeignKey("LocationId"), JsonIgnore]
-        public Location Location  { get; set; }
-
-
+        public virtual Country Country { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PlaneAirport> PlaneAirports { get; set; }
 
     }
 }

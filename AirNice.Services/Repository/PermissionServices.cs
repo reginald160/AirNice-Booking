@@ -12,6 +12,8 @@ namespace AirNice.Services.Repository
     {
         public PermissionServices(ApplicationDbContext context) : base(context)
         {
+         
+         
         }
     }
 }

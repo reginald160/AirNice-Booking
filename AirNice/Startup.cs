@@ -26,6 +26,11 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using AirNice.Utility.Extensions.Middlewares.NumberChecker;
 using Microsoft.AspNet.OData.Extensions;
+using AirNice.Utility.CoreHelpers;
+using Microsoft.AspNetCore.Http;
+using AirNice.Utility;
+using AirNice.Services.IRepository;
+using AirNice.Services.Repository;
 
 namespace AirNice
 {
@@ -48,38 +53,36 @@ namespace AirNice
             services.AddAutoMapper(typeof(CoreMapper));
  
             services.AddTransient<IUnitOfWork, UnitOfWork>();
-            //services.AddTransient<IUserServices, UserServices>()
+            services.AddTransient<IUserService, UserService>();
             var appSettingsSection = Configuration.GetSection("AppSettings");
-            services.Configure<AppSettings>(appSettingsSection);
+            services.Configure<AppSetings>(appSettingsSection);
             services.AddMvc();
 
-            var appSettings = appSettingsSection.Get<AppSettings>();
+            var appSettings = appSettingsSection.Get<AppSetings>();
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+            
+
+            // Adding Authentication  
             services.AddAuthentication(x =>
              {
                  x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                  x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-             }
-                ).AddJwtBearer(x =>
+             })
+              .AddJwtBearer(x =>
                 {
                     x.RequireHttpsMetadata = false;
                     x.SaveToken = true;
                     x.TokenValidationParameters = new TokenValidationParameters
                     {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
                         ValidateIssuerSigningKey = true,
                         IssuerSigningKey = new SymmetricSecurityKey(key),
-                        ValidateLifetime = true,
-                        ValidateIssuer = false,
-                        ValidateAudience = false
+                        ValidAudience = appSettings.ValidAudience,
+                        ValidIssuer = appSettings.ValidIssuer,
                     };
                 });
-
-            ////IConfigurationSection identityDefaultOptionsConfigurationSection = Configuration.GetSection("IdentityDefaultOptions");
-
-            //services.Configure<IdentityDefaultOptions>(identityDefaultOptionsConfigurationSection);
-
-            //var IdentityDefaultOptions = identityDefaultOptionsConfigurationSection.Get<IdentityDefaultOptions>();
-
+         
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
            {
                options.SignIn.RequireConfirmedEmail = true;
@@ -95,9 +98,9 @@ namespace AirNice
                options.Lockout.AllowedForNewUsers = true;
 
                // User settings.
-               options.User.AllowedUserNameCharacters =
-               "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
-               options.User.RequireUniqueEmail = false;
+               //options.User.AllowedUserNameCharacters =
+               //"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+               options.User.RequireUniqueEmail = true;
 
            }).AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
             services.ConfigureApplicationCookie(options =>
@@ -112,57 +115,63 @@ namespace AirNice
             });
 
 
-            services.AddSwaggerGen(options =>
-            {
-                options.SwaggerDoc("AirNiceAPI",
-                    new Microsoft.OpenApi.Models.OpenApiInfo()
-                    {
-                        Title = "AirNice API",
-                        Version = "1.0",
-                        Description = "Airline ticketing application",
-                        Contact = new Microsoft.OpenApi.Models.OpenApiContact()
-                        {
-                            Email = "ozougwuIfeanyi@gmail.com",
-                            Name = "Ozougwu Ifeanyi",
-                            Url = new Uri("http://ifeanyiozougwu.ml/")
-                        },
-                        License = new Microsoft.OpenApi.Models.OpenApiLicense()
-                        {
-                            Name = "AirNice License",
-                            Url = new Uri("http://ifeanyiozougwu.ml/")
-                        },
-                    });
-                var xmlCommentFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var cmlCommentsFullPath = Path.Combine(AppContext.BaseDirectory, xmlCommentFile);
-                options.IncludeXmlComments(cmlCommentsFullPath);
-                options.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
-                {
-                    Description = "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then",
-                    Name = "Authorization",
-                    In = Microsoft.OpenApi.Models.ParameterLocation.Header,
-                    Type = Microsoft.OpenApi.Models.SecuritySchemeType.ApiKey,
-                    Scheme = "Bearer"
-                });
-                options.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement()
-                {
-                    {
-                        new OpenApiSecurityScheme
-                        {
-                            Reference = new OpenApiReference
-                            {
-                                Type = ReferenceType.SecurityScheme,
-                                Id = "Bearer"
-                            },
-                            Scheme = "oauth2",
-                            Name = "Bearer",
-                            In = ParameterLocation.Header
-                        },
-                        new List<string>()
-                    }
-                }
+            #region Old Swagger
 
-                    );
-            });
+
+
+            //services.AddSwaggerGen(options =>
+            //{
+
+            //    options.SwaggerDoc("AirNiceAPI",
+            //        new Microsoft.OpenApi.Models.OpenApiInfo()
+            //        {
+            //            Title = "AirNice API",
+            //            Version = "1.0",
+            //            Description = "Airline ticketing application",
+            //            Contact = new Microsoft.OpenApi.Models.OpenApiContact()
+            //            {
+            //                Email = "ozougwuIfeanyi@gmail.com",
+            //                Name = "Ozougwu Ifeanyi",
+            //                Url = new Uri("http://ifeanyiozougwu.ml/")
+            //            },
+            //            License = new Microsoft.OpenApi.Models.OpenApiLicense()
+            //            {
+            //                Name = "AirNice License",
+            //                Url = new Uri("http://ifeanyiozougwu.ml/")
+            //            },
+            //        });
+            //    var xmlCommentFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            //    var cmlCommentsFullPath = Path.Combine(AppContext.BaseDirectory, xmlCommentFile);
+            //    options.IncludeXmlComments(cmlCommentsFullPath);
+            //    options.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+            //    {
+            //        Description = "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then",
+            //        Name = "Authorization",
+            //        In = Microsoft.OpenApi.Models.ParameterLocation.Header,
+            //        Type = Microsoft.OpenApi.Models.SecuritySchemeType.ApiKey,
+            //        Scheme = "Bearer"
+            //    });
+            //    options.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement()
+            //    {
+            //        {
+            //            new OpenApiSecurityScheme
+            //            {
+            //                Reference = new OpenApiReference
+            //                {
+            //                    Type = ReferenceType.SecurityScheme,
+            //                    Id = "Bearer"
+            //                },
+            //                Scheme = "oauth2",
+            //                Name = "Bearer",
+            //                In = ParameterLocation.Header
+            //            },
+            //            new List<string>()
+            //        }
+            //    }
+
+            //        );
+            //    options.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
+            //});
 
             //services.AddSwaggerGen(options =>
             //{
@@ -188,60 +197,47 @@ namespace AirNice
             //    var cmlCommentsFullPath = Path.Combine(AppContext.BaseDirectory, xmlCommentFile);
             //    options.IncludeXmlComments(cmlCommentsFullPath);
             //});
+            #endregion
 
-
-            services.AddControllers().AddNewtonsoftJson();
+            services.AddControllers()
+    .ConfigureApiBehaviorOptions(options =>
+    {
+        options.SuppressConsumesConstraintForFormFileParameters = true;
+        options.SuppressInferBindingSourcesForParameters = true;
+        options.SuppressModelStateInvalidFilter = true;
+        options.SuppressMapClientErrors = true;
+        options.ClientErrorMapping[StatusCodes.Status404NotFound].Link =
+            "https://httpstatuses.com/404";
+    }).AddNewtonsoftJson();
+            //services.AddControllers().AddNewtonsoftJson();
             services.AddOData();
-        
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "AirNiceAPI", Version = "v1" });
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-               
-                app.UseDeveloperExceptionPage();
+			if (env.IsDevelopment())
+			{
+
+				app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Booking Enquiry"));
             }
-
-      
-          
             app.UseRouting();
-            app.UseCors(options => options
-           .AllowAnyOrigin()
-           .AllowAnyMethod()
-           .AllowAnyHeader());
-
-            app.UseSwagger(c =>
-             {
-                c.RouteTemplate = "<AirNice>/swagger/{documentName}/swagger.json";
-             });
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/AirNiceAPI/swagger.json", " Booking Enquiry");
-
-
-                //c.SwaggerEndpoint("/swagger/AirNiceAPIPassenger/swagger.json", "Passenger");
-            });
-            //ap
-
-
-
-
-            app.UseRouting();
+  
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseHttpsRedirection();
-
-
-          //p.UserNumberChecker();
-
+     
             app.UseEndpoints(endpoints =>
             {
                 
                 endpoints.MapControllers();
-                endpoints.EnableDependencyInjection();
-                endpoints.Select().Expand().OrderBy().Count().Filter();
+             
             });
         }
     }

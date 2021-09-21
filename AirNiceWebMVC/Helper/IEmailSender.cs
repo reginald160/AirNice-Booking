@@ -11,6 +11,7 @@ namespace AirNiceWebMVC.Helper
     public interface IEmailSender
     {
       Task  SendEmailAsync(string email, string subject, string htmlMessage);
+        void MailSender(string email, string subject, string messageBody);
     }
     public class EmailSender : IEmailSender
     {
@@ -45,6 +46,43 @@ namespace AirNiceWebMVC.Helper
                 new MailMessage(userName, email, subject, htmlMessage) { IsBodyHtml = true }
             );
 
+        }
+
+
+        public  void MailSender(string email, string subject, string messageBody)
+        {
+            MailMessage msg = new MailMessage
+            {
+                From = new MailAddress(userName),
+            };
+            msg.To.Add(email);
+
+            msg.Subject = subject;
+            msg.Body = messageBody;
+
+
+            SmtpClient client = new SmtpClient
+            {
+                Host = host
+            };
+            NetworkCredential credential = new NetworkCredential
+            {  // Server Email credential
+                UserName = userName,
+                Password = password
+            };
+            client.Credentials = credential;
+            client.EnableSsl = enableSSL;
+            client.Port = port;
+            try
+            {
+                client.Send(msg);
+            }
+
+
+            catch
+            {
+                throw new Exception("Unabel to send Message to your email at this time!");
+            }
         }
 
 

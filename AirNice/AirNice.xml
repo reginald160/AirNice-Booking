@@ -28,11 +28,5 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:AirNice.Controllers.PermissionController.Index">
-            <summary>
-            This is the method that returns the list of active Enquiries
-            </summary>
-            <returns></returns>
-        </member>
     </members>
 </doc>

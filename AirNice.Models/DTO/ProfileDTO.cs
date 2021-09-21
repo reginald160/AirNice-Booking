@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AirNice.Models.Helper;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -21,7 +22,9 @@ namespace AirNice.Models.DTO
  
         public string PassPort { get; set; }
         public string Address { get; set; }
-       
+       [FileUpload(new string[] {".jpg",".png",".img"})]
+       [Required(ErrorMessage = "Please choose profile image")]
+
         public IFormFile Image { get; set; }
         [DataType(DataType.Date), Required]
         public DateTime DOB { get; set; }

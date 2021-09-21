@@ -1,2 +1,3 @@
 is_global = true
-build_property.RefitInternalNamespace = AirNice.Services
+build_property.RootNamespace = AirNice.Services
+build_property.ProjectDir = C:\Users\USER\source\repos\AirNice-Booking\AirNice.Services\

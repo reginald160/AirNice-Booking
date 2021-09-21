@@ -5,9 +5,9 @@
 
 @{
     ViewData["Title"] = "Home Page";
- Layout = "_MainLayout";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
 
- Model.Email = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(Model.Email));
+    Model.Email = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(Model.Email));
 }
 
 <div class="no-bottom no-top" id="content">

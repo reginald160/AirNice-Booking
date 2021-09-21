@@ -41,19 +41,19 @@ namespace EasyBanking.Utility.CoreHelpers
         public static ApplicationDbContext context;
         //private readonly ApplicationDbContext _context;
 
-        public static string imagepath(IFormFile model)
-        {
-            var imageupload = new Imageupload(_hostEnvironment);
-            var temppath = imageupload.imageurl(model);
-            return temppath;
-        }
-        public static string ImageUpload(IFormFile model, string foldername, string webRootPath)
-        {
+        //public static string imagepath(IFormFile model)
+        //{
+        //    var imageupload = new UploadHelper(_hostEnvironment);
+        //    var temppath = imageupload.imageurl(model);
+        //    return temppath;
+        //}
+        //public static string ImageUpload(IFormFile model, string foldername, string webRootPath)
+        //{
 
-            var imageupload = new Imageupload(_hostEnvironment);
-            var result = imageupload.uploadimage(model, foldername, webRootPath);
-            return result;
-        }
+        //    var imageupload = new UploadHelper(_hostEnvironment);
+        //    var result = imageupload.uploadimage(model, foldername, webRootPath);
+        //    return result;
+        //}
 
         //public static decimal CashPayment(TransactionTypeDescription transactionType, decimal cashPanel , decimal balance, decimal charge)
         //{
@@ -72,7 +72,6 @@ namespace EasyBanking.Utility.CoreHelpers
             var t2 = DateTime.Now;
 
             var timeDifference = t2.Subtract(t1).Minutes;
-
             return timeDifference > 1 ? true : false;
 
         }
@@ -150,7 +149,7 @@ namespace EasyBanking.Utility.CoreHelpers
             var from = new EmailAddress("ozougwu2016@gmail.com", "EasyBanking");
             var to = new EmailAddress("ozougwu2016@gmail.com", "EasyBanking");
             var subject = "testing email sender";
-            var plaintextcontext = "your password is " + password + "";
+            var plaintextcontext = "your password is " + password + "";;
             var htmlcontext = "<strong> AccountNumberGenerator easy way to go</strong>";
             var msg = MailHelper.CreateSingleEmail(
 
@@ -162,7 +161,7 @@ namespace EasyBanking.Utility.CoreHelpers
                 );
             var response = await client.SendEmailAsync(msg);
         }
-        public static void MailSender(string name, string email, string messagebody)
+        public static void MailSender(string email, string subject, string messageBody)
         {
             MailMessage msg = new MailMessage
             {
@@ -170,8 +169,9 @@ namespace EasyBanking.Utility.CoreHelpers
             };
             msg.To.Add(email);
 
-            msg.Subject = "Account Activation";
-            msg.Body = "Hello " + name + ", \n " + messagebody;
+            msg.Subject = subject;
+            msg.Body = messageBody;
+           
 
             SmtpClient client = new SmtpClient
             {
@@ -185,9 +185,18 @@ namespace EasyBanking.Utility.CoreHelpers
             client.Credentials = credential;
             client.EnableSsl = true;
             client.Port = 587;
-            client.Send(msg);
+            try
+            {
+                client.Send(msg);
+            }
 
+
+            catch
+            {
+                throw new Exception("Unabel to send Message to your email at this time!");
+            }
         }
+
 
 
 
@@ -199,35 +208,56 @@ namespace EasyBanking.Utility.CoreHelpers
     }
 
 
-    public class Imageupload
+    public static class UploadHelper
     {
-        private readonly IWebHostEnvironment _hostingEnvironment;
-
-        public Imageupload(IWebHostEnvironment hostingEnvironment)
-        {
-            _hostingEnvironment = hostingEnvironment;
-        }
-
-        public string imageurl(IFormFile model)
+       
+       
+        public  static string imageurl(IFormFile model)
         {
             var uploadDir = "images";
             var fileName = Path.GetFileNameWithoutExtension(model.FileName);
             var imageUrlpath = "/" + uploadDir + "/" + fileName;
             return imageUrlpath;
         }
-        public string uploadimage(IFormFile model, string foldername, string webRootPath)
+        public static  string FileUpload(IFormFile model, string foldername, string webRootPath)
         {
-            var uploadDir = "images";
+            var uploadDir = foldername;
             var fileName = Path.GetFileNameWithoutExtension(model.FileName);
             var extension = Path.GetExtension(model.FileName);
             fileName = DateTime.UtcNow.ToString("yymmssfff") + fileName + extension;
             var path = Path.Combine(webRootPath, uploadDir, fileName);
-            model.CopyToAsync(new FileStream(path, FileMode.Create));
+            using (var fileStream = new FileStream(path, FileMode.Create))
+            {
+                model.CopyToAsync(fileStream);
+
+            }
             string imageUrl = "/" + uploadDir + "/" + fileName;
 
             return imageUrl;
         }
+        //private string UploadedFile(ProfileDTO model)
+        //{
+        //    string uniqueFileName = null;
 
+        //    if (model.Image != null)
+        //    {
+        //        string uploadsFolder = Path.Combine(webHostEnvironment.WebRootPath, "images");
+        //        uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Image.FileName;
+        //        string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+        //        using (var fileStream = new FileStream(filePath, FileMode.Create))
+        //        {
+        //            model.Image.CopyTo(fileStream);
+        //        }
+        //    }
+        //    return uniqueFileName;
+
+
+
+        //    //< img src = "~/images/@employee.ProfilePicture"
+        //    //            class="rounded-circle"   
+        //    //            height="40" width="40"   
+        //    //            asp-append-version="true" /> 
+        //}
 
 
     }

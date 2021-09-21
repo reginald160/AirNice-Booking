@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace AirNice.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Flight")]
     [ApiController]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public class FlightController : BaseController
@@ -27,19 +27,21 @@ namespace AirNice.Controllers
         /// This is the method that returns the list of active flight
         /// </summary>
         /// <returns></returns>
-        [HttpGet("[action]")]
-        [ProducesResponseType(200, Type = typeof(List<FlightDTO>))]
+        [HttpGet("AllFlights")]
         [ProducesResponseType(400)]
         public IActionResult Index()
         {
-            var entities = _unitOfWork.flight.ReserveCollection();
+            if (!Request.IsHttps)
+            {
+                return new StatusCodeResult(StatusCodes.Status403Forbidden);
+            }
+                var entities = _unitOfWork.flight.ReserveCollection();
             var flights = _mapper.Map<List<FlightDTO>>(entities);
 
             return Ok(flights);
         }
 
-        [HttpGet("[action]")]
-        [ProducesResponseType(200, Type = typeof(List<FlightDTO>))]
+        [HttpGet("ArchiveFlights")]
         [ProducesResponseType(400)]
         public IActionResult Trash()
         {
@@ -49,21 +51,19 @@ namespace AirNice.Controllers
             return Ok(flights);
         }
 
-        //[HttpGet("[action]")]
-        //[ProducesResponseType(200, Type = typeof(List<FlightDTO>))]
-        //[ProducesResponseType(400)]
-        //public IActionResult AvailableFlight()
-        //{
-        //    var entities = _unitOfWork.flight.ReserveCollection().Where(x => x.IsAvailable.Equals(true));
-        //    var flights = _mapper.Map<List<FlightDTO>>(entities);
+        [HttpGet("AvailableFlight")]
+        [ProducesResponseType(400)]
+        public IActionResult AvailableFlight()
+        {
+            var entities = _unitOfWork.flight.ReserveCollection().Where(x => x.IsAvailable.Equals(true));
+            var flights = _mapper.Map<List<FlightDTO>>(entities);
 
-        //    return Ok(flights);
-        //}
-
+            return Ok(flights);
+        }
 
 
-        [HttpGet("[action]")]
-        [ProducesResponseType(200, Type = typeof(FlightDTO))]
+
+        [HttpGet("GetFlight/{id}")]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         [ProducesDefaultResponseType]
@@ -78,31 +78,31 @@ namespace AirNice.Controllers
             return Ok(flight);
         }
 
-        [HttpPost("[action]")]
-        [ProducesResponseType(201, Type = typeof(FlightDTO))]
+        [HttpPost("NewFlight/{flight}")]
+
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesDefaultResponseType]
-        public async Task<IActionResult> Create([FromBody] FlightDTO FlightDTO)
+        public async Task<IActionResult> Create(FlightDTO FlightDTO)
         {
             if (ModelState.IsValid)
             {
                 var flight = _mapper.Map<Flight>(FlightDTO);
-                    var reponse = await _unitOfWork.flight.AddAsync(flight);
+                var reponse = await _unitOfWork.flight.AddAsync(flight);
 
-                    return Ok(reponse);
+                return Ok(reponse);
             }
             return BadRequest(ModelState);
         }
 
-        [HttpPatch("[action]")]
+        [HttpPatch("UpdateFlight/{id,flight}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesDefaultResponseType]
         //[Authorize]
-        public async Task<IActionResult> Update(Guid id, [FromBody] FlightDTO FlightDTO)
+        public async Task<IActionResult> Update(Guid id, FlightDTO FlightDTO)
         {
             if (FlightDTO == null || id != FlightDTO.Id)
                 return BadRequest(ModelState);
@@ -123,7 +123,7 @@ namespace AirNice.Controllers
 
         }
 
-        [HttpPatch("[action]")]
+        [HttpPatch("DeleteAndRetrieve/{id}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -145,12 +145,11 @@ namespace AirNice.Controllers
         }
 
 
-        [HttpGet("[action]")]
-        [ProducesResponseType(200, Type = typeof(List<PermissionDTO>))]
+        [HttpGet("FilterFlight/{serchValue,departureTime,arrivalTime }")]
         [ProducesResponseType(400)]
-        public IActionResult FilterFlight(string value, DateTime departureTime, DateTime arrivalTime )
+        public IActionResult FilterFlight(string? value, DateTime? departureTime, DateTime? arrivalTime)
         {
-            var entities = _unitOfWork.flight.Search(value, departureTime,arrivalTime);
+            var entities = _unitOfWork.flight.Search(value, (DateTime)departureTime, (DateTime)arrivalTime);
             var Flights = _mapper.Map<List<FlightDTO>>(entities);
 
             return Ok(Flights);

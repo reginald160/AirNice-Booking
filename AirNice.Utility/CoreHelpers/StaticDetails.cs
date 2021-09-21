@@ -9,8 +9,6 @@ namespace AirNice.Utility.CoreHelpers
         public static string BaseUrl = Universe.APIBaseUrl;
         public static string PassengerUrl = BaseUrl + "/api/Passenger";
         public static string BookingEnquiryUrl =  BaseUrl + "/api/BookingEnquiry";
-
-
-
+       
     }
 }

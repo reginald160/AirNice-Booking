@@ -1,2 +1,4 @@
 is_global = true
 build_property.RefitInternalNamespace = AirNiceWebMVC
+build_property.RootNamespace = AirNiceWebMVC
+build_property.ProjectDir = C:\Users\USER\source\repos\AirNice-Booking\AirNiceWebMVC\

@@ -32,8 +32,7 @@ namespace AirNice.Controllers
         /// This is the method that returns the list of active passengers
         /// </summary>
         /// <returns></returns>
-        [HttpGet("[action]")]
-        [ProducesResponseType(200, Type = typeof(List<PassengerDTO>))]
+        [HttpGet("AllPassengers")]
         [ProducesResponseType(400)]
         [EnableQuery()]
         public IActionResult Index()
@@ -44,8 +43,7 @@ namespace AirNice.Controllers
             return Ok(passengers);
         }
 
-        [HttpGet("[action]")]
-        [ProducesResponseType(200, Type = typeof(List<PassengerDTO>))]
+        [HttpGet("ArchivedPassingers")]
         [ProducesResponseType(400)]
         public IActionResult Trash()
         {
@@ -55,22 +53,21 @@ namespace AirNice.Controllers
             return Ok(passengers);
         }
 
-        [HttpGet("[action]")]
-        [ProducesResponseType(400)]
-        public IActionResult Location()
-        {
-            var file = $@"{env.ContentRootPath}\Properties\location.json";
-            //deserialize JSON from file  
-            string Json = System.IO.File.ReadAllText(file);
+        //[HttpGet("[action]")]
+        //[ProducesResponseType(400)]
+        //public IActionResult Location()
+        //{
+        //    var file = $@"{env.ContentRootPath}\Properties\location.json";
+        //    //deserialize JSON from file  
+        //    string Json = System.IO.File.ReadAllText(file);
 
 
-            return Ok(Json);
-        }
+        //    return Ok(Json);
+        //}
 
 
 
-        [HttpGet("[action]")]
-        [ProducesResponseType(200, Type = typeof(PassengerDTO))]
+        [HttpGet("GetPassenger/{id}")]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         [ProducesDefaultResponseType]
@@ -85,61 +82,33 @@ namespace AirNice.Controllers
             return Ok(passenger);
         }
 
-        //[HttpPost("[action]")]
-        //[ProducesResponseType(201, Type = typeof(PassengerDTO))]
-        //[ProducesResponseType(StatusCodes.Status201Created)]
-        //[ProducesResponseType(StatusCodes.Status404NotFound)]
-        //[ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        //[ProducesDefaultResponseType]
-        //public async Task<IActionResult> Create([FromBody] PassengerDTO passengerDTO)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var passenger = _mapper.Map<Passenger>(passengerDTO);
-        //        //var userId = await _unitOfWork.user.Creatidentityuser(passenger.Email, passenger.Password);
-        //        var userDTO = new ApplicationUserDTO()
-        //        {
-        //            Username = passenger.Email,
-        //            Email = passenger.Email,
-        //            Passcode = passenger.Password,
-        //            RoleTitle = "Passenger",
-        //            Id = Guid.NewGuid().ToString()
+        [HttpPost("NewPassenger/{passenger}")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesDefaultResponseType]
+        public async Task<IActionResult> Create( PassengerDTO passengerDTO)
+        {
+            if (ModelState.IsValid)
+            {
+                var passenger = _mapper.Map<Passenger>(passengerDTO);
+                //var userId = await _unitOfWork.user.Creatidentityuser(passenger.Email, passenger.Password);
+                var reponse = await _unitOfWork.passenger.AddAsync(passenger);
 
-        //        };
-        //        var user = _mapper.Map<ApplicationUser>(userDTO);
-        //        var code = await _unitOfWork.user.CreateProfile(user);
-  
-        //        if (code != null)
-        //        {
+                return Ok(passenger);
 
-        //            passenger.UserId = user.Id;
-        //            passenger.PassPort = code;
 
-        //            var reponse = await _unitOfWork.passenger.AddAsync(passenger);
-        //            //if (!null)
-        //            //{
-        //            //  await  _unitOfWork.user.DeleteUser(user.Email);
-        //            //    ModelState.AddModelError("", Universe.Error500);
-        //            //    return StatusCode(500, ModelState);
-        //            //}
+            }
+            return BadRequest(ModelState);
+        }
 
-        //            return Ok(code);
-
-        //        }
-
-        //        return BadRequest(ModelState);
-
-        //    }
-        //    return BadRequest(ModelState);
-        //}
-
-        [HttpPatch("[action]")]
+        [HttpPatch("UpdatePassenger/{id,passenger}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesDefaultResponseType]
         [Authorize]
-        public async Task< IActionResult> Update(Guid id, [FromBody] PassengerDTO passengerDTO)
+        public async Task<IActionResult> Update(Guid id, PassengerDTO passengerDTO)
         {
             if (passengerDTO == null || id != passengerDTO.Id)
                 return BadRequest(ModelState);
@@ -161,7 +130,7 @@ namespace AirNice.Controllers
         }
 
 
-        [HttpPatch("[action]")]
+        [HttpPatch("DeleteAndRetrieve/{id}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -170,16 +139,16 @@ namespace AirNice.Controllers
         {
             if (!_unitOfWork.passenger.IsExisting(id))
                 return BadRequest(ModelState);
-          
-                var sucess = await _unitOfWork.passenger.DeleteAndRetrieveAsync(id);
-                if (!sucess)
-                {
-                    ModelState.AddModelError("", Universe.Error500);
-                    return StatusCode(500, ModelState);
-                }
-                return Ok();
-           
- 
+
+            var sucess = await _unitOfWork.passenger.DeleteAndRetrieveAsync(id);
+            if (!sucess)
+            {
+                ModelState.AddModelError("", Universe.Error500);
+                return StatusCode(500, ModelState);
+            }
+            return Ok();
+
+
         }
     }
 }

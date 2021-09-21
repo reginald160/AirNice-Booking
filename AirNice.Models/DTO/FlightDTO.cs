@@ -1,4 +1,5 @@
 ﻿using AirNice.Models.Helper;
+using AirNice.Models.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,7 +11,8 @@ namespace AirNice.Models.DTO
 
     public class FlightDTO : BaseDTO
     {
-        [Globalname, Required]
+        [Required]
+        [Globalname]
         public string AirLine { get; set; }
         [Required]
         public string FlightNumber { get; set; }
@@ -56,5 +58,25 @@ namespace AirNice.Models.DTO
         public string ArrivalCity { get; set; }
         [DataType(DataType.Currency), Required]
         public decimal Price { get; set; }
+
+
+        
+        
+        public DateTime? ArrivalDate { get; set; }
+
+        public DateTime? DepartureDate { get; set; }
+
+      
+        public string Status { get; set; }
+      
+        public int? PlaneID { get; set; }
+   
+        public virtual ICollection<TicketFlight> TicketFlights { get; set; }
+        public AirPort Departure { get; set; }
+        public AirPort Arrival { get; set; }
+
+
+
+
     }
 }

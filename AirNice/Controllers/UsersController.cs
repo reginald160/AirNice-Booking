@@ -2,7 +2,9 @@
 using AirNice.Models.DTO;
 using AirNice.Models.DTO.UserDTO;
 using AirNice.Models.Models;
+using AirNice.Services.IRepository;
 using AirNice.Services.UnitOfWork;
+using AirNice.Utility.Response;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -10,6 +12,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -20,73 +23,65 @@ namespace AirNice.Controllers
     //[Authorize]
     public class UsersController : BaseController
     {
-        public UsersController(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, ApplicationDbContext context, SignInManager<ApplicationUser> signInManager, IMapper mapper) : base(unitOfWork, userManager, roleManager, context, signInManager, mapper)
+        private readonly IUserService _userService;
+
+        public UsersController(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager,
+            RoleManager<IdentityRole> roleManager, ApplicationDbContext context,
+            SignInManager<ApplicationUser> signInManager, IMapper mapper, IUserService userService)
+            : base(unitOfWork, userManager, roleManager, context, signInManager, mapper)
         {
+            _userService = userService;
         }
-        //[AllowAnonymous]
-        //[HttpPost("[action]")]
-    
-        //public IActionResult Authenticate([FromBody] AdditionalUserDTO userDTO)
-        //{
-        //    var authenticateUser = _mapper.Map<AdditionalUser>(userDTO);
-        //    var user = _unitOfWork.user.Authenticated(authenticateUser.Username, authenticateUser.Password);
-        //    //if (user == null)
-        //    //    return BadRequest(new { message = "username or password is in correct" });
-        //    return Ok(user);
-        //}
-        //[AllowAnonymous]
-        //[HttpPost("[action]")]
-    
-        //public async Task< IActionResult> AddUser([FromBody] AdditionalUserDTO userDTO)
-        //{
-      
-        //    var userMaped = _mapper.Map<ApplicationUser>(userDTO);
-        //    var code = await _unitOfWork.user.RegisterUser(userMaped);
-        //    if (code == null)
-        //        return BadRequest(new { message = "username or password is in correct" });
-        //    return Ok(code);
-        //}
 
-        //[AllowAnonymous]
-        //[HttpPost("[action]")]
-
-        //public async Task<IActionResult> Login([FromBody] LoginDTO loginDTO)
-        //{
-        //    //var result = await _signInManager.PasswordSignInAsync(loginDTO.Email, loginDTO.Password, false, true);
-        //    var result = _unitOfWork.user.Authenticated(loginDTO.Email, loginDTO.Password);
-        //    //if (result )
-        //        //return BadRequest(new { message = "username or password is in correct" });
-        //    return Ok(result);
-        //}
-
-        //[AllowAnonymous]
-        //[HttpPost("[action]")]
-
-        //public async Task<IActionResult> LogOut()
-        //{
-        //    var user = new LoginDTO();
-        //    await _signInManager.SignOutAsync();
-
-        //    return Ok(user);
-           
-        //}
-        [HttpPost("[action]")]
-        [ProducesResponseType(201, Type = typeof(ProfileDTO))]
+        [HttpPost]
+        [Route("Authenticate")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesDefaultResponseType]
-        public async Task<IActionResult> UserProfile([FromBody] ProfileDTO profileDTO)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Authenticate (AuthenticateRequest request)
         {
             if (ModelState.IsValid)
             {
-                var map = _mapper.Map<CoreProfile>(profileDTO);
-               var profile =  await _unitOfWork.user.CreateProfile(map);
+                var response =  await _userService.Authenticated(request);
+                if(response != null)
+                {
+                    return Ok(new
+                    {
+                        token = new JwtSecurityTokenHandler().WriteToken(response.TokenDescriptor),
+                        expiration = response.TokenDescriptor.ValidTo
+                    });
 
-                return Ok(profile);
-
+                }
             }
-            return BadRequest(ModelState);
+            return Unauthorized();
+        }
+
+
+        [HttpPost]
+        [Route("Register")]
+        public async Task<IActionResult> Register([FromBody]RegisterDTO request)
+        {
+            if(ModelState.IsValid)
+            {
+                var response = _userService.RegisterUser(request);
+                return Ok(response);
+            }
+
+            return BadRequest(new { Message ="Invalid Parameters"});
+        }
+
+        [HttpPost]
+        [Route("RegisterAdmin")]
+        public async Task<IActionResult> RegisterAdmin(RegisterDTO request)
+        {
+            if(ModelState.IsValid)
+            {
+                var response = _userService.RegisterAdmin(request);
+                return Ok(response);
+            }
+            return BadRequest();
         }
     }
 }

@@ -1,0 +1,65 @@
+﻿@model AirNice.Models.ViewModels.BookingEnquiry.BookingAvailabiltyViewModel
+
+
+<section class="col-md-3" style="padding-top:0px">
+	<div class="booking-form ">
+		<form asp-controller="Flight" asp-action="AvailableFlight">
+			<div class="form-group">
+				<p class="text-center text-black"><b>Flight Reservation</b></p>
+				<span class="form-label">Your Destination</span>
+				<input asp-for="Destination" class="form-control" type="text" placeholder="Enter a destination or hotel name">
+			</div>
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="form-group">
+						<span class="form-label">Check In</span>
+						<input asp-for="CheckInDate" class="form-control" type="date" required>
+					</div>
+				</div>
+			
+				<div class="col-sm-6">
+					<div class="form-group">
+						<span class="form-label">Check out</span>
+						<input asp-for="CheckOutDate" class="form-control" type="date" required>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="form-group">
+						<span class="form-label">Adults</span>
+						<select asp-for="NumbAdults" class="form-control" asp-items="@Html.GetEnumSelectList<AirNice.Models.Enum.Adult>()">
+							<option value=""></option>
+
+						</select>
+						<span class="select-arrow"></span>
+					</div>
+				</div>
+				<div class="col-sm-4">
+
+				</div>
+				<div class="col-sm-4">
+					<div class="form-group">
+						<span class="form-label">Children</span>
+						<select asp-for="NumbChildern" class="form-control" asp-items="@Html.GetEnumSelectList<AirNice.Models.Enum.Children>()">
+							<option value=""></option>
+
+						</select>
+						<span class="select-arrow"></span>
+					</div>
+				</div>
+				<div class="col-sm-2">
+
+				</div>
+				<div class="col-sm-8 form-btn">
+					<a asp-action="AVailableFlight" asp-controller="Flight" class="submit-btn">Check availability</a>
+				</div>
+				<div class="col-sm-2">
+
+				</div>
+		</form>
+	</div>
+
+
+</section>
+

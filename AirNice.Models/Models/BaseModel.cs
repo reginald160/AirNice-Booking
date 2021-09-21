@@ -10,8 +10,8 @@ namespace AirNice.Models.Models
     {
      
         public Guid Id { get; set; }
-        public bool Deleted { get; set; }
-        public bool IsNewRecord { get; set; }
+        public bool? Deleted { get; set; }
+        public bool? IsNewRecord { get; set; }
         public DateTime? DateCreated { get; set; }
         public DateTime? DateModified { get; set; }
         public string CreateById { get; set; }

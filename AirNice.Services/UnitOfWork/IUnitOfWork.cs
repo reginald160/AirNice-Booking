@@ -14,11 +14,13 @@ namespace AirNice.Services.UnitOfWork
         IPassengerServices passenger { get; }
         IBookingEnquiryServices bookingEnquiry { get; }
 
-        IUserServices user { get; }
+        IUserService user { get; }
         IPermissionServices permission { get; }
         IBookingServices booking { get; }
         IFlightServices flight { get; }
         ITicketClassServices ticketClass { get; }
+        ITicketFlightServices ticketFlight { get; }
+        ITicketServices ticket { get;}
         Task Save();
 
     }

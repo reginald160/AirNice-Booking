@@ -139,6 +139,18 @@
           "lib/net45/Microsoft.AspNet.Identity.EntityFramework.dll": {}
         }
       },
+      "Microsoft.AspNet.Providers.Core/2.0.0": {
+        "type": "package",
+        "dependencies": {
+          "EntityFramework": "6.0.0"
+        },
+        "compile": {
+          "lib/net40/System.Web.Providers.dll": {}
+        },
+        "runtime": {
+          "lib/net40/System.Web.Providers.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.Authentication.JwtBearer/3.1.8": {
         "type": "package",
         "dependencies": {
@@ -1115,6 +1127,20 @@
         "lib/net45/Microsoft.AspNet.Identity.EntityFramework.xml",
         "microsoft.aspnet.identity.entityframework.2.2.3.nupkg.sha512",
         "microsoft.aspnet.identity.entityframework.nuspec"
+      ]
+    },
+    "Microsoft.AspNet.Providers.Core/2.0.0": {
+      "sha512": "JMk31PExMANVDc04aSUyIlcL3pkFVyNg/dDn+ZZzmhZ2CBctI90BWQH1L0zXgD61ZWW5r4ybInV362sRKWIC+A==",
+      "type": "package",
+      "path": "microsoft.aspnet.providers.core/2.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "ReadMe.txt",
+        "lib/net40/System.Web.Providers.dll",
+        "lib/net40/System.Web.Providers.xml",
+        "microsoft.aspnet.providers.core.2.0.0.nupkg.sha512",
+        "microsoft.aspnet.providers.core.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Authentication.JwtBearer/3.1.8": {
@@ -2780,6 +2806,7 @@
       "AutoMapper >= 10.1.1",
       "IdentityServer4.Storage >= 4.1.2",
       "Microsoft.AspNet.Identity.EntityFramework >= 2.2.3",
+      "Microsoft.AspNet.Providers.Core >= 2.0.0",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 5.0.4",
       "Microsoft.EntityFrameworkCore >= 5.0.4",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.4",
@@ -2787,19 +2814,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\PROGRESSIVE\\.nuget\\packages\\": {}
+    "C:\\Users\\USER\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\PROGRESSIVE\\source\\repos\\AirNice-Booking\\AirNice.Models\\AirNice.Models.csproj",
+      "projectUniqueName": "C:\\Users\\USER\\source\\repos\\AirNice-Booking\\AirNice.Models\\AirNice.Models.csproj",
       "projectName": "AirNice.Models",
-      "projectPath": "C:\\Users\\PROGRESSIVE\\source\\repos\\AirNice-Booking\\AirNice.Models\\AirNice.Models.csproj",
-      "packagesPath": "C:\\Users\\PROGRESSIVE\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\PROGRESSIVE\\source\\repos\\AirNice-Booking\\AirNice.Models\\obj\\",
+      "projectPath": "C:\\Users\\USER\\source\\repos\\AirNice-Booking\\AirNice.Models\\AirNice.Models.csproj",
+      "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\USER\\source\\repos\\AirNice-Booking\\AirNice.Models\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\PROGRESSIVE\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\USER\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2837,6 +2869,10 @@
             "target": "Package",
             "version": "[2.2.3, )"
           },
+          "Microsoft.AspNet.Providers.Core": {
+            "target": "Package",
+            "version": "[2.0.0, )"
+          },
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
             "target": "Package",
             "version": "[5.0.4, )"
@@ -2869,7 +2905,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   },
@@ -2900,6 +2936,16 @@
       "warningLevel": 1,
       "message": "Package 'Microsoft.AspNet.Identity.EntityFramework 2.2.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
       "libraryId": "Microsoft.AspNet.Identity.EntityFramework",
+      "targetGraphs": [
+        ".NETCoreApp,Version=v3.1"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.AspNet.Providers.Core 2.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework '.NETCoreApp,Version=v3.1'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.AspNet.Providers.Core",
       "targetGraphs": [
         ".NETCoreApp,Version=v3.1"
       ]

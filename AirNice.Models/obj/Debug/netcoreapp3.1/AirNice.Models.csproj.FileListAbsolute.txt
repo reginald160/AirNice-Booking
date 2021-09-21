@@ -24,3 +24,13 @@ C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice.Models\obj\Debug\netco
 C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice.Models\obj\Debug\netcoreapp3.1\AirNice.Models.csproj.CoreCompileInputs.cache
 C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice.Models\obj\Debug\netcoreapp3.1\AirNice.Models.dll
 C:\Users\PROGRESSIVE\source\repos\AirNice-Booking\AirNice.Models\obj\Debug\netcoreapp3.1\AirNice.Models.pdb
+C:\Users\USER\source\repos\AirNice-Booking\AirNice.Models\bin\Debug\netcoreapp3.1\AirNice.Models.deps.json
+C:\Users\USER\source\repos\AirNice-Booking\AirNice.Models\bin\Debug\netcoreapp3.1\AirNice.Models.dll
+C:\Users\USER\source\repos\AirNice-Booking\AirNice.Models\bin\Debug\netcoreapp3.1\AirNice.Models.pdb
+C:\Users\USER\source\repos\AirNice-Booking\AirNice.Models\obj\Debug\netcoreapp3.1\AirNice.Models.csproj.AssemblyReference.cache
+C:\Users\USER\source\repos\AirNice-Booking\AirNice.Models\obj\Debug\netcoreapp3.1\AirNice.Models.AssemblyInfoInputs.cache
+C:\Users\USER\source\repos\AirNice-Booking\AirNice.Models\obj\Debug\netcoreapp3.1\AirNice.Models.AssemblyInfo.cs
+C:\Users\USER\source\repos\AirNice-Booking\AirNice.Models\obj\Debug\netcoreapp3.1\AirNice.Models.csproj.CoreCompileInputs.cache
+C:\Users\USER\source\repos\AirNice-Booking\AirNice.Models\obj\Debug\netcoreapp3.1\AirNice.Models.dll
+C:\Users\USER\source\repos\AirNice-Booking\AirNice.Models\obj\Debug\netcoreapp3.1\AirNice.Models.pdb
+C:\Users\USER\source\repos\AirNice-Booking\AirNice.Models\obj\Debug\netcoreapp3.1\AirNice.Models.GeneratedMSBuildEditorConfig.editorconfig

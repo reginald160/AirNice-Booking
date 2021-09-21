@@ -25,8 +25,14 @@ namespace AirNice.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CreateById")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("DOB")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DateCreated")
                         .HasColumnType("datetime2");
@@ -34,14 +40,29 @@ namespace AirNice.Data.Migrations
                     b.Property<DateTime?>("DateModified")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("Deleted")
+                    b.Property<bool?>("Deleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("EditedById")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<bool>("IsNewRecord")
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Imageurl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsNewRecord")
                         .HasColumnType("bit");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MiddleName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PassPort")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
@@ -81,7 +102,7 @@ namespace AirNice.Data.Migrations
                     b.Property<DateTime?>("DateModified")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("Deleted")
+                    b.Property<bool?>("Deleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("Description")
@@ -90,7 +111,7 @@ namespace AirNice.Data.Migrations
                     b.Property<string>("EditedById")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<bool>("IsNewRecord")
+                    b.Property<bool?>("IsNewRecord")
                         .HasColumnType("bit");
 
                     b.Property<string>("Title")
@@ -107,46 +128,25 @@ namespace AirNice.Data.Migrations
 
             modelBuilder.Entity("AirNice.Models.Models.AirPort", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Abbreviation")
+                    b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CreateById")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime?>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateModified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("EditedById")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<bool>("IsNewRecord")
-                        .HasColumnType("bit");
-
-                    b.Property<Guid?>("LocationId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("CountryID")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
-                    b.HasIndex("CreateById");
+                    b.HasIndex("CountryID");
 
-                    b.HasIndex("EditedById");
-
-                    b.HasIndex("LocationId");
-
-                    b.ToTable("AirPorts");
+                    b.ToTable("AirPort");
                 });
 
             modelBuilder.Entity("AirNice.Models.Models.ApplicationUser", b =>
@@ -220,45 +220,6 @@ namespace AirNice.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("AirNice.Models.Models.Bank", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("AccountName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("AccountNumber")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("CreateById")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime?>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateModified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("EditedById")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<bool>("IsNewRecord")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CreateById");
-
-                    b.HasIndex("EditedById");
-
-                    b.ToTable("Bank");
-                });
-
             modelBuilder.Entity("AirNice.Models.Models.Booking", b =>
                 {
                     b.Property<Guid>("Id")
@@ -280,7 +241,7 @@ namespace AirNice.Data.Migrations
                     b.Property<DateTime?>("DateModified")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("Deleted")
+                    b.Property<bool?>("Deleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("Description")
@@ -289,10 +250,10 @@ namespace AirNice.Data.Migrations
                     b.Property<string>("EditedById")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<Guid>("FlightId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int?>("FlightID")
+                        .HasColumnType("int");
 
-                    b.Property<bool>("IsNewRecord")
+                    b.Property<bool?>("IsNewRecord")
                         .HasColumnType("bit");
 
                     b.Property<int>("NumberOfAdult")
@@ -322,6 +283,8 @@ namespace AirNice.Data.Migrations
 
                     b.HasIndex("EditedById");
 
+                    b.HasIndex("FlightID");
+
                     b.HasIndex("PassengerId");
 
                     b.ToTable("Bookings");
@@ -345,7 +308,7 @@ namespace AirNice.Data.Migrations
                     b.Property<DateTime?>("DateModified")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("Deleted")
+                    b.Property<bool?>("Deleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("Description")
@@ -354,7 +317,7 @@ namespace AirNice.Data.Migrations
                     b.Property<string>("EditedById")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<bool>("IsNewRecord")
+                    b.Property<bool?>("IsNewRecord")
                         .HasColumnType("bit");
 
                     b.Property<string>("Title")
@@ -390,7 +353,7 @@ namespace AirNice.Data.Migrations
                     b.Property<DateTime?>("DateModified")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("Deleted")
+                    b.Property<bool?>("Deleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("EditedById")
@@ -402,7 +365,7 @@ namespace AirNice.Data.Migrations
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsNewRecord")
+                    b.Property<bool?>("IsNewRecord")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsProfiled")
@@ -431,29 +394,39 @@ namespace AirNice.Data.Migrations
                     b.ToTable("UserProfiles");
                 });
 
+            modelBuilder.Entity("AirNice.Models.Models.Country", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Region")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Country");
+                });
+
             modelBuilder.Entity("AirNice.Models.Models.Flight", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AirLine")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ArrivalCity")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime?>("ArrivalDate")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("ArrivalCountry")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ArrivalState")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTimeOffset?>("ArrivateDateTime")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("CoachSeats")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("ArrivalID")
+                        .HasColumnType("int");
 
                     b.Property<string>("CreateById")
                         .HasColumnType("nvarchar(450)");
@@ -464,28 +437,19 @@ namespace AirNice.Data.Migrations
                     b.Property<DateTime?>("DateModified")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("Deleted")
+                    b.Property<bool?>("Deleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("DepartureCity")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime?>("DepartureDate")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("DepartureCountry")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTimeOffset?>("DepartureDateTime")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("DepartureState")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("DepartureID")
+                        .HasColumnType("int");
 
                     b.Property<string>("EditedById")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<decimal>("Faire")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("FlightCategory")
+                    b.Property<int?>("FlightCategory")
                         .HasColumnType("int");
 
                     b.Property<string>("FlightCategoryToDisplay")
@@ -494,85 +458,34 @@ namespace AirNice.Data.Migrations
                     b.Property<string>("FlightNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsAvailable")
+                    b.Property<bool?>("IsAvailable")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsNewRecord")
+                    b.Property<bool?>("IsNewRecord")
                         .HasColumnType("bit");
+
+                    b.Property<int?>("PlaneID")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("Seatnumber")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TotalSeat")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TotalVacantSeat")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TripTypes")
+                    b.Property<string>("Status")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TypeOfPlane")
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("ID");
 
-                    b.HasKey("Id");
+                    b.HasIndex("ArrivalID");
 
                     b.HasIndex("CreateById");
 
-                    b.HasIndex("EditedById");
-
-                    b.ToTable("Flights");
-                });
-
-            modelBuilder.Entity("AirNice.Models.Models.Location", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("City")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Country")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CreateById")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime?>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DateModified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("EditedById")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<bool>("IsNewRecord")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("State")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("TimeZone")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ZipCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CreateById");
+                    b.HasIndex("DepartureID");
 
                     b.HasIndex("EditedById");
 
-                    b.ToTable("Locations");
+                    b.HasIndex("PlaneID");
+
+                    b.ToTable("Flight");
                 });
 
             modelBuilder.Entity("AirNice.Models.Models.NumberSequence", b =>
@@ -590,13 +503,13 @@ namespace AirNice.Data.Migrations
                     b.Property<DateTime?>("DateModified")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("Deleted")
+                    b.Property<bool?>("Deleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("EditedById")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<bool>("IsNewRecord")
+                    b.Property<bool?>("IsNewRecord")
                         .HasColumnType("bit");
 
                     b.Property<int>("LastNumber")
@@ -620,62 +533,56 @@ namespace AirNice.Data.Migrations
                     b.ToTable("NumberSequences");
                 });
 
-            modelBuilder.Entity("AirNice.Models.Models.Passenger", b =>
+            modelBuilder.Entity("AirNice.Models.Models.PassengerTicket", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime?>("Birthday")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("CreateById")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<DateTime>("DOB")
+                    b.Property<DateTime?>("DateCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DateCreated")
+                    b.Property<DateTime?>("DateIssueOrExpiry")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DateModified")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("Deleted")
+                    b.Property<bool?>("Deleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("EditedById")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Email")
+                    b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsNewRecord")
+                    b.Property<bool>("Gender")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsProfiled")
+                    b.Property<string>("IDCardOrPassport")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("IsNewRecord")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PassPort")
+                    b.Property<Guid?>("PassengerTypeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("PlaceIssue")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<byte[]>("picture")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<Guid?>("TicketId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -683,9 +590,50 @@ namespace AirNice.Data.Migrations
 
                     b.HasIndex("EditedById");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("PassengerTypeId");
 
-                    b.ToTable("Passengers");
+                    b.HasIndex("TicketId");
+
+                    b.ToTable("passengerTicket");
+                });
+
+            modelBuilder.Entity("AirNice.Models.Models.PassengerType", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CreateById")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("Discount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EditedById")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool?>("IsNewRecord")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreateById");
+
+                    b.HasIndex("EditedById");
+
+                    b.ToTable("PassengerType");
                 });
 
             modelBuilder.Entity("AirNice.Models.Models.Permission", b =>
@@ -703,7 +651,7 @@ namespace AirNice.Data.Migrations
                     b.Property<DateTime?>("DateModified")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("Deleted")
+                    b.Property<bool?>("Deleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("Description")
@@ -712,7 +660,7 @@ namespace AirNice.Data.Migrations
                     b.Property<string>("EditedById")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<bool>("IsNewRecord")
+                    b.Property<bool?>("IsNewRecord")
                         .HasColumnType("bit");
 
                     b.Property<string>("Module")
@@ -735,6 +683,298 @@ namespace AirNice.Data.Migrations
                     b.ToTable("Permissions");
                 });
 
+            modelBuilder.Entity("AirNice.Models.Models.Plane", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Airline")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreateById")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("EditedById")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool?>("IsNewRecord")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("SeatMapID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("CreateById");
+
+                    b.HasIndex("EditedById");
+
+                    b.HasIndex("SeatMapID");
+
+                    b.ToTable("Plane");
+                });
+
+            modelBuilder.Entity("AirNice.Models.Models.PlaneAirport", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AirportID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreateById")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("DepartureOrArrival")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EditedById")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool?>("IsNewRecord")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("PlaneID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("AirportID");
+
+                    b.HasIndex("CreateById");
+
+                    b.HasIndex("EditedById");
+
+                    b.HasIndex("PlaneID");
+
+                    b.ToTable("PlaneAirport");
+                });
+
+            modelBuilder.Entity("AirNice.Models.Models.PlaneSeatClass", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("Capacity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreateById")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("EditedById")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool?>("IsNewRecord")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("Order")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PlaneID")
+                        .HasColumnType("int");
+
+                    b.Property<double?>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<int?>("SeatClassID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("CreateById");
+
+                    b.HasIndex("EditedById");
+
+                    b.HasIndex("PlaneID");
+
+                    b.HasIndex("SeatClassID");
+
+                    b.ToTable("PlaneSeatClass");
+                });
+
+            modelBuilder.Entity("AirNice.Models.Models.SeatClass", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CreateById")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("EditedById")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool?>("IsNewRecord")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("CreateById");
+
+                    b.HasIndex("EditedById");
+
+                    b.ToTable("SeatClass");
+                });
+
+            modelBuilder.Entity("AirNice.Models.Models.SeatMap", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("Capacity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Columns")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreateById")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("EditedById")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool?>("IsNewRecord")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RowWithoutSeat")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("CreateById");
+
+                    b.HasIndex("EditedById");
+
+                    b.ToTable("SeatMap");
+                });
+
+            modelBuilder.Entity("AirNice.Models.Models.Ticket", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CreateById")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Discount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EditedById")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool?>("IsNewRecord")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid?>("PassengerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("PaymentID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("TicketClassId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreateById");
+
+                    b.HasIndex("EditedById");
+
+                    b.HasIndex("PassengerId");
+
+                    b.HasIndex("TicketClassId");
+
+                    b.ToTable("Ticket");
+                });
+
             modelBuilder.Entity("AirNice.Models.Models.TicketClass", b =>
                 {
                     b.Property<Guid>("Id")
@@ -750,7 +990,7 @@ namespace AirNice.Data.Migrations
                     b.Property<DateTime?>("DateModified")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("Deleted")
+                    b.Property<bool?>("Deleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("Description")
@@ -759,7 +999,7 @@ namespace AirNice.Data.Migrations
                     b.Property<string>("EditedById")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<bool>("IsNewRecord")
+                    b.Property<bool?>("IsNewRecord")
                         .HasColumnType("bit");
 
                     b.Property<Guid>("PassengerId")
@@ -776,7 +1016,132 @@ namespace AirNice.Data.Migrations
 
                     b.HasIndex("PassengerId");
 
-                    b.ToTable("TicketClasses");
+                    b.ToTable("TicketClass");
+                });
+
+            modelBuilder.Entity("AirNice.Models.Models.TicketFlight", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("BookingId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CreateById")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("EditedById")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("FlightID")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("IsNewRecord")
+                        .HasColumnType("bit");
+
+                    b.Property<int?>("Order")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("RoundTrip")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SeatCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("TicketId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookingId");
+
+                    b.HasIndex("CreateById");
+
+                    b.HasIndex("EditedById");
+
+                    b.HasIndex("FlightID");
+
+                    b.HasIndex("TicketId");
+
+                    b.ToTable("TicketFlight");
+                });
+
+            modelBuilder.Entity("AirNice.Models.Models.UserProfile", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CreateById")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime?>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DateModified")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool?>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EditedById")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("IsNewRecord")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsProfiled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MiddleName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreateById");
+
+                    b.HasIndex("EditedById");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Profiles");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("UserProfile");
                 });
 
             modelBuilder.Entity("AirNice.Models.Models.UserRole", b =>
@@ -930,6 +1295,44 @@ namespace AirNice.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("AirNice.Models.Models.Employee", b =>
+                {
+                    b.HasBaseType("AirNice.Models.Models.UserProfile");
+
+                    b.Property<DateTime>("DOB")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateOfEmployment")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("HasResigned")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("StaffCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue("Employee");
+                });
+
+            modelBuilder.Entity("AirNice.Models.Models.Passenger", b =>
+                {
+                    b.HasBaseType("AirNice.Models.Models.UserProfile");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DateIssueOrExpiry")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PassPort")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PassportNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue("Passenger");
+                });
+
             modelBuilder.Entity("AirNice.Models.Models.AdditionalUser", b =>
                 {
                     b.HasOne("AirNice.Models.Models.ApplicationUser", "CreatedBy")
@@ -970,38 +1373,11 @@ namespace AirNice.Data.Migrations
 
             modelBuilder.Entity("AirNice.Models.Models.AirPort", b =>
                 {
-                    b.HasOne("AirNice.Models.Models.ApplicationUser", "CreatedBy")
-                        .WithMany()
-                        .HasForeignKey("CreateById");
+                    b.HasOne("AirNice.Models.Models.Country", "Country")
+                        .WithMany("Airports")
+                        .HasForeignKey("CountryID");
 
-                    b.HasOne("AirNice.Models.Models.ApplicationUser", "EdityBy")
-                        .WithMany()
-                        .HasForeignKey("EditedById");
-
-                    b.HasOne("AirNice.Models.Models.Location", "Location")
-                        .WithMany()
-                        .HasForeignKey("LocationId");
-
-                    b.Navigation("CreatedBy");
-
-                    b.Navigation("EdityBy");
-
-                    b.Navigation("Location");
-                });
-
-            modelBuilder.Entity("AirNice.Models.Models.Bank", b =>
-                {
-                    b.HasOne("AirNice.Models.Models.ApplicationUser", "CreatedBy")
-                        .WithMany()
-                        .HasForeignKey("CreateById");
-
-                    b.HasOne("AirNice.Models.Models.ApplicationUser", "EdityBy")
-                        .WithMany()
-                        .HasForeignKey("EditedById");
-
-                    b.Navigation("CreatedBy");
-
-                    b.Navigation("EdityBy");
+                    b.Navigation("Country");
                 });
 
             modelBuilder.Entity("AirNice.Models.Models.Booking", b =>
@@ -1016,9 +1392,7 @@ namespace AirNice.Data.Migrations
 
                     b.HasOne("AirNice.Models.Models.Flight", "Flight")
                         .WithMany()
-                        .HasForeignKey("PassengerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("FlightID");
 
                     b.HasOne("AirNice.Models.Models.Passenger", "Passenger")
                         .WithMany()
@@ -1075,32 +1449,35 @@ namespace AirNice.Data.Migrations
 
             modelBuilder.Entity("AirNice.Models.Models.Flight", b =>
                 {
+                    b.HasOne("AirNice.Models.Models.AirPort", "Arrival")
+                        .WithMany()
+                        .HasForeignKey("ArrivalID");
+
                     b.HasOne("AirNice.Models.Models.ApplicationUser", "CreatedBy")
                         .WithMany()
                         .HasForeignKey("CreateById");
+
+                    b.HasOne("AirNice.Models.Models.AirPort", "Departure")
+                        .WithMany()
+                        .HasForeignKey("DepartureID");
 
                     b.HasOne("AirNice.Models.Models.ApplicationUser", "EdityBy")
                         .WithMany()
                         .HasForeignKey("EditedById");
 
-                    b.Navigation("CreatedBy");
+                    b.HasOne("AirNice.Models.Models.Plane", "Plane")
+                        .WithMany("Flights")
+                        .HasForeignKey("PlaneID");
 
-                    b.Navigation("EdityBy");
-                });
-
-            modelBuilder.Entity("AirNice.Models.Models.Location", b =>
-                {
-                    b.HasOne("AirNice.Models.Models.ApplicationUser", "CreatedBy")
-                        .WithMany()
-                        .HasForeignKey("CreateById");
-
-                    b.HasOne("AirNice.Models.Models.ApplicationUser", "EdityBy")
-                        .WithMany()
-                        .HasForeignKey("EditedById");
+                    b.Navigation("Arrival");
 
                     b.Navigation("CreatedBy");
 
+                    b.Navigation("Departure");
+
                     b.Navigation("EdityBy");
+
+                    b.Navigation("Plane");
                 });
 
             modelBuilder.Entity("AirNice.Models.Models.NumberSequence", b =>
@@ -1118,7 +1495,7 @@ namespace AirNice.Data.Migrations
                     b.Navigation("EdityBy");
                 });
 
-            modelBuilder.Entity("AirNice.Models.Models.Passenger", b =>
+            modelBuilder.Entity("AirNice.Models.Models.PassengerTicket", b =>
                 {
                     b.HasOne("AirNice.Models.Models.ApplicationUser", "CreatedBy")
                         .WithMany()
@@ -1128,15 +1505,36 @@ namespace AirNice.Data.Migrations
                         .WithMany()
                         .HasForeignKey("EditedById");
 
-                    b.HasOne("AirNice.Models.Models.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
+                    b.HasOne("AirNice.Models.Models.PassengerType", "PassengerType")
+                        .WithMany("PassengerTickets")
+                        .HasForeignKey("PassengerTypeId");
+
+                    b.HasOne("AirNice.Models.Models.Ticket", "Ticket")
+                        .WithMany("PassengerTickets")
+                        .HasForeignKey("TicketId");
 
                     b.Navigation("CreatedBy");
 
                     b.Navigation("EdityBy");
 
-                    b.Navigation("User");
+                    b.Navigation("PassengerType");
+
+                    b.Navigation("Ticket");
+                });
+
+            modelBuilder.Entity("AirNice.Models.Models.PassengerType", b =>
+                {
+                    b.HasOne("AirNice.Models.Models.ApplicationUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreateById");
+
+                    b.HasOne("AirNice.Models.Models.ApplicationUser", "EdityBy")
+                        .WithMany()
+                        .HasForeignKey("EditedById");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("EdityBy");
                 });
 
             modelBuilder.Entity("AirNice.Models.Models.Permission", b =>
@@ -1162,6 +1560,142 @@ namespace AirNice.Data.Migrations
                     b.Navigation("Role");
                 });
 
+            modelBuilder.Entity("AirNice.Models.Models.Plane", b =>
+                {
+                    b.HasOne("AirNice.Models.Models.ApplicationUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreateById");
+
+                    b.HasOne("AirNice.Models.Models.ApplicationUser", "EdityBy")
+                        .WithMany()
+                        .HasForeignKey("EditedById");
+
+                    b.HasOne("AirNice.Models.Models.SeatMap", "SeatMap")
+                        .WithMany("Planes")
+                        .HasForeignKey("SeatMapID");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("EdityBy");
+
+                    b.Navigation("SeatMap");
+                });
+
+            modelBuilder.Entity("AirNice.Models.Models.PlaneAirport", b =>
+                {
+                    b.HasOne("AirNice.Models.Models.AirPort", "Airport")
+                        .WithMany("PlaneAirports")
+                        .HasForeignKey("AirportID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AirNice.Models.Models.ApplicationUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreateById");
+
+                    b.HasOne("AirNice.Models.Models.ApplicationUser", "EdityBy")
+                        .WithMany()
+                        .HasForeignKey("EditedById");
+
+                    b.HasOne("AirNice.Models.Models.Plane", "Plane")
+                        .WithMany("PlaneAirports")
+                        .HasForeignKey("PlaneID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Airport");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("EdityBy");
+
+                    b.Navigation("Plane");
+                });
+
+            modelBuilder.Entity("AirNice.Models.Models.PlaneSeatClass", b =>
+                {
+                    b.HasOne("AirNice.Models.Models.ApplicationUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreateById");
+
+                    b.HasOne("AirNice.Models.Models.ApplicationUser", "EdityBy")
+                        .WithMany()
+                        .HasForeignKey("EditedById");
+
+                    b.HasOne("AirNice.Models.Models.Plane", "Plane")
+                        .WithMany("PlaneSeatClasses")
+                        .HasForeignKey("PlaneID");
+
+                    b.HasOne("AirNice.Models.Models.SeatClass", "SeatClass")
+                        .WithMany("PlaneSeatClasses")
+                        .HasForeignKey("SeatClassID");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("EdityBy");
+
+                    b.Navigation("Plane");
+
+                    b.Navigation("SeatClass");
+                });
+
+            modelBuilder.Entity("AirNice.Models.Models.SeatClass", b =>
+                {
+                    b.HasOne("AirNice.Models.Models.ApplicationUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreateById");
+
+                    b.HasOne("AirNice.Models.Models.ApplicationUser", "EdityBy")
+                        .WithMany()
+                        .HasForeignKey("EditedById");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("EdityBy");
+                });
+
+            modelBuilder.Entity("AirNice.Models.Models.SeatMap", b =>
+                {
+                    b.HasOne("AirNice.Models.Models.ApplicationUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreateById");
+
+                    b.HasOne("AirNice.Models.Models.ApplicationUser", "EdityBy")
+                        .WithMany()
+                        .HasForeignKey("EditedById");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("EdityBy");
+                });
+
+            modelBuilder.Entity("AirNice.Models.Models.Ticket", b =>
+                {
+                    b.HasOne("AirNice.Models.Models.ApplicationUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreateById");
+
+                    b.HasOne("AirNice.Models.Models.ApplicationUser", "EdityBy")
+                        .WithMany()
+                        .HasForeignKey("EditedById");
+
+                    b.HasOne("AirNice.Models.Models.Passenger", "Passenger")
+                        .WithMany("Tickets")
+                        .HasForeignKey("PassengerId");
+
+                    b.HasOne("AirNice.Models.Models.TicketClass", "TicketClass")
+                        .WithMany()
+                        .HasForeignKey("TicketClassId");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("EdityBy");
+
+                    b.Navigation("Passenger");
+
+                    b.Navigation("TicketClass");
+                });
+
             modelBuilder.Entity("AirNice.Models.Models.TicketClass", b =>
                 {
                     b.HasOne("AirNice.Models.Models.ApplicationUser", "CreatedBy")
@@ -1183,6 +1717,60 @@ namespace AirNice.Data.Migrations
                     b.Navigation("EdityBy");
 
                     b.Navigation("Passenger");
+                });
+
+            modelBuilder.Entity("AirNice.Models.Models.TicketFlight", b =>
+                {
+                    b.HasOne("AirNice.Models.Models.Booking", null)
+                        .WithMany("TicketFlights")
+                        .HasForeignKey("BookingId");
+
+                    b.HasOne("AirNice.Models.Models.ApplicationUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreateById");
+
+                    b.HasOne("AirNice.Models.Models.ApplicationUser", "EdityBy")
+                        .WithMany()
+                        .HasForeignKey("EditedById");
+
+                    b.HasOne("AirNice.Models.Models.Flight", "Flight")
+                        .WithMany("TicketFlights")
+                        .HasForeignKey("FlightID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AirNice.Models.Models.Ticket", "Ticket")
+                        .WithMany("TicketFlights")
+                        .HasForeignKey("TicketId");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("EdityBy");
+
+                    b.Navigation("Flight");
+
+                    b.Navigation("Ticket");
+                });
+
+            modelBuilder.Entity("AirNice.Models.Models.UserProfile", b =>
+                {
+                    b.HasOne("AirNice.Models.Models.ApplicationUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreateById");
+
+                    b.HasOne("AirNice.Models.Models.ApplicationUser", "EdityBy")
+                        .WithMany()
+                        .HasForeignKey("EditedById");
+
+                    b.HasOne("AirNice.Models.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("CreatedBy");
+
+                    b.Navigation("EdityBy");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -1234,6 +1822,62 @@ namespace AirNice.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("AirNice.Models.Models.AirPort", b =>
+                {
+                    b.Navigation("PlaneAirports");
+                });
+
+            modelBuilder.Entity("AirNice.Models.Models.Booking", b =>
+                {
+                    b.Navigation("TicketFlights");
+                });
+
+            modelBuilder.Entity("AirNice.Models.Models.Country", b =>
+                {
+                    b.Navigation("Airports");
+                });
+
+            modelBuilder.Entity("AirNice.Models.Models.Flight", b =>
+                {
+                    b.Navigation("TicketFlights");
+                });
+
+            modelBuilder.Entity("AirNice.Models.Models.PassengerType", b =>
+                {
+                    b.Navigation("PassengerTickets");
+                });
+
+            modelBuilder.Entity("AirNice.Models.Models.Plane", b =>
+                {
+                    b.Navigation("Flights");
+
+                    b.Navigation("PlaneAirports");
+
+                    b.Navigation("PlaneSeatClasses");
+                });
+
+            modelBuilder.Entity("AirNice.Models.Models.SeatClass", b =>
+                {
+                    b.Navigation("PlaneSeatClasses");
+                });
+
+            modelBuilder.Entity("AirNice.Models.Models.SeatMap", b =>
+                {
+                    b.Navigation("Planes");
+                });
+
+            modelBuilder.Entity("AirNice.Models.Models.Ticket", b =>
+                {
+                    b.Navigation("PassengerTickets");
+
+                    b.Navigation("TicketFlights");
+                });
+
+            modelBuilder.Entity("AirNice.Models.Models.Passenger", b =>
+                {
+                    b.Navigation("Tickets");
                 });
 #pragma warning restore 612, 618
         }

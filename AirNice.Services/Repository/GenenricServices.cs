@@ -106,13 +106,13 @@ namespace AirNice.Services.Repository
                 IQueryable<T> query = dbSet;
 
                 var queryies = query.ToList();
-                foreach (var entity in queryies)
-                {
-                    var deleteValue = entity.GetType().GetProperty(Universe.DeleteClature).GetValue(entity);
-                    if (deleteValue.Equals(obj))
-                        Entities.Add(entity);
-                }
-                return Entities;
+                //foreach (var entity in queryies)
+                //{
+                //    var deleteValue = entity.GetType().GetProperty(Universe.DeleteClature).GetValue(entity);
+                //    if (deleteValue.Equals(obj))
+                //        Entities.Add(entity);
+                //}
+                return queryies;
             }
 
             public IEnumerable<T> ReserveCollection()
@@ -196,7 +196,7 @@ namespace AirNice.Services.Repository
                 }
             }
 
-            public async Task<bool> UpdateAsync(T entity)
+            public virtual async Task<bool> UpdateAsync(T entity)
             {
            
                 _Context.Update(entity);

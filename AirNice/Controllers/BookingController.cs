@@ -14,8 +14,9 @@ using System.Threading.Tasks;
 
 namespace AirNice.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/FlightBooking")]
     [ApiController]
+   // [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public class BookingController : BaseController
     {
         public BookingController(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, ApplicationDbContext context, SignInManager<ApplicationUser> signInManager, IMapper mapper) : base(unitOfWork, userManager, roleManager, context, signInManager, mapper)
@@ -26,8 +27,8 @@ namespace AirNice.Controllers
         /// This is the method that returns the list of active Enquiries
         /// </summary>
         /// <returns></returns>
-        [HttpGet("[action]")]
-        [ProducesResponseType(200, Type = typeof(List<BookingDTO>))]
+        [HttpGet]
+        [Route("GetAllBooking")]
         [ProducesResponseType(400)]
         public IActionResult Index()
         {
@@ -37,21 +38,20 @@ namespace AirNice.Controllers
             return Ok(bookings);
         }
 
-        [HttpGet("[action]")]
-        [ProducesResponseType(200, Type = typeof(List<BookingDTO>))]
-        [ProducesResponseType(400)]
-        public IActionResult Trash()
-        {
-            var entities = _unitOfWork.booking.Trashcollection();
-            var bookings = _mapper.Map<List<BookingDTO>>(entities);
+        //[HttpGet]
+        //[ProducesResponseType(400)]
+        //public IActionResult Trash()
+        //{
+        //    var entities = _unitOfWork.booking.Trashcollection();
+        //    var bookings = _mapper.Map<List<BookingDTO>>(entities);
 
-            return Ok(bookings);
-        }
-
+        //    return Ok(bookings);
+        //}
 
 
-        [HttpGet("[action]/id")]
-        [ProducesResponseType(200, Type = typeof(BookingDTO))]
+
+        [HttpGet]
+        [Route("GetBooking/{id}")]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         [ProducesDefaultResponseType]
@@ -66,13 +66,14 @@ namespace AirNice.Controllers
             return Ok(booking);
         }
 
-        [HttpPost("[action]")]
-        [ProducesResponseType(201, Type = typeof(BookingDTO))]
+
+        [HttpPost]
+        [Route("NewBooking/{booking}")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesDefaultResponseType]
-        public async Task<IActionResult> Create([FromBody] BookingDTO bookingDTO)
+        public async Task<IActionResult> NewBooking( BookingDTO bookingDTO)
         {
             if (ModelState.IsValid)
             {
@@ -90,14 +91,18 @@ namespace AirNice.Controllers
             return BadRequest(ModelState);
         }
 
-        [HttpPatch("[action]")]
-        [ProducesResponseType(204)]
+
+
+
+
+        [Route("UpdateBooking/{booking}")]
+        [HttpPatch]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesDefaultResponseType]
-        public async Task<IActionResult> Update(Guid id, [FromBody] BookingDTO bookingDTO)
+        public async Task<IActionResult> UpdateBooking(  BookingDTO bookingDTO)
         {
-            if (bookingDTO == null || id != bookingDTO.Id)
+            if (bookingDTO == null)
                 return BadRequest(ModelState);
             if (ModelState.IsValid)
             {
@@ -117,7 +122,8 @@ namespace AirNice.Controllers
         }
 
 
-        [HttpPatch("[action]")]
+        [HttpDelete]
+        [Route("CancelBooking/{id}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]

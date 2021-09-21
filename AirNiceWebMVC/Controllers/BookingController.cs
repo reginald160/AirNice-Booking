@@ -1,4 +1,5 @@
-﻿using AirNiceWebMVC.Abstractions;
+﻿using AirNice.Models.DTO;
+using AirNiceWebMVC.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,13 @@ namespace AirNiceWebMVC.Controllers
             return View();
         }
 
-      
+        public async Task<IActionResult> FlightBooking(Guid id)
+        {
+           var response = await _bookingServices.GetBooking(id);
+
+            return View();
+        }
+
+
     }
 }

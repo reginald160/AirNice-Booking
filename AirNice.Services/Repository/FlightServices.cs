@@ -19,9 +19,9 @@ namespace AirNice.Services.Repository
 
         public List<Flight> Search(string stringValue, DateTime departureDate, DateTime arrivalDate)
         {
-            var flights = _Context.Flights.Where(x => x.Deleted.Equals(!Universe.Deleted) && x.IsAvailable.Equals(Universe.Truth) &&
-            (x.TypeOfPlane.Contains(stringValue) || x.TypeOfPlane.Contains(stringValue) || x.FlightNumber.Contains(stringValue) ||
-            x.TypeOfPlane.Contains(stringValue) || x.ArrivateDateTime.Equals(arrivalDate) || x.DepartureDateTime.Equals(x.DepartureDateTime))).ToList();
+            var flights = _Context.Flight.Where(x => x.Deleted.Equals(!Universe.Deleted) && x.IsAvailable.Equals(Universe.Truth) &&
+            /*(x.TypeOfPlane.Contains(stringValue) || x.TypeOfPlane.Contains(stringValue)*/ x.FlightNumber.Contains(stringValue) ||
+          /*  x.TypeOfPlane.Contains(stringValue) ||*/ x.ArrivalDate.Equals(arrivalDate) || x.DepartureDate.Equals(x.DepartureDate)).ToList();
 
             return flights;
         }

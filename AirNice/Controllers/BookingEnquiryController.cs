@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace AirNice.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/BookingEnquiry")]
     [ApiController]
     //[ApiExplorerSettings(GroupName = "AirNiceAPIBookingEnquiry")]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -27,8 +27,7 @@ namespace AirNice.Controllers
         /// This is the method that returns the list of active Enquiries
         /// </summary>
         /// <returns></returns>
-        [HttpGet("[action]")]
-        [ProducesResponseType(200, Type = typeof(List<BookingEnquiryDTO>))]
+        [HttpGet("AllEnquiries")]
         [ProducesResponseType(400)]
         public IActionResult Index()
         {
@@ -38,8 +37,7 @@ namespace AirNice.Controllers
             return Ok(bookingEnquirys);
         }
 
-        [HttpGet("[action]")]
-        [ProducesResponseType(200, Type = typeof(List<BookingEnquiryDTO>))]
+        [HttpGet("ArchivedEnquiries")]
         [ProducesResponseType(400)]
         public IActionResult Trash()
         {
@@ -51,8 +49,7 @@ namespace AirNice.Controllers
 
 
 
-        [HttpGet("[action]")]
-        [ProducesResponseType(200, Type = typeof(BookingEnquiryDTO))]
+        [HttpGet("GetBookingEnquiry/{id}")]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         [ProducesDefaultResponseType]
@@ -67,13 +64,12 @@ namespace AirNice.Controllers
             return Ok(bookingEnquiry);
         }
 
-        [HttpPost("[action]")]
-        [ProducesResponseType(201, Type = typeof(BookingEnquiryDTO))]
+        [HttpPost("CreateEnquiry/{enquiry}")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesDefaultResponseType]
-        public async Task<IActionResult> Create([FromBody] BookingEnquiryDTO bookingEnquiryDTO)
+        public async Task<IActionResult> Create( BookingEnquiryDTO bookingEnquiryDTO)
         {
             if (ModelState.IsValid)
             {
@@ -91,34 +87,34 @@ namespace AirNice.Controllers
             return BadRequest(ModelState);
         }
 
-        [HttpPatch("[action]")]
-        [ProducesResponseType(204)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [ProducesDefaultResponseType]
-        public async Task<IActionResult> Update(Guid id, [FromBody] BookingEnquiryDTO bookingEnquiryDTO)
-        {
-            if (bookingEnquiryDTO == null || id != bookingEnquiryDTO.Id)
-                return BadRequest(ModelState);
-            if (ModelState.IsValid)
-            {
+        //[HttpPatch("[action]")]
+        //[ProducesResponseType(204)]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        //[ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        //[ProducesDefaultResponseType]
+        //public async Task<IActionResult> Update(Guid id,  BookingEnquiryDTO bookingEnquiryDTO)
+        //{
+        //    if (bookingEnquiryDTO == null || id != bookingEnquiryDTO.Id)
+        //        return BadRequest(ModelState);
+        //    if (ModelState.IsValid)
+        //    {
 
 
-                var bookingEnquiry = _mapper.Map<BookingEnquiry>(bookingEnquiryDTO);
-                var sucess = await _unitOfWork.bookingEnquiry.UpdateAsync(bookingEnquiry);
-                if (!sucess)
-                {
-                    ModelState.AddModelError("", Universe.Error500);
-                    return StatusCode(500, ModelState);
-                }
-                return Ok(bookingEnquiry);
-            }
-            return BadRequest(ModelState);
+        //        var bookingEnquiry = _mapper.Map<BookingEnquiry>(bookingEnquiryDTO);
+        //        var sucess = await _unitOfWork.bookingEnquiry.UpdateAsync(bookingEnquiry);
+        //        if (!sucess)
+        //        {
+        //            ModelState.AddModelError("", Universe.Error500);
+        //            return StatusCode(500, ModelState);
+        //        }
+        //        return Ok(bookingEnquiry);
+        //    }
+        //    return BadRequest(ModelState);
 
-        }
+        //}
 
 
-        [HttpPatch("[action]")]
+        [HttpPatch("DeleteAndRetrieve/{id}")]
         [ProducesResponseType(204)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]

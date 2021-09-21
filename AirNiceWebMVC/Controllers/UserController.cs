@@ -1,16 +1,20 @@
 ﻿using AirNice.Models.DTO;
 using AirNice.Models.DTO.UserDTO;
 using AirNice.Models.Models;
+using AirNice.Utility.CoreHelpers;
 using AirNiceWebMVC.Abstractions;
 using AirNiceWebMVC.Helper;
+using AirNiceWebMVC.ViewModel.User;
 using EasyBanking.Utility.CoreHelpers;
 using IdentityServer4.Models;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -24,15 +28,19 @@ namespace AirNiceWebMVC.Controllers
         private readonly IUserServices _user;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly ILogger<ApplicationUser> _logger;
+        private readonly ILogger<UserController> _logger;
         private readonly IEmailSender _emailSender;
-        public UserController(IUserServices user, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ILogger<ApplicationUser> logger, IEmailSender emailSender)
+        private readonly IWebHostEnvironment webHostEnvironment;
+        private string UserSectionString;
+
+        public UserController(IUserServices user, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ILogger<UserController> logger, IEmailSender emailSender, IWebHostEnvironment webHostEnvironment)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _user = user;
             _emailSender = emailSender;
+            this.webHostEnvironment = webHostEnvironment;
         }
 
         public IActionResult Index()
@@ -67,51 +75,78 @@ namespace AirNiceWebMVC.Controllers
             }
         }
         
+        //[HttpPost]
+        //public async Task<IActionResult> Register(RegisterDTO registerDTO, string userId, string userCode,string returnUrl = null)
+        //{
+        //    if(userCode != null)
+        //    {
+        //        return RedirectToAction("ConfirmEmail", new { userId = userId, code = userCode });
+        //    }
+        //    if(ModelState.IsValid)
+        //    {
+        //        var user = new ApplicationUser { UserName = registerDTO.Email, Email = registerDTO.Email };
+        //        var password = registerDTO.Password;
+        //        try
+        //        {
+
+        //             _user.Register(new RegisterViewModel { Email = registerDTO.Email, Password = registerDTO.Password}).GetAwaiter().GetResult();
+        //            var result = await _userManager.CreateAsync(user, password);
+        //            if (result.Succeeded)
+        //            {
+        //                _logger.LogInformation("User created a new account with password.");
+
+        //                var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+        //                returnUrl = returnUrl ?? Url.Content("~/");
+        //                code = LogicHelper.StringEncoder(code);
+        //                var callbackUrl = Url.Page(
+        //                    "/User/ConfirmEmail",
+        //                    pageHandler: null,
+        //                    values: new { Controller = "User", userId = user.Id, userCode = code, Url = returnUrl },
+        //                    protocol: Request.Scheme);
+
+        //                LogicHelper.MailSender(
+        //                    user.Email,
+        //                    "Confirm your email",
+        //                     $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+
+        //                if (_userManager.Options.SignIn.RequireConfirmedAccount)
+        //                {
+        //                    return RedirectToAction("RegisterConfirmation", new { email = user.Email });
+        //                }
+        //                else
+        //                {
+        //                    await _signInManager.SignInAsync(user, isPersistent: false);
+        //                    return View("Home");
+        //                }
+        //            }
+        //            foreach (var error in result.Errors)
+        //            {
+        //                ModelState.AddModelError(string.Empty, error.Description);
+
+        //            }
+        //        }
+        //        catch(Exception exp)
+        //        {
+        //            _logger.LogInformation("Something went wrong");
+        //            return View();
+        //        }
+               
+
+
+
+        //    }
+        //    return View();
+        //}
+
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterDTO registerDTO, string returnUrl = null )
+        public IActionResult Register(RegisterDTO registerDTO, string userCode = null, string returnUrl = null)
         {
             if(ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = registerDTO.Email, Email = registerDTO.Email };
-                var password = registerDTO.Password;
-                var result = await _userManager.CreateAsync(user, password);
-                if (result.Succeeded)
-                {
-                    _logger.LogInformation("User created a new account with password.");
-
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    returnUrl = returnUrl ?? Url.Content("~/");
-                    code = LogicHelper.StringEncoder(code);
-                    var callbackUrl = Url.Page(
-                        "/User/ConfirmEmail",
-                        pageHandler: null,
-                        values: new { Controller = "User",  userId = user.Id, code = code, returnUrl = returnUrl },
-                        protocol: Request.Scheme);
-                    var number = callbackUrl;
-                    //await _emailSender.SendEmailAsync(user.Email, "Confirm your email",
-                    //    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-                  
-                    if (_userManager.Options.SignIn.RequireConfirmedAccount)
-                    {
-                        return RedirectToAction("RegisterConfirmation", new { email = user.Email});
-                    }
-                    else
-                    {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
-                        return View("Home");
-                    }
-                }
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError(string.Empty, error.Description);
-                }
-
-
-
+                _user.Register(new RegisterViewModel { Email = registerDTO.Email, Password = registerDTO.Password }).GetAwaiter().GetResult();
             }
             return View();
         }
-
 
         public   IActionResult RegisterConfirmation(string email)
         {
@@ -121,7 +156,7 @@ namespace AirNiceWebMVC.Controllers
             return View();
         }
         
-            public async Task<IActionResult> ConfirmEmail(string userId, string code)
+        public async Task<IActionResult> ConfirmEmail(string userId, string code)
         {
             if (userId == null || code == null)
             {
@@ -141,6 +176,11 @@ namespace AirNiceWebMVC.Controllers
             code = LogicHelper.StringDecoder(code); ;
             var result = await _userManager.ConfirmEmailAsync(user, code);
             ViewBag.Message = result.Succeeded ? "Thank you for confirming your email , Kindly login to your account." : "Error confirming your email.";
+            LogicHelper.MailSender(
+                user.Email,
+                "Email Confirmation",
+                "Your Email has been Confirmed you can now login into your account"
+                );
             return View();
         }
         [HttpGet]
@@ -176,8 +216,8 @@ namespace AirNiceWebMVC.Controllers
                             values: new { Controller = "User", userId = user.Id, code = code, returnUrl = returnUrl },
                             protocol: Request.Scheme);
                         var number = callbackUrl;
-                        //await _emailSender.SendEmailAsync(user.Email, "Confirm your email",
-                        //    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                            LogicHelper.MailSender(user.Email, "Confirm your email",
+                            $"Please confirm your account by   @:<a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>@:");
                         ViewBag.Message = user.Email;
                         return View("RegisterConfirmation");
                     }
@@ -187,17 +227,18 @@ namespace AirNiceWebMVC.Controllers
 
                 var result = await _signInManager.PasswordSignInAsync(loginDTO.Email, loginDTO.Password, loginDTO.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
-                {   
-                    _logger.LogInformation("User logged in.");
-                    var entity  = await _userManager.FindByEmailAsync(loginDTO.Email);
-                    if(entity.IsProfiled.Equals(true))
-                        return RedirectToAction("Index", "Home");
-                    else
-                    {
-                        var email = LogicHelper.StringEncoder(loginDTO.Email);
-                        return RedirectToAction("UserProfile", new { email = email });
-                    }
-                    
+                {
+                    //_logger.LogInformation("User logged in.");
+                    //var entity  = await _userManager.FindByEmailAsync(loginDTO.Email);
+                    //if(entity.IsProfiled.Equals(true))
+                    //    return RedirectToAction("Index", "Home");
+                    //else
+                    //{
+                    //    var email = LogicHelper.StringEncoder(loginDTO.Email);
+                    //    return RedirectToAction("UserProfile", new { email = email });
+                    //}
+                    HttpContext.Session.SetString(Universe.UserScetionSeed, loginDTO.Email);
+                    return RedirectToAction("Index", "Home");
                 }
                 if (result.IsLockedOut)
                 {
@@ -260,10 +301,13 @@ namespace AirNiceWebMVC.Controllers
                     values: new { Controller = "User", code , email = email, time = startIme},
                     protocol: Request.Scheme);
 
-                //await _emailSender.SendEmailAsync(
-                //    loginDTO.Email,
-                //    "Reset Password",
-                //    $"Please reset your password by <a href='{callbackUrl}'>clicking here</a>.");
+                LogicHelper.MailSender(
+                     loginDTO.Email,
+                    "Password Reset link",
+                   $"Please reset your password by clicking the link   @:<a href='{callbackUrl}'></a>@:"
+
+                    );
+              
 
                 ViewBag.Message = user.Email;
                 return View("RegisterConfirmation");
@@ -302,6 +346,11 @@ namespace AirNiceWebMVC.Controllers
             var result = await _userManager.ResetPasswordAsync(user, code, password);
             if (result.Succeeded)
             {
+                    LogicHelper.MailSender(
+                        user.Email,
+                        "<h1>Password Reset Confrimation</h1>",
+                        "Your Password has been reseted"
+                        );
                 return RedirectToAction("ResetPasswordConfirmation");
             }
 
@@ -338,24 +387,28 @@ namespace AirNiceWebMVC.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> UserProfile(ProfileDTO profile, HttpListenerRequest request)
         {
             if(ModelState.IsValid)
             {
-                //    await _user.UserProfile(profile);
-                //    return View();
-                //Request.Url.AbsolutePath.ToString();
-
+                
                 string referer = ControllerContext.HttpContext.Request.Headers["Referer"].ToString();
                 Uri baseUri = new Uri(referer);
-            
-                 return Redirect(baseUri.AbsolutePath.ToString());
+                 var imageurl =  UploadHelper.FileUpload(profile.Image, "images", webHostEnvironment.ToString());
+                UserSectionString = HttpContext.Session.GetString(Universe.UserScetionSeed);
+                var entity = await _userManager.FindByEmailAsync(UserSectionString);
+
+
+                return Redirect(baseUri.AbsolutePath.ToString());
                 
                     
             }
 
             return View();
         }
+
+      
 
     }
 }

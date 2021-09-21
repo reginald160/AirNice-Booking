@@ -1,65 +1,180 @@
 ﻿@model IEnumerable<AirNice.Models.DTO.FlightDTO>
 @{
-    ViewData["Title"] = "AvailableFlight";
-    Layout = "~/Views/Shared/_MainLayout.cshtml";
+	ViewData["Title"] = "Home Page";
+	Layout = "_MainLayout";
 }
 
-<body style="margin-top:50px; background-color:lightslategrey">
-    <section class="">
-        <div class="container">
-            <div class="row">
-
-                @if (Model.Any())
-                {
-
-
-                    var j = 1;
-                    var imageNo = String.Empty;
-
-                    @foreach (var item in Model)
-                    {
-
-                        var count = Model.Count();
-                        for (int i = 1; i < count; i++)
-                        {
-                            imageNo = $"{j++}.jpg";
-                        }
-
-                <div class="col-md-4  card mb30" style="background-image:url(../../BLUETEC_HTML/images/gallery/@imageNo); background-size:auto; background-repeat:no-repeat; position:center">
-                    <div class="de-image-hover card-title rounded">
+<link href="~/BLUETEC_HTMcss/bootstrap-grid.min.css" rel="stylesheet" type="text/css">
+<link href="~/BLUETEC_HTMcss/bootstrap-reboot.min.css" rel="stylesheet" type="text/css">
+<link href="~/BLUETEC_HTM/css/animate.css" rel="stylesheet" type="text/css">
+<link href="~/BLUETEC_HTM/css/owl.carousel.css" rel="stylesheet" type="text/css">
+<link href="~/BLUETEC_HTM/css/owl.theme.css" rel="stylesheet" type="text/css">
+<link href="~/BLUETEC_HTM/css/owl.transitions.css" rel="stylesheet" type="text/css">
+<link href="~/BLUETEC_HTM/css/magnific-popup.css" rel="stylesheet" type="text/css">
+@*<link href="~/BLUETEC_HTM/css/jquery.countdown.css" rel="stylesheet" type="text/css">*@
+@*<link href="~/BLUETEC_HTM/css/style.css" rel="stylesheet" type="text/css">*@
+<link href="~/BLUETEC_HTML/css/Card.css" rel="stylesheet" />
 
 
-                    </div>
-                    <div class="card-body">
+<div class="no-bottom no-top" id="content">
+	<div id="top"></div>
+
+	<!-- section begin -->
+	<section id="subheader" data-bgimage="url(../BLUETEC_HTML/images/background/5.png) bottom">
+		<div class="center-y relative text-center" data-scroll-speed="4">
+
+		</div>
+	</section>
+	<!-- section close -->
+	@{
+		if (Model.Any())
+		{
+			<section class="no-top" data-bgimage="url(../BLUETEC_HTML/images/background/3.png) top">
+				<div class="container">
+					<div class="row">
 
 
-                        <div> @Html.DisplayFor(modelItem => item.FlightNumber)</div>
-                        <div> @Html.DisplayFor(modelItem => item.AirLine)</div>
-                        <div> @Html.DisplayFor(modelItem => item.TotalVacantSeat)</div>
-                        <div> @Html.DisplayFor(modelItem => item.DepartureCountry)</div>
-                        <div> @Html.DisplayFor(modelItem => item.DepartureDateTime)</div>
-                        <div> @Html.DisplayFor(modelItem => item.DepartureCountry)</div>
-                        <div> @Html.DisplayFor(modelItem => item.DepartureDateTime)</div>
-                      
+						<div class="container">
+								<div class="row">
+									@{
+										foreach (var fliht in Model)
+										{
+											<div class="col-lg-3 col-sm-6">
+												<div class="card hovercard">
+													<div class="cardheader">
+
+													</div>
+													<div class="avatar">
+														<img alt="" src="~/BLUETEC_HTML/images/background/3.png">
+													</div>
+													<div class="info">
+														<div class="title">
+															<a target="_blank" href="https://scripteden.com/">Script Eden</a>
+														</div>
+														<div class="desc">@fliht.FlightNumber</div>
+														<div class="desc">@fliht.Id</div>
+														<input id="flightId" value="@fliht.Id" hidden="hidden" />
+														<div class="desc">Curious developer</div>
+														<div class="desc">Tech geek</div>
+													</div>
+													<div class="bottom">
+														<a class="btn btn-primary btn-twitter btn-sm" href="https://twitter.com/webmaniac">
+															<i class="fa fa-twitter"></i>
+														</a>
+														<a class="btn btn-danger btn-sm" rel="publisher"
+														   href="https://plus.google.com/+ahmshahnuralam">
+															<i class="fa fa-google-plus"></i>
+														</a>
+														<button class="btn btn-primary btn-sm" id="btn" asp-route="@fliht.Id" rel="publisher" data-toggle="modal" data-target="#exampleModalCenter">
+															<i class="fa fa-facebook"></i>
+														</button>
+
+													</div>
+												</div>
+											</div>
+											@*<partial name="_FlightAvailabilityModal" />*@
+
+											<div class="modal fade text-dark" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="" hidden="">
+												<div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+													<div class="modal-content">
+														<div class="">
+															<div class="pricing-s1 mb30">
+																<div class="top">
+																	<h2></h2>
+
+																	<p class="plan-tagline">Air Peace</p>
+																</div>
+																<div class="mid text-light bg-color-3">
+																	<p class="price">
+																		<span class="currency">$</span>
+																		<span class="m opt-1">24.99</span>
+																		<span class="y opt-2">16.49</span>
+																		@*<span class="month">p/mo</span>*@
+																	</p>
+																</div>
+																<div class="bottom">
+																	<ul>
+																		<li><i class="fa fa-check"></i>Destination: London</li>
+																		<li><i class="fa fa-check"></i>Departure Time: 1:30 PM UTC</li>
+																		<li><i class="fa fa-check"></i>Departure Date: 12/05/2021</li>
+																		<li><i class="fa fa-check"></i>Departure Terminal: Lagos</li>
+																		<li><i class="fa fa-check"></i>Available Seat: 13</li>
+																		<li><i class="fa fa-check"></i>Category : International</li>
+																	</ul>
+																</div>
+																<div class="row">
+																	<div class="action col-md-6" data-dismiss="modal">
+																		<a href="" class="btn-custom">Close</a>
+																	</div>
+																	<div class="action col-md-6">
+																		<button id="bookingBtn"  @*asp-action="FlightBooking" asp-controller="Booking" asp-route="@fliht.Id"*@ class="btn-custom">Book Flight</button>
+																	</div>
+																</div>
+
+															</div>
+														</div>
+
+													</div>
+												</div>
+											</div>
 
 
-                    </div>
-                    <a class="text-danger card-footer" asp-action="BookTicket" asp-controller="Booking" asp-route-id="@item.Id" id="deleteButton">
-                        <i class="fa fa-trash-o"></i> Book Flight
-                    </a>
-                </div>
-                       
-                    }
-                  
+
+										}
+									}
+
+								</div>
+						</div>
+					</div>
+				</div>
+			</section>
 
 
 
-                  }
 
-                </div>
+		}
+	}
 
-        </div>
+<script>
+	$('#bookingBtn').click(function () {
+		alert("Hello");
+		var id = $('#flightId').val();
+		alert(id);
+		bookFlight(id);
+	});
 
-    </section>
+	 function bookFlight(flightId) {
+		$.ajax({
+			url: '@Url.Action("FlightBooking", "Booking")',
+			data: { id: flightId},
+			type: "POST",
+			success: function(data) {
+				$('#placeHolderDiv').html(data);
+			}
+		});
+	}
 
-</body>
+
+</script>
+
+</div>
+
+
+@section LoginScripts {
+	<partial name="_LoginPartial" />
+}
+
+@section Scripts {
+	@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+
+
+
+
+
+
+
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">

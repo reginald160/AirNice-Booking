@@ -15,8 +15,8 @@ namespace AirNice.Models.Models
         public Guid PassengerId { get; set; }
         [ForeignKey("PassengerId"), JsonIgnore]
         public virtual Passenger Passenger { get; set; }
-        public Guid FlightId { get; set; }
-        [ForeignKey("PassengerId"), JsonIgnore]
+        public int? FlightID { get; set; }
+        [ForeignKey("FlightID"), JsonIgnore]
         public Flight Flight { get; set; }
         public int NumberOfChildren { get; set; }
         [NotMapped]
@@ -26,6 +26,8 @@ namespace AirNice.Models.Models
         public TripType TripeType { get; set; }
         public string TripeTypeToDisplay { get; set; }
         public decimal Price { get; set; }
+        public virtual ICollection<TicketFlight> TicketFlights { get; set; }
+        
 
     }
 }
