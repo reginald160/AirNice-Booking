@@ -80,6 +80,7 @@ namespace AirNice
                         IssuerSigningKey = new SymmetricSecurityKey(key),
                         ValidAudience = appSettings.ValidAudience,
                         ValidIssuer = appSettings.ValidIssuer,
+                       
                     };
                 });
          
